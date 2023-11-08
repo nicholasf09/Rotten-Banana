@@ -1,4 +1,4 @@
-@extends('admin.layout.main')
+@extends('user.layout.main')
 @section('content')
     <form action="{{route('user.cekLogin')}}" method="POST">
         @csrf  

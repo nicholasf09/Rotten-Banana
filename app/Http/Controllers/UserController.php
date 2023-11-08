@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function store(Request $request){
+    public function create(Request $request){
         $input = $request->only(['name', 'email', 'password']);
         $valid = Validator::make($input, [
             'name'=> 'required',
@@ -37,6 +38,7 @@ class UserController extends Controller
             if($valid->fails()){
                 return redirect()->back()->withErrors($valid)->withInput();
             }else{
+                $input['id'] = Str::uuid();
                 $input['password'] = bcrypt($input['password']);
                 $user = User::create($input);
                 if($user){
