@@ -21,16 +21,22 @@ Route::get('/', function () {
 });
 Route::group(['prefix'=> 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [LoginController::class,'loginAdmin'])->name('login');
-    Route::post('/cek', [LoginController::class,'cekLoginAdmin'])->name('cekLogin');
+    Route::post('/cekAdmin', [LoginController::class,'cekLoginAdmin'])->name('cekLogin');
     Route::get('/home', [AdminController::class,'home'])->name('home')->middleware('admin');
+
+    //Film
+    Route::get('/films', [AdminController::class,'showAllFilm'])->name('showAllFilm')->middleware('admin');
     Route::get('/film/store', [AdminController::class,'storeFilm'])->name('storeFilm')->middleware('admin');
+    Route::post('/film/create', [AdminController::class,'createFilm'])->name('createFilm')->middleware('admin');
+    Route::get('/films/edit/{film}', [AdminController::class,'editFilm'])->name('editFilm')->middleware('admin');
+    Route::post('/film/update', [AdminController::class,'updateFilm'])->name('updateFilm')->middleware('admin');
 });
 
 Route::group(['prefix'=> 'user', 'as' => 'user.'], function () {
     Route::get('/', [LoginController::class,'loginUser'])->name('login');
     Route::post('/cek', [LoginController::class,'cekLoginUser'])->name('cekLogin');
-    Route::get('/home', [UserController::class,'home'])->name('home');
+    Route::get('/home', [UserController::class,'home'])->name('home')->middleware('user');
     Route::get('/signup', [UserController::class,'signup'])->name('signup');
-    Route::post('/signup/store', [UserController::class,'store'])->name('store');
+    Route::post('/signup/create', [UserController::class,'create'])->name('store');
 });
 

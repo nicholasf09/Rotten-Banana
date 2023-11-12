@@ -29,6 +29,7 @@ class LoginController extends Controller
                 return redirect()->back()->withErrors($valid)->withInput();
             }else{
                 if(Auth::attempt($input)){
+                    $request->session()->regenerate();
                     return redirect()->route('admin.home');
                 }
                 else{
@@ -58,7 +59,8 @@ class LoginController extends Controller
                 return redirect()->back()->withErrors($valid)->withInput();
             }else{
                 if(Auth::attempt($input)){
-                    return redirect()->route('admin.home');
+                    $request->session()->regenerate();
+                    return redirect()->route('user.home');
                 }
                 else{
                     return redirect()->back()->withErrors('Login gagal')->withInput();
