@@ -29,7 +29,7 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.'], function () {
 Route::group(['prefix'=> 'user', 'as' => 'user.'], function () {
     Route::get('/', [LoginController::class,'loginUser'])->name('login');
     Route::post('/cek', [LoginController::class,'cekLoginUser'])->name('cekLogin');
-    Route::get('/home', [UserController::class,'home'])->name('home')->middleware('user');
+    Route::get('/home', [UserController::class,'home'])->name('home');
     Route::get('/signup', [UserController::class,'signup'])->name('signup');
     Route::post('/signup/store', [UserController::class,'store'])->name('store');
 });
