@@ -1,76 +1,78 @@
+@include('user.partials.navbar')
 @extends('user.layout.main')
+@section('style')
+<style>
+    * {
+        font-family: 'poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        background-color: #121212;
+    }
+    .swiper-wrapper::-webkit-scrollbar {
+        display: none;
+    }       
+    .form{
+        position: relative;
+    }
+    .search {
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        left: 17px;
+        color: #9ca3af;
+    }
+    .form-input{
+        padding-left: 45px;
+    }
+    .form-input:focus{
+        box-shadow: none;
+    }
+    ::placeholder {
+    color: gray !important;
+    }
+    .bg-navbar-dark{
+        background-color: #121212;
+    }
+    .title {
+        color: white;
+        transition: 0.5s ease-in-out;
+    }
+    .title:hover{
+        color: #CF0102;
+    }
+    .swiper {
+      width: 100%;
+      height: 43vh;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+    }
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+    .swiper-wrapper {
+        display: flex;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+</style>
+@endsection
 @section('content')
         @csrf
-        <style>
-            body {
-                background-color: #0F0F0F;
-            }
-            .form{
-                position: relative;
-            }
-            .form .bi-search{
-                position: absolute;
-                top: 6px;
-                left: 17px;
-                color: #9ca3af;
-            }
-            .form-input{
-                padding-left: 45px;
-            }
-            .form-input:focus{
-                box-shadow: none;
-            }
-            ::placeholder {
-            color: gray !important;
-            }
-            .bg-navbar-dark{
-                background-color: #121212;
-            }
-        </style>
-        <nav class="navbar navbar-expand-lg bg-navbar-dark sticky-top navbar-light p-3 shadow-sm">
-        <div class="container">
-            <a class="navbar-brand text-white" href="#"><img width="36"  src="https://img.icons8.com/cotton/64/banana.png" alt="banana"/><i class="fa-solid fa-shop me-2"></i> <strong>ROTTEN BANANA</strong></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-        
-            <div class="mx-auto my-3 d-lg-none d-sm-block d-xs-block">
-                <div class="input-group">
-                    <span class="border-warning input-group-text bg-warning text-dark"><i class="fa-solid fa-magnifying-glass"></i></span>
-                    <input type="text" class="form-control border-success" style="color: #FFFFFF; background-color: #000000;">
-                    <button class="btn btn-warning text-white">Search</button>
-                </div>
-                </div>
-                <div class=" collapse navbar-collapse" id="navbarNavDropdown">
-                <div class="ms-auto d-none d-sm-block">
-                <div class="form">
-                  <i class="bi bi-search text-dark"></i>
-                  <input type="text" class="form-control rounded-5 form-input border-light color-dark" placeholder="Search...">
-                </div>
-            </div>
-            <ul class="navbar-nav ms-auto ">
-                <!-- <li class="nav-item">
-                <a class="nav-link mx-2 text-uppercase active text-white" aria-current="page" href="#">HOME</a>
-                </li> -->
-                <li class="nav-item">
-                <a class="nav-link mx-2 text-uppercase text-white" href="#">REVIEW</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link mx-2 text-uppercase text-white" href="#">RANKING</a>
-                </li>
-                <!-- <li class="nav-item">
-                <a class="nav-link mx-2 text-uppercase text-white" href="#">CONTACT US</a>
-                </li> -->
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                <a class="nav-link mx-2 text-uppercase text-white" href="#"><i class="fa-solid fa-circle-user me-1 "></i> Account</a>
-                </li>
-            </ul>
-            </div>
-        </div>
-        </nav>
-        <div class="d-flex m-5 bg-dark bg-opacity-25 align-items-center" style="width: 80vw;">
+        <div class="d-flex m-md-5 mx-auto my-5  bg-dark bg-opacity-25 rounded-3 align-items-center flex-column flex-md-row" style="width: 80vw;">
             <div class="w-100">
             <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators">
@@ -80,21 +82,21 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                    <img src="https://rare-gallery.com/thumbs/894320-Satoru-Gojo-Jujutsu-Kaisen-anime.jpg" class="d-block w-100" alt="...">
+                    <img src="https://rare-gallery.com/thumbs/894320-Satoru-Gojo-Jujutsu-Kaisen-anime.jpg" class="d-block w-100 rounded-start-3" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>First slide label</h5>
                         <p>Some representative placeholder content for the first slide.</p>
                     </div>
                     </div>
                     <div class="carousel-item">
-                    <img src="https://rare-gallery.com/thumbs/894320-Satoru-Gojo-Jujutsu-Kaisen-anime.jpg" class="d-block w-100" alt="...">
+                    <img src="https://studio.mrngroup.co/storage/app/media/Prambors/Editorial%202/tanjiro-20230208155752.webp?tr=w-600" class="d-block w-100 rounded-start-3" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Second slide label</h5>
                         <p>Some representative placeholder content for the second slide.</p>
                     </div>
                     </div>
                     <div class="carousel-item">
-                    <img src="https://rare-gallery.com/thumbs/894320-Satoru-Gojo-Jujutsu-Kaisen-anime.jpg" class="d-block w-100" alt="...">
+                    <img src="https://m.media-amazon.com/images/M/MV5BMjkzZGMzNDktMzc3ZS00OTBlLThmYWEtM2M2NDZmMTZmYzZmXkEyXkFqcGdeQXVyODMyNTM0MjM@._V1_.jpg" class="d-block w-100 rounded-start-3" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Third slide label</h5>
                         <p>Some representative placeholder content for the third slide.</p>
@@ -111,8 +113,227 @@
                 </button>
                 </div>  
             </div> 
-            <div class="m-5 px-5">
-                <h1 class="fw-bold text-white">What happening now?</h1>
+            <div class="ms-md-5 p-3">
+                <h1 class="fw-bold lh-md title" style="font-size: 5vw;">What's happening now!</h1>
             </div>
         </div>
+         {{-- drakor --}}
+         <div class="mx-5 mb-3 mt-5">
+            <div class="d-flex justify-content-between align-items-end mb-2">
+                <h1 class="fw-bold text-white lh-md mb-0">K-Dramas</h1>
+                <p class="text-white mb-0">Scroll to view</p>
+            </div>      
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BODM5NDhkYzctZjQ5NS00YTFkLWJiODUtMGMwOTZhYzgyYWI1XkEyXkFqcGdeQXVyNjI4NDY5ODM@._V1_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BNjMzYThmZjUtYmZlZC00ZDQzLWExMGItNmI2ODNhM2U4OTYzXkEyXkFqcGdeQXVyNjI4NDY5ODM@._V1_FMjpg_UX1000_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BMTIyZTE1ZTAtZmFlMS00NjYzLWIwMWQtZjkwYzBkNDgxMWJmXkEyXkFqcGdeQXVyMTA2NTg2Njg2._V1_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BNDU1YWJkMDAtYmY1NS00OTNlLWI5OWItYjNjNzFkODQzOWYzXkEyXkFqcGdeQXVyNjEwNTM2Mzc@._V1_FMjpg_UX1000_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BYTA1OTQzYTYtNDAwOC00OTk0LTkxZDktMmVlNTc1OWExMzA5XkEyXkFqcGdeQXVyMTMxMTgyMzU4._V1_FMjpg_UX1000_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BODRmOGI0NWYtZmY4Mi00ZDNlLTljZjYtMzRiMTExMjZkNmIwXkEyXkFqcGdeQXVyNDY5MjMyNTg@._V1_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BODNmNzhlYzItYjJjMC00YTUyLWJhMTQtZWRmY2JhM2RiNTljXkEyXkFqcGdeQXVyMTAwMzM3NDI3._V1_FMjpg_UX1000_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BMTJlYzg0NGEtNzBkNi00MTE0LWJmOWYtYmM0MzdkMDI0ZDUwXkEyXkFqcGdeQXVyNjI4NDY5ODM@._V1_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BYzgzNDg5OGUtMGY5NS00ZjlkLTljM2MtYjdkODRhNDFlZmI5XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_FMjpg_UX1000_.jpg" alt=""></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        {{-- anime --}}
+        <div class="mx-5 mb-3 mt-5">
+            <div class="d-flex justify-content-between align-items-end mb-2">
+                <h1 class="fw-bold text-white lh-md mb-0">Anime Series</h1>
+                <p class="text-white mb-0">Scroll to view</p>
+            </div>      
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BODM0NmVjMzUtOTJhNi00N2ZhLWFkYmMtYmZmNjRiY2M1YWY4XkEyXkFqcGdeQXVyOTgxOTA5MDg@._V1_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://image.tmdb.org/t/p/original/3yFHMtdhriig4sm1w8oMQfA2gFN.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BMTMwMDM4N2EtOTJiYy00OTQ0LThlZDYtYWUwOWFlY2IxZGVjXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/I/81ywJT+vlVL.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BN2EwNTUwYWItZTY4ZC00N2Q1LWFhZWQtNjMwMDBkZDVmYThjXkEyXkFqcGdeQXVyOTA2OTk0MDg@._V1_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BOTM5ZjA2YWMtYjY3Ny00ZDU1LTk1NjYtMzhjMGY5ZmZkMzgwL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BNDVlOWQ3NDEtYWM4My00YzJlLWIxMzctODNjZDU4Njg1NzEwXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BMjlmZmI5MDctNDE2YS00YWE0LWE5ZWItZDBhYWQ0NTcxNWRhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg" alt=""></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        {{-- footer --}}
+                <!-- Remove the container if you want to extend the Footer to full width. -->
+        <div class="mx-5 my-5 bg-dark bg-opacity-25 rounded-3">
+            <!-- Footer -->
+            <footer
+                    class="text-center text-lg-start text-white"
+                    >
+            <!-- Grid container -->
+            <div class="container p-4 pb-0">
+                <!-- Section: Links -->
+                <section class="">
+                <!--Grid row-->
+                <div class="row">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">
+                        Company name
+                    </h6>
+                    <p>
+                        Here you can use rows and columns to organize your footer
+                        content. Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit.
+                    </p>
+                    </div>
+                    <!-- Grid column -->
+        
+                    <hr class="w-100 clearfix d-md-none" />
+        
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+                    <p>
+                        <a class="text-white">MDBootstrap</a>
+                    </p>
+                    <p>
+                        <a class="text-white">MDWordPress</a>
+                    </p>
+                    <p>
+                        <a class="text-white">BrandFlow</a>
+                    </p>
+                    <p>
+                        <a class="text-white">Bootstrap Angular</a>
+                    </p>
+                    </div>
+                    <!-- Grid column -->
+        
+                    <hr class="w-100 clearfix d-md-none" />
+        
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">
+                        Useful links
+                    </h6>
+                    <p>
+                        <a class="text-white">Your Account</a>
+                    </p>
+                    <p>
+                        <a class="text-white">Become an Affiliate</a>
+                    </p>
+                    <p>
+                        <a class="text-white">Shipping Rates</a>
+                    </p>
+                    <p>
+                        <a class="text-white">Help</a>
+                    </p>
+                    </div>
+        
+                    <!-- Grid column -->
+                    <hr class="w-100 clearfix d-md-none" />
+        
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                    <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+                    <p><i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
+                    <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+                    <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!--Grid row-->
+                </section>
+                <!-- Section: Links -->
+        
+                <hr class="my-3">
+        
+                <!-- Section: Copyright -->
+                <section class="p-3 pt-0">
+                <div class="row d-flex align-items-center">
+                    <!-- Grid column -->
+                    <div class="col-md-7 col-lg-8 text-center text-md-start">
+                    <!-- Copyright -->
+                    <div class="p-3">
+                        © 2023 Copyright:
+                        <a class="text-white" href="#"
+                        >rottenbanana.com</a
+                        >
+                    </div>
+                    <!-- Copyright -->
+                    </div>
+                    <!-- Grid column -->
+        
+                    <!-- Grid column -->
+                    <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+                    <!-- Facebook -->
+                    <a
+                        class="btn btn-outline-light btn-floating m-1"
+                        class="text-white"
+                        role="button"
+                        ><i class="bi bi-facebook"></i
+                        ></a>
+        
+                    <!-- Twitter -->
+                    <a
+                        class="btn btn-outline-light btn-floating m-1"
+                        class="text-white"
+                        role="button"
+                        ><i class="bi bi-twitter"></i
+                        ></a>
+        
+                    <!-- Google -->
+                    <a
+                        class="btn btn-outline-light btn-floating m-1"
+                        class="text-white"
+                        role="button"
+                        ><i class="bi bi-google"></i
+                        ></a>
+        
+                    <!-- Instagram -->
+                    <a
+                        class="btn btn-outline-light btn-floating m-1"
+                        class="text-white"
+                        role="button"
+                        ><i class="bi bi-instagram"></i
+                        ></a>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                </section>
+                <!-- Section: Copyright -->
+            </div>
+            <!-- Grid container -->
+            </footer>
+            <!-- Footer -->
+        </div>
+        <!-- End of .container -->    
+@endsection
+@section('script')
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    breakpoints: {
+        "@0.00": {
+        slidesPerView: 2,
+        spaceBetween: 10,
+        },
+        "@0.75": {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        },
+        "@1.00": {
+        slidesPerView: 5,
+        spaceBetween: 40,
+        },
+        "@1.50": {
+        slidesPerView: 6,
+        spaceBetween: 30,
+        },
+    },
+    });
+</script>
 @endsection
