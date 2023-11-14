@@ -45,10 +45,9 @@
 <div class="fluid-container">
     <div class="row">
         <div class="col-8" id="cardContainer">
-
-            @if (!empty($review))
-                <div class="card">
-                    <div class="card-body">
+            <div class="card" id="cardContainerUser">
+                <div class="card-body" id="userCard">
+                    @if (!empty($review))
                         <div>
                             <div style="display: flex; justify-content: space-between">
                                 <div class="profile-picture">
@@ -67,13 +66,13 @@
                         </div>
                         <p class="card-text" id="komenUser">{{$review['komen']}}</p>
                         <p class="card-text"><small class="text-body-secondary" id="createdUser">{{$review['created']}}</small></p>
-                    </div>
+                    @endif
                 </div>
-            @endif
+            </div>
 
             @foreach ($allReview as $r)
                 @if (!($r == $review))
-                <div class="card">
+                <div class="card">  
                     <div class="card-body">
                         <div>
                             <div style="display: flex; justify-content: space-between">
@@ -111,6 +110,12 @@
         var filmId = '{{$film->id}}';
         var userId = '{{Auth::user()->id}}';
         var create = false;
+
+        if('{{empty($review)}}'){
+           $("#cardContainerUser").hide(); 
+        }else{
+            $("#cardContainerUser").show();
+        }
 
         $('#submit').click(function(){
             rating = $('#rating').val();
@@ -181,9 +186,30 @@
                             create = true;
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Review berhasil disimpan',
+                                title: data['message'],
                                 text: 'Terima kasih atas reviewnya!',
                             })
+                            console.log(data['rating']);
+                            $("#cardContainerUser").show()
+                            $("#userCard").html(
+                                "<div>"+
+                                    "<div style='display: flex; justify-content: space-between'>"+
+                                        "<div class='profile-picture'>"+
+                                            "<img src='https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg' alt='Profile Picture'>"+
+                                            "<h5 class='card-title' style='display: inline; margin-right: 10px'>" + (data['name']) + "</h5>"+
+                                        "</div>"+ 
+
+                                        "<div style='margin-top: 6px'>"+
+                                            "<h6 style='display: inline;'>" + data['rating'] + "</h6>" +
+                                            "<div class='profile-picture' style='margin-left: -2px; overflow: hidden;'>"+
+                                                "<img src='https://image.freepik.com/vecteurs-libre/logo-banane_10250-3606.jpg' style='width: 35px; height: 35px; overflow: hidden;' alt='Profile Picture'>"+
+                                            "</div>"+
+                                        "</div>"+
+                                    "</div>"+
+                                "</div>"+
+                                "<p class='card-text'>" + (data['komen']) + "</p>"+
+                                "<p class='card-text'><small class='text-body-secondary' id='createdReview'>" + (data['created']) + "</small></p>"
+                            );
                         }
                     });
                 }

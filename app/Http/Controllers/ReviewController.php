@@ -60,6 +60,10 @@ class ReviewController extends Controller
                 return response()->json([
                     'success' => true,
                     'message' => 'Review berhasil ditambahkan',
+                    'name' => $review->user->name,
+                    'rating' => $review->rating,
+                    'komen' => $review->komen,
+                    'created' => $review->created_at->diffForHumans(),
                 ], 200);
             }else{
                 return response()->json([
