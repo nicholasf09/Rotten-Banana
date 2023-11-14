@@ -49,24 +49,33 @@
     .swiper-slide {
       text-align: center;
       font-size: 18px;
-      background: #fff;
+      background: #121212;
       display: flex;
       justify-content: center;
       align-items: center;
       border-radius: 15px;
+      overflow: hidden;
     }
     .swiper-slide img {
       display: block;
+      overflow: hidden;
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 15px;
+      transition: transform 0.3s ease;
+    }
+    img:hover{
+        transform: scale(1.2);
     }
     .swiper-wrapper {
         display: flex;
         overflow-x: scroll;
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
+    }
+    .text-justify {
+        text-align: justify;
     }
 </style>
 @endsection
@@ -121,7 +130,7 @@
          <div class="mx-5 mb-3 mt-5">
             <div class="d-flex justify-content-between align-items-end mb-2">
                 <h1 class="fw-bold text-white lh-md mb-0">K-Dramas</h1>
-                <p class="text-white mb-0">Scroll to view</p>
+                <p class="text-white mb-0 me-5  ">Scroll to view</p>
             </div>      
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
@@ -135,14 +144,13 @@
                     <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BMTJlYzg0NGEtNzBkNi00MTE0LWJmOWYtYmM0MzdkMDI0ZDUwXkEyXkFqcGdeQXVyNjI4NDY5ODM@._V1_.jpg" alt=""></div>
                     <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BYzgzNDg5OGUtMGY5NS00ZjlkLTljM2MtYjdkODRhNDFlZmI5XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_FMjpg_UX1000_.jpg" alt=""></div>
                 </div>
-                <div class="swiper-pagination"></div>
             </div>
         </div>
         {{-- anime --}}
         <div class="mx-5 mb-3 mt-5">
             <div class="d-flex justify-content-between align-items-end mb-2">
                 <h1 class="fw-bold text-white lh-md mb-0">Anime Series</h1>
-                <p class="text-white mb-0">Scroll to view</p>
+                <p class="text-white mb-0 me-5  ">Scroll to view</p>
             </div>      
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
@@ -156,7 +164,6 @@
                     <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BMjlmZmI5MDctNDE2YS00YWE0LWE5ZWItZDBhYWQ0NTcxNWRhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg" alt=""></div>
                     <div class="swiper-slide"><img src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg" alt=""></div>
                 </div>
-                <div class="swiper-pagination"></div>
             </div>
         </div>
         {{-- footer --}}
@@ -171,71 +178,26 @@
                 <!-- Section: Links -->
                 <section class="">
                 <!--Grid row-->
-                <div class="row">
+                <div class=" justify-content-between d-flex row">
                     <!-- Grid column -->
-                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <div class="col-md-3 col-lg-3 col-xl-3 mt-3">
                     <h6 class="text-uppercase mb-4 font-weight-bold">
-                        Company name
+                        Rotten Banana
                     </h6>
-                    <p>
-                        Here you can use rows and columns to organize your footer
-                        content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit.
-                    </p>
-                    </div>
-                    <!-- Grid column -->
-        
-                    <hr class="w-100 clearfix d-md-none" />
-        
-                    <!-- Grid column -->
-                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                    <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
-                    <p>
-                        <a class="text-white">MDBootstrap</a>
-                    </p>
-                    <p>
-                        <a class="text-white">MDWordPress</a>
-                    </p>
-                    <p>
-                        <a class="text-white">BrandFlow</a>
-                    </p>
-                    <p>
-                        <a class="text-white">Bootstrap Angular</a>
-                    </p>
-                    </div>
-                    <!-- Grid column -->
-        
-                    <hr class="w-100 clearfix d-md-none" />
-        
-                    <!-- Grid column -->
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-                    <h6 class="text-uppercase mb-4 font-weight-bold">
-                        Useful links
-                    </h6>
-                    <p>
-                        <a class="text-white">Your Account</a>
-                    </p>
-                    <p>
-                        <a class="text-white">Become an Affiliate</a>
-                    </p>
-                    <p>
-                        <a class="text-white">Shipping Rates</a>
-                    </p>
-                    <p>
-                        <a class="text-white">Help</a>
+                    <p class="text-justify">
+                        Rotten Banana is the world’s most trusted recommendation resources for quality entertainment. We also serve movie and TV fans with original editorial content on our site and through social channels, produce fun and informative video series.
                     </p>
                     </div>
         
-                    <!-- Grid column -->
-                    <hr class="w-100 clearfix d-md-none" />
+        
         
                     <!-- Grid column -->
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-                    <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
-                    <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-                    <p><i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
-                    <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-                    <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                    <div class="col-md-4 col-lg-3 col-xl-3 mt-3 bg-warning">
+                    <h6 class="text-uppercase mb-4 font-weight-bold d-flex justify-content-end">Contact</h6>
+                    <p><i class="bi bi-house mr-3 d-flex justify-content-end bg-danger"></i> Siwalankerto, SW 60012, INA</p>
+                    <p><i class="bi bi-envelope mr-3 d-flex justify-content-end"></i> rottenbanana@gmail.com</p>
+                    <p><i class="bi bi-phone mr-3 d-flex justify-content-end"></i> + 62 234 567 88</p>
+                    <p><i class="bi bi-printer mr-3 d-flex justify-content-end"></i> + 62 234 567 89</p>
                     </div>
                     <!-- Grid column -->
                 </div>
@@ -259,9 +221,6 @@
                     </div>
                     <!-- Copyright -->
                     </div>
-                    <!-- Grid column -->
-        
-                    <!-- Grid column -->
                     <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
                     <!-- Facebook -->
                     <a

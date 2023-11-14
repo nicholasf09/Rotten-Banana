@@ -22,7 +22,7 @@
             <a class="nav-link mx-2 text-uppercase active text-white" aria-current="page" href="#">HOME</a>
             </li> -->
             <li class="nav-item">
-            <a class="nav-link mx-2 text-uppercase text-white" href="#">REVIEW</a>
+            <a class="nav-link mx-2 text-uppercase text-white" href="#">MOVIES</a>
             </li>
             <li class="nav-item">
             <a class="nav-link mx-2 text-uppercase text-white" href="#">RANKING</a>
