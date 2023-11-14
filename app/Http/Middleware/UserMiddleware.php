@@ -20,6 +20,12 @@ class UserMiddleware
         {
             if(Auth::user()->role_as == 0)
             {
+                session(['role' => 'user']);
+                return $next($request);
+            }
+            else if(Auth::user()->role_as == 1)
+            {
+                session(['role' => 'admin']);
                 return $next($request);
             }
             else

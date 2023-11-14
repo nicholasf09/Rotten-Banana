@@ -65,7 +65,11 @@
                             
                         </div>
                         <p class="card-text" id="komenUser">{{$review['komen']}}</p>
-                        <p class="card-text"><small class="text-body-secondary" id="createdUser">{{$review['created']}}</small></p>
+                        <div style="display: flex; justify-content: space-between">
+                            <p class="card-text"><small class="text-body-secondary" id="createdUser">{{$review['created']}}</small></p>
+                            <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
+                            <input type="hidden" value="{{$review['id']}}" id="idReview">
+                        </div>
                     @endif
                 </div>
             </div>
@@ -91,7 +95,16 @@
                             
                         </div>
                         <p class="card-text">{{$r['komen']}}</p>
+                        @if (session('role') == "admin")
+                            <div style="display: flex; justify-content: space-between">
+                                <p class="card-text"><small class="text-body-secondary" id="createdUser">{{$r['created']}}</small></p>
+                                <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
+                                <input type="hidden" value="{{$r['id']}}" id="idReview">
+                            </div>
+                        
+                        @else
                         <p class="card-text"><small class="text-body-secondary" id="createdReview">{{$r['created']}}</small></p>
+                        @endif
                     </div>
                 </div>
                 @endif
@@ -110,6 +123,30 @@
         var filmId = '{{$film->id}}';
         var userId = '{{Auth::user()->id}}';
         var create = false;
+
+        $(document).on('click', "#deleteButton", function(){
+            var button = $(this);
+            $.ajax({
+                url: "{{route('user.deleteReview')}}",
+                type: 'POST',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    id: $(this).siblings('#idReview').val(),
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    Swal.fire({
+                        icon: 'success',
+                        title: data['message'],
+                        text: 'Komen anda telah berhasil di delete!',
+                    })
+
+                    button.closest('.card').remove();
+
+                }
+            });
+        })
 
         if('{{empty($review)}}'){
            $("#cardContainerUser").hide(); 
@@ -191,6 +228,7 @@
                             })
                             console.log(data['rating']);
                             $("#cardContainerUser").show()
+                            $("#cardContainerUser").css("margin-bottom", "25px");
                             $("#userCard").html(
                                 "<div>"+
                                     "<div style='display: flex; justify-content: space-between'>"+
@@ -207,8 +245,13 @@
                                         "</div>"+
                                     "</div>"+
                                 "</div>"+
-                                "<p class='card-text'>" + (data['komen']) + "</p>"+
-                                "<p class='card-text'><small class='text-body-secondary' id='createdReview'>" + (data['created']) + "</small></p>"
+                                "<p class='card-text'>" + (data['komen'] || "") + "</p>"+
+                                "<div style='display: flex; justify-content: space-between'>" +
+                                "<p class='card-text'><small class='text-body-secondary' id='createdReview'>" + (data['created']) + "</small></p>" +
+                                "<button type='button' class='btn btn-danger' id='deleteButton'>Delete</button>" +
+                                "<input type='hidden' value='" + (data['id']) + "' id='idReview'>" +
+                                "</div>"
+                                
                             );
                         }
                     });

@@ -64,6 +64,7 @@ class ReviewController extends Controller
                     'rating' => $review->rating,
                     'komen' => $review->komen,
                     'created' => $review->created_at->diffForHumans(),
+                    'id' => $review->id,
                 ], 200);
             }else{
                 return response()->json([
@@ -72,5 +73,15 @@ class ReviewController extends Controller
                 ], 400);
             }
         }
+    }
+
+    public function deleteReview(Request $request){
+        $review = Review::find($request->id)->first();
+        $review->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Review berhasil dihapus',
+            'id' => $review->id,
+        ], 200);
     }
 }
