@@ -180,7 +180,7 @@
                 <!--Grid row-->
                 <div class=" justify-content-between d-flex row">
                     <!-- Grid column -->
-                    <div class="col-md-3 col-lg-3 col-xl-3 mt-3">
+                    <div class="col-md-3 col-lg-3 col-xl-3 mt-3 ms-md-4">
                     <h6 class="text-uppercase mb-4 font-weight-bold">
                         Rotten Banana
                     </h6>
@@ -192,12 +192,12 @@
         
         
                     <!-- Grid column -->
-                    <div class="col-md-4 col-lg-3 col-xl-3 mt-3 bg-warning">
-                    <h6 class="text-uppercase mb-4 font-weight-bold d-flex justify-content-end">Contact</h6>
-                    <p><i class="bi bi-house mr-3 d-flex justify-content-end bg-danger"></i> Siwalankerto, SW 60012, INA</p>
-                    <p><i class="bi bi-envelope mr-3 d-flex justify-content-end"></i> rottenbanana@gmail.com</p>
-                    <p><i class="bi bi-phone mr-3 d-flex justify-content-end"></i> + 62 234 567 88</p>
-                    <p><i class="bi bi-printer mr-3 d-flex justify-content-end"></i> + 62 234 567 89</p>
+                    <div class="col-md-4 col-lg-3 col-xl-3 mt-3 me-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold d-flex justify-content-end">Contact</h6>
+                        <p class="d-flex justify-content-end align-items-center">Siwalankerto, SW 60012, INA<i class="bi bi-house ms-3"></i></p>
+                        <p class="d-flex justify-content-end align-items-center">rottenbanana@gmail.com<i class="bi bi-envelope ms-3"></i></p>
+                        <p class="d-flex justify-content-end align-items-center">+ 62 234 567 88 <i class="bi bi-phone ms-3"></i></p>
+                        <p class="d-flex justify-content-end align-items-center">+ 62 234 567 89<i class="bi bi-printer ms-3"></i></p>
                     </div>
                     <!-- Grid column -->
                 </div>
@@ -254,16 +254,11 @@
                         ><i class="bi bi-instagram"></i
                         ></a>
                     </div>
-                    <!-- Grid column -->
                 </div>
                 </section>
-                <!-- Section: Copyright -->
             </div>
-            <!-- Grid container -->
             </footer>
-            <!-- Footer -->
         </div>
-        <!-- End of .container -->    
 @endsection
 @section('script')
 <!-- Initialize Swiper -->
