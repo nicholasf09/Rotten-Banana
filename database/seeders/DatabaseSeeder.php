@@ -38,5 +38,7 @@ class DatabaseSeeder extends Seeder
             'role_as' => 0,
             
         ]);
+
+
     }
 }

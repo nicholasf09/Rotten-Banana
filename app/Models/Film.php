@@ -21,6 +21,8 @@ class Film extends Model
         'path_image'
     ];
 
-    
+    public function review(){
+        return $this->hasMany(Review::class, 'filmId');
+    }
 
 }

@@ -1,5 +1,17 @@
 @extends('admin.layout.main')
 @section('content')
+
+<style>
+    #myTable{
+        width: 75%;
+        height: 90vh;
+    }
+
+    .body{
+        overflow-x: hidden
+    }
+</style>
+
 <table id="myTable">
     <thead>
         <tr>

@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FilmController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,16 +29,23 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.'], function () {
     //Film
     Route::get('/films', [AdminController::class,'showAllFilm'])->name('showAllFilm')->middleware('admin');
     Route::get('/film/store', [AdminController::class,'storeFilm'])->name('storeFilm')->middleware('admin');
-    Route::post('/film/create', [AdminController::class,'createFilm'])->name('createFilm')->middleware('admin');
+    Route::post('/film/create', [FilmController::class,'createFilm'])->name('createFilm')->middleware('admin');
     Route::get('/films/edit/{film}', [AdminController::class,'editFilm'])->name('editFilm')->middleware('admin');
-    Route::post('/film/update', [AdminController::class,'updateFilm'])->name('updateFilm')->middleware('admin');
+    Route::post('/film/update', [FilmController::class,'updateFilm'])->name('updateFilm')->middleware('admin');
 });
 
 Route::group(['prefix'=> 'user', 'as' => 'user.'], function () {
     Route::get('/', [LoginController::class,'loginUser'])->name('login');
-    Route::post('/cek', [LoginController::class,'cekLoginUser'])->name('cekLogin');
+    Route::post('/cekUser', [LoginController::class,'cekLoginUser'])->name('cekLogin');
     Route::get('/home', [UserController::class,'home'])->name('home')->middleware('user');
     Route::get('/signup', [UserController::class,'signup'])->name('signup');
     Route::post('/signup/create', [UserController::class,'create'])->name('store');
+
+    //Film
+    Route::get('/films', [UserController::class,'showAllFilm'])->name('showAllFilm')->middleware('user');
+    Route::post('/getFilm', [FilmController::class,'getAllFilm'])->name('getAllFilm')->middleware('user');
+    Route::get('/film/{film}', [UserController::class,'showFilm'])->name('showFilm')->middleware('user');
+    Route::post('/review/store', [ReviewController::class,'storeReview'])->name('storeReview')->middleware('user');
+    Route::post('/review/update', [ReviewController::class,'updateReview'])->name('updateReview')->middleware('user');
 });
 

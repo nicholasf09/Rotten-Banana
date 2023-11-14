@@ -33,7 +33,7 @@ class LoginController extends Controller
                     return redirect()->route('admin.home');
                 }
                 else{
-                    return redirect()->back()->withErrors('Login gagal')->withInput();
+                    return redirect()->back()->withErrors('Login gagal!')->withInput();
                 }
             }
     }
@@ -63,7 +63,7 @@ class LoginController extends Controller
                     return redirect()->route('user.home');
                 }
                 else{
-                    return redirect()->back()->withErrors('Login gagal')->withInput();
+                    return redirect()->back()->withErrors('Login gagal!')->withInput();
                 }
             }
     }
