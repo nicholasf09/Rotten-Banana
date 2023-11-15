@@ -19,7 +19,6 @@ class Review extends Model
         'filmId',
         'rating',
         'komen',
-        'like',
     ];
 
     public function user(){

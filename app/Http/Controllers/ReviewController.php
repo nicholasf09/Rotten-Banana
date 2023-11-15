@@ -32,6 +32,8 @@ class ReviewController extends Controller
                 'rating' => $review->rating,
                 'komen' => $review->komen,
                 'created' => $review->created_at->diffForHumans(),
+                'name' => $review->user->name,
+                'id' => $review->id,
             ], 200);
         }
     }
@@ -53,7 +55,6 @@ class ReviewController extends Controller
             $input['id'] = Str::uuid();
             $input['userId'] = $request->userId;
             $input['filmId'] = $request->filmId;
-            $input['like'] = 0;
             $input['komen'] = $request->komen;
             $review = Review::create($input);
             if($review){

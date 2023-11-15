@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignUuid('filmId')->references('id')->on('films')->cascadeOnDelete();
             $table->integer('rating');
             $table->string('komen')->nullable();
-            $table->integer('like');
             $table->timestamps();
         });
     }

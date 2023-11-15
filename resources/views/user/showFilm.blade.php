@@ -39,6 +39,7 @@
 </textarea>
 <br>
 <button id="submit">Submit</button>
+<button id="likeFilm">Like</button>
 <br><br>
 
 
@@ -48,7 +49,7 @@
             <div class="card" id="cardContainerUser">
                 <div class="card-body" id="userCard">
                     @if (!empty($review))
-                        <div>
+                        <div id="tambahanAjax">
                             <div style="display: flex; justify-content: space-between">
                                 <div class="profile-picture">
                                     <img src="https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg" alt="Profile Picture">
@@ -122,33 +123,46 @@
         var komen = '';
         var filmId = '{{$film->id}}';
         var userId = '{{Auth::user()->id}}';
-        var create = false;
+        var create = "{{!empty($review)}}";
+        var newElement = null;
+        console.log(create);
 
         $(document).on('click', "#deleteButton", function(){
             var button = $(this);
-            $.ajax({
-                url: "{{route('user.deleteReview')}}",
-                type: 'POST',
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    id: $(this).siblings('#idReview').val(),
-                },
-                dataType: 'json',
-                success: function (data) {
-                    console.log(data);
-                    Swal.fire({
-                        icon: 'success',
-                        title: data['message'],
-                        text: 'Komen anda telah berhasil di delete!',
-                    })
-
-                    button.closest('.card').remove();
-
-                }
-            });
+            // Swal.fire({
+            //     title: 'Apakah yakin mau mendelete komen ini?',
+            //     showDenyButton: true,
+            //     confirmButtonText: 'Yes',
+            //     denyButtonText: `No`,
+            //     }).then((result) => {
+            //     if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{route('user.deleteReview')}}",
+                        type: 'POST',
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            id: $(this).siblings('#idReview').val(),
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+                            console.log(data);
+                            Swal.fire({
+                                icon: 'success',
+                                title: data['message'],
+                                text: 'Komen anda telah berhasil di delete!',
+                            })
+                            create = false;
+                            button.closest('#tambahanAjax').remove();
+                            $("#cardContainerUser").hide();
+                        }
+                    });
+                // } else if (result.isDenied) {
+                //     Swal.fire('Komen anda tidak jadi di delete!', '', 'info')
+                // }
+            // })
         })
 
-        if('{{empty($review)}}'){
+        if(!create){
            $("#cardContainerUser").hide(); 
         }else{
             $("#cardContainerUser").show();
@@ -157,7 +171,7 @@
         $('#submit').click(function(){
             rating = $('#rating').val();
             komen = $('#komen').val();
-            if(!'{{empty($review)}}' || create == true){
+            if(create == true){
 
                 if($("#rating").val() == 0 || $('#rating').val() == null){
                     console.log('kosong');
@@ -181,18 +195,47 @@
                         dataType: 'json',
                         success: function (data) {
                             console.log(data);
+                            $("input").val("");
+                            $("textarea").val("");
                             Swal.fire({
                                 icon: 'success',
                                 title: data['message'],
                                 text: 'Terima kasih atas reviewnya!',
                             })
 
-                            $("#ratingUser").html(data['rating']);
-                            $('#komenUser').html(data['komen']);
-                            if (($('#komenUser').val() == "")) {
-                                $('#komenUser').html("");
+                            if (newElement == null) {
+                                $("#ratingUser").text(data['rating']);
+                                $('#komenUser').text(data['komen']);
+                                if (($('#komenUser').val() == "")) {
+                                    $('#komenUser').html("");
+                                }
+                                $("#createdReview").html(data['created']);
+                            }else{
+                                newElement = $(
+                                    "<div id='tambahanAjax'>"+
+                                        "<div style='display: flex; justify-content: space-between'>"+
+                                            "<div class='profile-picture'>"+
+                                                "<img src='https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg' alt='Profile Picture'>"+
+                                                "<h5 class='card-title' style='display: inline; margin-right: 10px'>" + (data['name']) + "</h5>"+
+                                            "</div>"+ 
+
+                                            "<div style='margin-top: 6px'>"+
+                                                "<h6 style='display: inline;'>" + data['rating'] + "</h6>" +
+                                                "<div class='profile-picture' style='margin-left: -2px; overflow: hidden;'>"+
+                                                    "<img src='https://image.freepik.com/vecteurs-libre/logo-banane_10250-3606.jpg' style='width: 35px; height: 35px; overflow: hidden;' alt='Profile Picture'>"+
+                                                "</div>"+
+                                            "</div>"+
+                                        "</div>"+
+                                    "</div>"+
+                                    "<p class='card-text'>" + (data['komen'] || "") + "</p>"+
+                                    "<div style='display: flex; justify-content: space-between'>" +
+                                    "<p class='card-text'><small class='text-body-secondary' id='createdReview'>" + (data['created']) + "</small></p>" +
+                                    "<button type='button' class='btn btn-danger' id='deleteButton'>Delete</button>" +
+                                    "<input type='hidden' value='" + (data['id']) + "' id='idReview'>" +
+                                    "</div>"
+                                );
+                                $("#userCard").html(newElement);
                             }
-                            $("#createdReview").html(data['created']);
                         }
 
                     });
@@ -226,10 +269,11 @@
                                 title: data['message'],
                                 text: 'Terima kasih atas reviewnya!',
                             })
-                            console.log(data['rating']);
+                            $("input").val("");
+                            $("textarea").val("");
                             $("#cardContainerUser").show()
                             $("#cardContainerUser").css("margin-bottom", "25px");
-                            $("#userCard").html(
+                            newElement = $(
                                 "<div>"+
                                     "<div style='display: flex; justify-content: space-between'>"+
                                         "<div class='profile-picture'>"+
@@ -251,8 +295,9 @@
                                 "<button type='button' class='btn btn-danger' id='deleteButton'>Delete</button>" +
                                 "<input type='hidden' value='" + (data['id']) + "' id='idReview'>" +
                                 "</div>"
-                                
                             );
+
+                            $("#userCard").html(newElement);
                         }
                     });
                 }
