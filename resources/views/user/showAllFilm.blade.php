@@ -77,6 +77,18 @@
         border: #fff solid 4px;
     }
 
+    #posterFilm{
+        text-decoration: none;
+        color: #fff;
+    }
+
+    #logoPisang {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        display: inline
+    }
+
 
 </style>
 @endsection
@@ -111,8 +123,22 @@
     <div class="container-fluid">
         <div class="row" id="posterContainer">
             <div class="col-2">
-                <a href="{{env('LINK_WEBSITE')}}user/film/{{$film->id}}">
-                    <img src="{{asset('storage/')}}/{{$film->path_image}}" class="rounded float-start" alt="{{$film->judul}}" style="width: 100%; height: 320px; object-fit: cover;"></a>
+                <a href="{{env('LINK_WEBSITE')}}user/film/{{$film->id}}" id="posterFilm">
+                    <div>
+                        <img src="{{asset('storage/')}}/{{$film->path_image}}" class="rounded float-start" alt="{{$film->judul}}" style="width: 100%; height: 320px; object-fit: cover;">
+                        <h5 style="text-align: center;">{{$film->judul}}</h5>
+                        <div style="display: flex; justify-content: space-between">
+                            <div style="display: flex; justify-content: space-evenly; width: 50%">
+                                <img id="logoPisang" src="{{ $film->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($film->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}" alt="">
+                                <p>{{$film->avgRating}}</p>
+                            </div>
+                            <div style="display: flex; justify-content: space-evenly; width: 50%">
+                                <img id="logoPisang" src="{{ asset('storage/uploads/assets/like.png')}}" alt="">
+                                <p>{{$film->like}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

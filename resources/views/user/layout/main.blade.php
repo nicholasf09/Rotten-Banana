@@ -24,7 +24,7 @@
         <title>Rotten Banana | {{$title}}</title>
         @yield('style')
     </head>
-    <body>
+    <body style="overflow-x: hidden">
         @yield('content')
         @yield('script')
     </body>

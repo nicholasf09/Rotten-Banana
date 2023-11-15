@@ -121,4 +121,49 @@ class FilmController extends Controller
         }
     }
 
+    public function likeFilm(Film $film){
+        
+        // $user = $film->user()->where('userId', auth()->user()->id)->first()->pivot->userI;
+        // if(!$user){
+        $film->user()->attach(auth()->user()->id);
+        $film->like = $film->like + 1;
+        $film->save();
+        return response()->json([
+            'success' => true,
+            'sudah' => false,
+            'message' => "Like berhasil diupdate",
+            'like' => $film->like,
+        ], 200);
+        // }
+
+        // return response()->json([
+        //     'success' => true,
+        //     'sudah' => true,
+        //     'message' => "Like gagal diupdate",
+        //     'like' => $film->like,
+        // ], 200);
+    }
+
+    public function unlikeFilm(Film $film){
+        // $user = $film->user()->where('userId', auth()->user()->id)->first()->pivot;
+        // if($user){
+        $film->user()->detach(auth()->user()->id);
+        $film->like = $film->like - 1;
+        $film->save();
+        return response()->json([
+            'success' => true,
+            'sudah' => true,
+            'message' => "Unlike berhasil diupdate",
+            'like' => $film->like,
+        ], 200);
+        // }
+
+    //     return response()->json([
+    //         'success' => true,
+    //         'sudah' => false,
+    //         'message' => "Unlike gagal diupdate",
+    //         'like' => $film->like,
+    //     ], 200);
+    }
+
 }

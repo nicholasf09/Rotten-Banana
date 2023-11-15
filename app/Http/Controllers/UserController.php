@@ -52,17 +52,30 @@ class UserController extends Controller
     }
 
     public function showAllFilm(){
-        $films = Film::all();
+        $films = Film::with('review')->get()->map(function($film){
+            $film->avgRating = $film->review->avg('rating') ?? 0;
+            return $film;
+        });
+        // dd($films);
         return view('user.showAllFilm',[
             'title'=> 'Films',
             'films' => $films,
+
         ]);
     }
 
     public function showFilm(Film $film){
+        $user = $film->user()->where('userId', auth()->user()->id)->first()->pivot ?? null;
+        $totalRating = $film->review->sum('rating') ?? 0;
+        $jumlahReview = $film->review->count() ?? 0;
         $review = $film->review->where('userId', Auth::user()->id)->first();
         $reviews= $film->review;
         $allReview = [];
+
+        $sudahLike = false;
+        if ($user) {
+            $sudahLike = true;
+        }
 
         foreach ($reviews as $r) {
             $allReview[] = [
@@ -85,6 +98,9 @@ class UserController extends Controller
                 'film' => $film,
                 'review' => $reviewUser,
                 'allReview' => $allReview,
+                'jumlahReview' => $jumlahReview,
+                'totalRating' => $totalRating,
+                'like' => $sudahLike,
             ]);
         }
 
@@ -95,6 +111,9 @@ class UserController extends Controller
             'film' => $film,
             'review' => $review,
             'allReview' => $allReview,
+            'jumlahReview' => $jumlahReview,
+            'totalRating' => $totalRating,
+            'like' => $sudahLike,
         ]);
         
     }
