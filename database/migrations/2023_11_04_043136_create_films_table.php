@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('durasi');
             $table->string('genre');
             $table->string('path_image');
+            $table->integer('like');
             $table->timestamps();
         });
     }

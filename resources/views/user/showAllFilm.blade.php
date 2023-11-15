@@ -1,19 +1,122 @@
+@include('user.partials.navbar')
 @extends('user.layout.main')
+@section('style')
+<style>
+    * {
+        font-family: 'poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        background-color: #121212;
+    }
+    .swiper-wrapper::-webkit-scrollbar {
+        display: none;
+    }       
+    .form{
+        position: relative;
+    }
+    .search {
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        left: 17px;
+        color: #9ca3af;
+    }
+    .form-input{
+        padding-left: 45px;
+    }
+    .form-input:focus{
+        box-shadow: none;
+    }
+    ::placeholder {
+    color: gray !important;
+    }
+    .bg-navbar-dark{
+        background-color: #121212;
+    }
+    .title {
+        color: white;
+        transition: 0.5s ease-in-out;
+    }
+    .title:hover{
+        color: #CF0102;
+    }
+    .swiper {
+      width: 100%;
+      height: 43vh;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+    }
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+    .swiper-wrapper {
+        display: flex;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+    }
+
+    #searchBar{
+        width: 30%;
+        margin-right: auto;
+        margin-left: auto;
+        border-radius: 3px;
+        border: #fff solid 4px;
+    }
+
+
+</style>
+@endsection
+
 @section('content')
 
-<input type="text" id="searchBar">
+<div style="display: flex; justify-content: center; margin-top: 10px">
+    <input type="text" id="searchBar" placeholder="Search Anything...">
+</div>
 
-<input type="radio" value="Horror" name="genreFilm" id="horror">
-<label>Horror</label>
-<input type="radio" value="Romance" name="genreFilm" id="romance"> 
-<label>Romance</label>
-<input type="radio" value="Action" name="genreFilm" id="action">
-<label>Action</label>
-<ul>
-    @foreach ($films as $film)
-        <li><a href="http://127.0.0.1:8000/user/film/{{$film->id}}">{{$film->judul}}</a></li>
-    @endforeach
-</ul>
+<div style="display: flex; justify-content: center; margin-top: 10px">
+    <div style="display: flex; justify-content: space-between; width: 30%">
+        <input type="radio" class="btn-check" name="genreFilm" id="horror" autocomplete="off" value="horror">
+        <label class="btn btn-secondary" for="horror">Horror</label>
+
+        <input type="radio" class="btn-check" name="genreFilm" id="action" autocomplete="off" value="action">
+        <label class="btn btn-secondary" for="action">Action</label>
+
+        <input type="radio" class="btn-check" name="genreFilm" id="anime" autocomplete="off" value="anime">
+        <label class="btn btn-secondary" for="anime">Anime</label>
+
+        <input type="radio" class="btn-check" name="genreFilm" id="romance" autocomplete="off" value="romance">
+        <label class="btn btn-secondary" for="romance">Romance</label>
+
+        <input type="radio" class="btn-check" name="genreFilm" id="comedy" autocomplete="off" value="comedy">
+        <label class="btn btn-secondary" for="comedy">Comedy</label>
+
+    </div>
+</div>
+
+@foreach ($films as $film)
+    <div class="container-fluid">
+        <div class="row" id="posterContainer">
+            <div class="col-2">
+                <a href="{{env('LINK_WEBSITE')}}user/film/{{$film->id}}">
+                    <img src="{{asset('storage/')}}/{{$film->path_image}}" class="rounded float-start" alt="{{$film->judul}}" style="width: 100%; height: 320px; object-fit: cover;"></a>
+            </div>
+        </div>
+    </div>
+@endforeach
 
 
 <script>
@@ -26,8 +129,8 @@ $(document).ready(function(){
         console.log(previousValue);
         if (previousValue == $(this).val()) {
             $(this).prop('checked', false);
-            $(this).data('previousValue', null);
             genre = '';
+            previousValue = '';
             $.ajax({
                 url: "{{ route('user.getAllFilm') }}",
                 type: 'POST',
@@ -38,10 +141,10 @@ $(document).ready(function(){
                 },
                 dataType: 'json',
                 success: function (data) {
-                    $('ul').empty();
+                    $('#posterContainer').empty();
                     console.log(data);
                     $.each(data['data'], function (index, value) {
-                        $('ul').append("<li><a href='http://127.0.0.1:8000/user/film/" + value['id'] + "'>" + value['judul'] + "</a></li>");
+                         $('#posterContainer').html("<div class='col-2'><a href='{{env('LINK_WEBSITE')}}/user/film/" + value['id'] + "'><img src='{{asset('storage/')}}/" + value['path_image'] + "' class='rounded float-start' alt='" + value['judul'] + "' style='width: 100%; height: 320px; object-fit: cover;'></a></div>");
                     });
                 }
             });
@@ -57,15 +160,15 @@ $(document).ready(function(){
                 },
                 dataType: 'json',
                 success: function (data) {
-                    $('ul').empty();
+                    $('#posterContainer').empty();
                     console.log(data);
                     $.each(data['data'], function (index, value) {
-                        $('ul').append("<li><a href='http://127.0.0.1:8000/user/film/" + value['id'] + "'>" + value['judul'] + "</a></li>");
+                         $('#posterContainer').html("<div class='col-2'><a href='{{env('LINK_WEBSITE')}}/user/film/" + value['id'] + "'><img src='{{asset('storage/')}}/" + value['path_image'] + "' class='rounded float-start' alt='" + value['judul'] + "' style='width: 100%; height: 320px; object-fit: cover;'></a></div>");
                     });
                 }
             });
+            previousValue = genre;
         }
-        previousValue = $(this).val();
     });
 
     $("#searchBar").on("input", function() {
@@ -81,10 +184,10 @@ $(document).ready(function(){
         },
         dataType: 'json',
         success: function (data) {
-            $('ul').empty();
+            $('#posterContainer').empty();
             console.log(data);
             $.each(data['data'], function (index, value) {
-                $('ul').append("<li><a href='http://127.0.0.1:8000/user/film/'"+value['id']+">"+value['judul']+"</a></li>");
+                $('#posterContainer').html("<div class='col-2'><a href='{{env('LINK_WEBSITE')}}/user/film/" + value['id'] + "'><img src='{{asset('storage/')}}/" + value['path_image'] + "' class='rounded float-start' alt='" + value['judul'] + "' style='width: 100%; height: 320px; object-fit: cover;'></a></div>");
             });
         }
     });

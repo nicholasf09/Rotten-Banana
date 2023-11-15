@@ -70,6 +70,7 @@ class UserController extends Controller
                 'rating' => $r->rating,
                 'komen' => $r->komen,
                 'created'=> $r->created_at->diffForHumans(),
+                'id' => $r->id,
             ];
         }
 
@@ -78,6 +79,7 @@ class UserController extends Controller
             $reviewUser['rating'] = $review->rating;
             $reviewUser['komen'] = $review->komen;
             $reviewUser['created'] = $review->created_at->diffForHumans();
+            $reviewUser['id'] = $review->id;
             return view('user.showFilm',[
                 'title'=> 'Film',
                 'film' => $film,

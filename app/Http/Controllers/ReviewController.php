@@ -32,6 +32,8 @@ class ReviewController extends Controller
                 'rating' => $review->rating,
                 'komen' => $review->komen,
                 'created' => $review->created_at->diffForHumans(),
+                'name' => $review->user->name,
+                'id' => $review->id,
             ], 200);
         }
     }
@@ -53,13 +55,17 @@ class ReviewController extends Controller
             $input['id'] = Str::uuid();
             $input['userId'] = $request->userId;
             $input['filmId'] = $request->filmId;
-            $input['like'] = 0;
             $input['komen'] = $request->komen;
             $review = Review::create($input);
             if($review){
                 return response()->json([
                     'success' => true,
                     'message' => 'Review berhasil ditambahkan',
+                    'name' => $review->user->name,
+                    'rating' => $review->rating,
+                    'komen' => $review->komen,
+                    'created' => $review->created_at->diffForHumans(),
+                    'id' => $review->id,
                 ], 200);
             }else{
                 return response()->json([
@@ -68,5 +74,15 @@ class ReviewController extends Controller
                 ], 400);
             }
         }
+    }
+
+    public function deleteReview(Request $request){
+        $review = Review::find($request->id)->first();
+        $review->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Review berhasil dihapus',
+            'id' => $review->id,
+        ], 200);
     }
 }

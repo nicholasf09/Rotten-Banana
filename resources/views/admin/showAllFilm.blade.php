@@ -87,7 +87,7 @@
             console.log(data);
             var id = data.id;
             console.log(id);
-            window.location.href = "http://127.0.0.1:8000/admin/films/edit/"+data.id;
+            window.location.href = "{{env('LINK_WEBSITE')}}admin/films/edit/"+data.id;
         });
     });
 </script>

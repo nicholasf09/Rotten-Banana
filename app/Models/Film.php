@@ -18,11 +18,16 @@ class Film extends Model
         'tahun_rilis',
         'durasi',
         'genre',
-        'path_image'
+        'path_image',
+        'like'
     ];
 
     public function review(){
         return $this->hasMany(Review::class, 'filmId');
     }
+    public function user(){
+        return $this->belongsToMany(User::class, 'film_user', 'filmId', 'userId');
+    }
+
 
 }

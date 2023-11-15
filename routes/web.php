@@ -47,5 +47,6 @@ Route::group(['prefix'=> 'user', 'as' => 'user.'], function () {
     Route::get('/film/{film}', [UserController::class,'showFilm'])->name('showFilm')->middleware('user');
     Route::post('/review/store', [ReviewController::class,'storeReview'])->name('storeReview')->middleware('user');
     Route::post('/review/update', [ReviewController::class,'updateReview'])->name('updateReview')->middleware('user');
+    Route::post('/review/delete', [ReviewController::class,'deleteReview'])->name('deleteReview')->middleware('user');
 });
 

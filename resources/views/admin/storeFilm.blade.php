@@ -15,7 +15,7 @@
     <div style="position: relative;">
         <label for="judul">Judul: </label>
         <br>
-        <input type="text" id="judul" name="judul">
+        <input type="text" id="judul" name="judul" value="{{old('judul')}}">
         @error('judul')
             <div class="error-message" style="position: absolute;top: 100%; left: 0">{{ $message }}</div>
         @enderror
@@ -25,8 +25,8 @@
     <div style="position: relative;">
         <label for="sinopsis">Sinopsis: </label>
         <br>
-        <textarea type="text" id="sinopsis" name="sinopsis" cols="100" rows="10"></textarea>
-        @error('tahun_rilis')
+        <textarea type="text" id="sinopsis" name="sinopsis" cols="100" rows="10">{{old('sinopsis')}}</textarea>
+        @error('sinopsis')
             <div class="error-message" style="position: absolute;top: 100%; left: 0">{{ $message }}</div>
         @enderror
     </div>  
@@ -35,7 +35,7 @@
     <div style="position: relative;">
         <label for="trailer">Trailer: </label>
         <br>
-        <input type="text" id="trailer" name="trailer">
+        <input type="text" id="trailer" name="trailer" value="{{old('trailer')}}">
         @error('trailer')
             <div class="error-message" style="position: absolute;top: 100%; left: 0">{{ $message }}</div>
         @enderror
@@ -45,7 +45,7 @@
     <div style="position: relative;">
         <label for="tahun_rilis">Tanggal Rilis: </label>
         <br>
-        <input type="date" id="tahun_rilis" name="tahun_rilis">
+        <input type="date" id="tahun_rilis" name="tahun_rilis" value="{{old('tahun_rilis')}}">
         @error('tahun_rilis')
             <div class="error-message" style="position: absolute;top: 100%; left: 0">{{ $message }}</div>
         @enderror
@@ -55,7 +55,7 @@
     <div style="position: relative;">
         <label for="durasi">Durasi: </label>
         <br>
-        <input type="text" id="durasi" name="durasi">
+        <input type="text" id="durasi" name="durasi" value="{{old('durasi')}}">
         @error('durasi')
             <div class="error-message" style="position: absolute;top: 100%; left: 0">{{ $message }}</div>
         @enderror
@@ -65,7 +65,7 @@
     <div style="position: relative;">
         <label for="genre">Genre: </label>
         <br>
-        <input type="text" id="genre" name="genre">
+        <input type="text" id="genre" name="genre" value="{{old('genre')}}">
         @error('genre')
             <div class="error-message" style="position: absolute;top: 100%; left: 0">{{ $message }}</div>
         @enderror

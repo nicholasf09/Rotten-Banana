@@ -15,21 +15,21 @@ class UserMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {
-        if(Auth::check())
-        {
-            if(Auth::user()->role_as == 0)
-            {
+    {   
+        
+        if (Auth::check()) {
+            $user = auth()->user();
+            if ($user->role_as == 0) {
+                session(['role' => 'user']);
                 return $next($request);
+            } elseif ($user->role_as == 1) {
+                session(['role' => 'admin']);
+                return $next($request);
+            } else {
+                return redirect('/user/')->with('status', 'Access Denied!');
             }
-            else
-            {
-                return redirect('/user/')->with('status','Access Denied!');
-            }
-        }
-        else
-        {
-            return redirect('/user/')->with('status','Please Login First');
+        } else {
+            return redirect('/user/')->with('status', 'Please Login First');
         }
     }
 }
