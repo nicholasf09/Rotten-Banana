@@ -42,9 +42,17 @@
     .title:hover{
         color: #CF0102;
     }
-    .swiper {
-      width: 100%;
-      height: 43vh;
+    @media (min-width: 768px) {
+        .swiper {
+        width: 100%;
+        height: 45vh;
+        }
+    }
+    @media (max-width: 767px) {
+        .swiper {
+        width: 100%;
+        height: 30vh;
+        }
     }
     .swiper-slide {
       text-align: center;
@@ -65,7 +73,7 @@
       border-radius: 15px;
       transition: transform 0.3s ease;
     }
-    img:hover{
+    .swiper-slide img:hover{
         transform: scale(1.2);
     }
     .swiper-wrapper {
@@ -77,11 +85,18 @@
     .text-justify {
         text-align: justify;
     }
+    .ranks {
+      width: 15vh;
+      overflow: hidden;
+    }
+    .ranks img {
+        object-fit: cover;
+    }
 </style>
 @endsection
 @section('content')
         @csrf
-        <div class="d-flex m-md-5 mx-auto my-5  bg-dark bg-opacity-25 rounded-3 align-items-center flex-column flex-md-row" style="width: 80vw;">
+        <div class="d-flex m-md-5 mx-auto my-5 bg-dark bg-opacity-25 rounded-3 align-items-center flex-column flex-md-row" style="width: 80vw;">
             <div class="w-100">
             <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators">
@@ -129,7 +144,7 @@
          {{-- drakor --}}
          <div class="mx-5 mb-3 mt-5">
             <div class="d-flex justify-content-between align-items-end mb-2">
-                <h1 class="fw-bold text-white lh-md mb-0">K-Dramas</h1>
+                <h1 class="fw-bold text-white lh-md mb-2">K-Dramas</h1>
                 <p class="text-white mb-0 me-5  ">Scroll to view</p>
             </div>      
             <div class="swiper mySwiper">
@@ -149,7 +164,7 @@
         {{-- anime --}}
         <div class="mx-5 mb-3 mt-5">
             <div class="d-flex justify-content-between align-items-end mb-2">
-                <h1 class="fw-bold text-white lh-md mb-0">Anime Series</h1>
+                <h1 class="fw-bold text-white lh-md mb-2">Anime Series</h1>
                 <p class="text-white mb-0 me-5  ">Scroll to view</p>
             </div>      
             <div class="swiper mySwiper">
@@ -166,20 +181,73 @@
                 </div>
             </div>
         </div>
+        {{-- ranking --}}
+        <div class="row m-5">
+            {{-- ranking 1 --}}
+            <div class="col-md-6 p-0 pe-md-3 col-sm-12">
+                <h1 class="fw-bold text-white lh-md mb-2">Best Rating</h1>
+                <div class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg" alt=""></div>
+                    <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
+                    <h1 class="fw-light text-white lh-md me-3">9/10</h1>
+                </div>
+                <div class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg" alt=""></div>
+                    <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
+                    <h1 class="fw-light text-white lh-md me-3">9/10</h1>
+                </div>
+                <div class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg" alt=""></div>
+                    <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
+                    <h1 class="fw-light text-white lh-md me-3">9/10</h1>
+                </div>
+                <div class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg" alt=""></div>
+                    <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
+                    <h1 class="fw-light text-white lh-md me-3">9/10</h1>
+                </div>
+                <div class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg" alt=""></div>
+                    <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
+                    <h1 class="fw-light text-white lh-md me-3">9/10</h1>
+                </div>
+            </div>
+            {{-- ranking 2 --}}
+            <div class="col-md-6 p-0 ps-md-3 col-sm-12">
+                <h1 class="fw-bold text-white lh-md mb-2">Most Popular</h1>
+                <div class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg" alt=""></div>
+                    <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
+                    <h1 class="fw-light text-white lh-md me-3">9/10</h1>
+                </div>
+                <div class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg" alt=""></div>
+                    <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
+                    <h1 class="fw-light text-white lh-md me-3">9/10</h1>
+                </div>
+                <div class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg" alt=""></div>
+                    <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
+                    <h1 class="fw-light text-white lh-md me-3">9/10</h1>
+                </div>
+                <div class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg" alt=""></div>
+                    <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
+                    <h1 class="fw-light text-white lh-md me-3">9/10</h1>
+                </div>
+                <div class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg" alt=""></div>
+                    <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
+                    <h1 class="fw-light text-white lh-md me-3">9/10</h1>
+                </div>
+            </div>
+        </div>
         {{-- footer --}}
-                <!-- Remove the container if you want to extend the Footer to full width. -->
-        <div class="mx-5 my-5 bg-dark bg-opacity-25 rounded-3">
-            <!-- Footer -->
-            <footer
-                    class="text-center text-lg-start text-white"
-                    >
-            <!-- Grid container -->
+        <div class="m-5 bg-dark bg-opacity-25 rounded-3">
+            <footer class="text-center text-lg-start text-white">
             <div class="container p-4 pb-0">
-                <!-- Section: Links -->
                 <section class="">
-                <!--Grid row-->
                 <div class=" justify-content-between d-flex row">
-                    <!-- Grid column -->
                     <div class="col-md-3 col-lg-3 col-xl-3 mt-3 ms-md-4">
                     <h6 class="text-uppercase mb-4 font-weight-bold">
                         Rotten Banana
@@ -188,10 +256,6 @@
                         Rotten Banana is the world’s most trusted recommendation resources for quality entertainment. We also serve movie and TV fans with original editorial content on our site and through social channels, produce fun and informative video series.
                     </p>
                     </div>
-        
-        
-        
-                    <!-- Grid column -->
                     <div class="col-md-4 col-lg-3 col-xl-3 mt-3 me-3">
                         <h6 class="text-uppercase mb-4 font-weight-bold d-flex justify-content-end">Contact</h6>
                         <p class="d-flex justify-content-end align-items-center">Siwalankerto, SW 60012, INA<i class="bi bi-house ms-3"></i></p>
@@ -199,63 +263,18 @@
                         <p class="d-flex justify-content-end align-items-center">+ 62 234 567 88 <i class="bi bi-phone ms-3"></i></p>
                         <p class="d-flex justify-content-end align-items-center">+ 62 234 567 89<i class="bi bi-printer ms-3"></i></p>
                     </div>
-                    <!-- Grid column -->
                 </div>
-                <!--Grid row-->
-                </section>
-                <!-- Section: Links -->
-        
                 <hr class="my-3">
-        
-                <!-- Section: Copyright -->
                 <section class="p-3 pt-0">
                 <div class="row d-flex align-items-center">
-                    <!-- Grid column -->
-                    <div class="col-md-7 col-lg-8 text-center text-md-start">
-                    <!-- Copyright -->
-                    <div class="p-3">
-                        © 2023 Copyright:
-                        <a class="text-white" href="#"
-                        >rottenbanana.com</a
-                        >
-                    </div>
-                    <!-- Copyright -->
-                    </div>
+                    <div class="col-md-7 col-lg-8 text-center text-md-start"><div class="p-3">© 2023 Copyright:<a class="text-white" href="#">rottenbanana.com</a></div></div>
                     <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
-                    <!-- Facebook -->
-                    <a
-                        class="btn btn-outline-light btn-floating m-1"
-                        class="text-white"
-                        role="button"
-                        ><i class="bi bi-facebook"></i
-                        ></a>
-        
-                    <!-- Twitter -->
-                    <a
-                        class="btn btn-outline-light btn-floating m-1"
-                        class="text-white"
-                        role="button"
-                        ><i class="bi bi-twitter"></i
-                        ></a>
-        
-                    <!-- Google -->
-                    <a
-                        class="btn btn-outline-light btn-floating m-1"
-                        class="text-white"
-                        role="button"
-                        ><i class="bi bi-google"></i
-                        ></a>
-        
-                    <!-- Instagram -->
-                    <a
-                        class="btn btn-outline-light btn-floating m-1"
-                        class="text-white"
-                        role="button"
-                        ><i class="bi bi-instagram"></i
-                        ></a>
+                    <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i class="bi bi-facebook"></i></a>
+                    <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i class="bi bi-twitter"></i></a>        
+                    <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i class="bi bi-google"></i></a>
+                    <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i class="bi bi-instagram"></i></a>
                     </div>
                 </div>
-                </section>
             </div>
             </footer>
         </div>
