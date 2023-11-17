@@ -144,7 +144,7 @@
         var filmId = '{{$film->id}}';
         var userId = '{{Auth::user()->id}}';
         var create = "{{!empty($review)}}";
-        var newElement = null;
+        var newElement = "{{!empty($review)}}";
         var ratingUser = 0;
         if($("#ratingUser").text() != ""){
             ratingUser = parseInt($("#ratingUser").text());
@@ -251,6 +251,7 @@
                             },
                             dataType: 'json',
                             success: function (data) {
+                                newElement = null;
                                 totalRating = parseInt(totalRating) - parseInt(ratingUser);
                                 jumlahReview = parseInt(jumlahReview) - 1;
                                 rata2 = totalRating / jumlahReview;
@@ -314,10 +315,12 @@
                                 title: data['message'],
                                 text: 'Terima kasih atas reviewnya!',
                             })
-
-                            totalRating = parseInt(totalRating) - parseInt($("#ratingUser").text()) + parseInt(data['rating']);
+                            
+                            totalRating = parseInt(totalRating) - parseInt(ratingUser) + parseInt(data['rating']);
                             jumlahReview = parseInt(jumlahReview);
+                            console.log(jumlahReview);
                             rata2 = totalRating / jumlahReview;
+                            ratingUser = parseInt(data['rating']);
                             $("#rata2").text(rata2);
                             $("#ratingUser").text(data['rating']);
                             if (newElement == null) {
@@ -327,8 +330,22 @@
                                     $('#komenUser').html("");
                                 }
                                 $("#createdReview").html(data['created']);
+                                var srcImage = "";
+
+                                if(data['rating'] <= 2){
+                                    srcImage = "{{asset('storage/uploads/assets/pisang_busuk.png')}}";
+                                }
+                                else if(data['rating'] <= 4){
+                                    srcImage = "{{asset('storage/uploads/assets/pisang_hijau.png')}}";
+                                }
+                                else{
+                                    srcImage = "{{asset('storage/uploads/assets/pisang_kuning.png')}}";
+                                }
+
+                                $("#logoPisang").attr('src', srcImage);
+
                             }else{
-                                ratingUser = parseInt(data['rating']);
+                                
 
                                 var srcImage = "";
 

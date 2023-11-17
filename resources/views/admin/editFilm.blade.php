@@ -82,6 +82,8 @@
     </div>
     <br><br>
 
+    <input type="hidden" name="id" value="{{$film->id}}">
+    
     <input type="submit">
 
 </form>
