@@ -1,0 +1,206 @@
+h1{
+ color: aliceblue; 
+}
+.titleDescription{
+  color:rgba(255, 255, 255, 0.5) ;
+}
+.titleRating{
+  text-transform:uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.titleRatingSecondary{
+font-size: 140%;
+color: aliceblue;
+}
+.movieDescription{
+  color: aliceblue;
+}
+.movie-display::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://th.bing.com/th?id=OIP.cn3LaokCXKhEkj8btLN9PAHaJ4&w=216&h=288&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2') center/cover fixed;
+      filter: blur(120px);
+      z-index: -1;
+    }
+
+.movie-display::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+#title{
+  font-family: Helvetica;
+  letter-spacing: 2px;
+}
+#titleDescription{
+  color: rgba(255, 255, 255, 0.304);
+}
+
+.rating{
+  background: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.genre{
+  background-color: transparent;
+  cursor: pointer;
+  border: 1px solid aliceblue;
+  padding: 8px 0;
+  border-radius: 20px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  transition: 0.3s;
+  color: aliceblue;
+  padding: 5px 10px;
+  width:auto;
+  font-weight: bold;
+}
+.genre:hover{
+    background-color: rgba(146, 146, 146, 0.4);
+}
+hr{
+  border:1px solid aliceblue;
+  
+}
+.truncate {
+  max-height: 78px;
+}
+.readmore-btn {
+  color: #008ea7; font-size: 13px; margin-top:4px;
+  cursor: pointer;
+}
+.readmore {
+  overflow-y:hidden;;
+}
+
+#container-rating{
+  padding: 10px;
+}
+
+.card{
+  margin-right: -10px;
+  margin-bottom: 10px;
+}
+/* Hide on medium screens */
+@media screen and (max-width: 986px) and (min-width:762px) {
+  .hide-on-medium {
+    display: none;
+  }
+}
+
+/* Hide on small screens */
+@media screen and (max-width: 762px) {
+  .hide-on-small {
+    display: none;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Orbit&display=swap");
+h1 {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+
+
+ul {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+}
+
+li {
+  font-size: 300%;
+  position: relative;
+  transition: 0.2s ease-in all;
+}
+li:not(.off) {
+  animation: spin 0.5s;
+}
+li.off {
+  opacity: 0.25;
+}
+li.off:after {
+  animation: fade-down 1s forwards;
+}
+li:before {
+  content: "⭐";
+}
+li:after {
+  content: "⭐";
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+li:hover {
+  opacity: 0.7;
+  cursor: pointer;
+  transform: scale(1.05) rotate(5deg);
+}
+li span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 10%;
+  opacity: 0;
+  animation: pew 1s forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes pew {
+  from {
+    left: 50%;
+    top: 50%;
+    opacity: 0;
+    font-size: 10%;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  80% {
+    opacity: 0;
+  }
+  99% {
+    left: var(--l, 150%);
+    top: var(--t, 150%);
+    opacity: 0;
+    font-size: 50%;
+  }
+  to {
+    opacity: 0;
+    font-size: 100%;
+  }
+}
+@keyframes fade-down {
+  to {
+    transform: translateY(100px) scale(1.5) rotate(90deg);
+    opacity: 0;
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+
+

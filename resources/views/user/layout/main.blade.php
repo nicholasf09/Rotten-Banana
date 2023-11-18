@@ -18,9 +18,12 @@
         {{-- JQuery --}}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+        {{-- fontawesome --}}
+        <script src="https://kit.fontawesome.com/1ded6ff2c1.js" crossorigin="anonymous"></script>    
+        
         {{-- SweetAlert --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+       
         <title>Rotten Banana | {{$title}}</title>
         @yield('style')
     </head>
