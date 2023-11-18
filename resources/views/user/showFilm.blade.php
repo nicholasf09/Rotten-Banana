@@ -71,9 +71,10 @@
                     @if (!empty($review))
                         <div id="tambahanAjax">
                             <div style="display: flex; justify-content: space-between">
-                                <div class="profile-picture">
+                                <div class="profile-picture" id="akun">
                                     <img src="https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg" alt="Profile Picture">
                                     <h5 class="card-title" style="display: inline; margin-right: 10px">{{$review['name']}}</h5> 
+                                    <input type="hidden" id="idAkun" value="{{$review['akunId']}}">
                                 </div> 
 
                                 <div style="margin-top: 6px">
@@ -159,9 +160,6 @@
 
 
         $(document).on('click', "#likeButton", function () {
-
-            
-
             if (likeAtoGak) {
                 Swal.fire({
                     title: 'Apakah anda yakin ngeunlike film ini?',
@@ -318,7 +316,6 @@
                             
                             totalRating = parseInt(totalRating) - parseInt(ratingUser) + parseInt(data['rating']);
                             jumlahReview = parseInt(jumlahReview);
-                            console.log(jumlahReview);
                             rata2 = totalRating / jumlahReview;
                             ratingUser = parseInt(data['rating']);
                             $("#rata2").text(rata2);
@@ -363,9 +360,10 @@
                                 newElement = $(
                                     "<div id='tambahanAjax'>"+
                                         "<div style='display: flex; justify-content: space-between'>"+
-                                            "<div class='profile-picture'>"+
+                                            "<div class='profile-picture' id='akun'>"+
                                                 "<img src='https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg' alt='Profile Picture'>"+
                                                 "<h5 class='card-title' style='display: inline; margin-right: 10px'>" + (data['name']) + "</h5>"+
+                                                "<input type='hidden' id='idAkun' value='"+ data['akunId'] +"'>" +
                                             "</div>"+ 
 
                                             "<div style='margin-top: 6px'>"+
@@ -442,9 +440,10 @@
                             newElement = $(
                                 "<div>"+
                                     "<div style='display: flex; justify-content: space-between'>"+
-                                        "<div class='profile-picture'>"+
+                                        "<div class='profile-picture' id='akun'>"+
                                             "<img src='https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg' alt='Profile Picture'>"+
                                             "<h5 class='card-title' style='display: inline; margin-right: 10px'>" + (data['name']) + "</h5>"+
+                                            "<input type='hidden' id='idAkun' value='"+ data['akunId'] +"'>" +
                                         "</div>"+ 
 
                                         "<div style='margin-top: 6px'>"+
@@ -469,6 +468,11 @@
                 }
             }
         });
+
+        $(document).on("click", "#akun", function () {
+            window.location.href = "{{env('LINK_WEBSITE')}}user/profile/" + $(this).children("#idAkun").val();
+        })
+
     });
 </script>
 

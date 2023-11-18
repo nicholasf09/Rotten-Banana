@@ -119,9 +119,9 @@
     </div>
 </div>
 
-@foreach ($films as $film)
-    <div class="container-fluid">
-        <div class="row" id="posterContainer">
+<div class="container-fluid">
+    <div class="row" id="posterContainer">
+        @foreach ($films as $film)
             <div class="col-2">
                 <a href="{{env('LINK_WEBSITE')}}user/film/{{$film->id}}" id="posterFilm">
                     <div>
@@ -140,9 +140,9 @@
                     </div>
                 </a>
             </div>
-        </div>
-    </div>
 @endforeach
+    </div>
+</div>
 
 
 <script>

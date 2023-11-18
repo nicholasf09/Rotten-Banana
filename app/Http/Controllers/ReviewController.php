@@ -34,6 +34,7 @@ class ReviewController extends Controller
                 'created' => $review->created_at->diffForHumans(),
                 'name' => $review->user->name,
                 'id' => $review->id,
+                'akunId' => $review->user->id,
             ], 200);
         }
     }
@@ -66,6 +67,7 @@ class ReviewController extends Controller
                     'komen' => $review->komen,
                     'created' => $review->created_at->diffForHumans(),
                     'id' => $review->id,
+                    'akunId' => $review->user->id,
                 ], 200);
             }else{
                 return response()->json([
