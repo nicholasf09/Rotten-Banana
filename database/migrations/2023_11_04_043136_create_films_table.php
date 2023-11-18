@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('films', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('judul');
-            $table->string('sinopsis');
+            $table->text('sinopsis');
             $table->string('trailer');
             $table->date('tahun_rilis');
             $table->string('durasi');
@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('path_image');
             $table->string('pg');
             $table->string('director');
-            $table->string('tagline');
+            $table->string('original_language');
+            $table->string('producer');
+            $table->string('distributor');
             $table->integer('like');
             $table->timestamps();
         });

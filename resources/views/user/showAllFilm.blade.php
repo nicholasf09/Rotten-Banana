@@ -116,6 +116,9 @@
         <input type="radio" class="btn-check" name="genreFilm" id="comedy" autocomplete="off" value="comedy">
         <label class="btn btn-secondary" for="comedy">Comedy</label>
 
+        <input type="radio" class="btn-check" name="genreFilm" id="kdrama" autocomplete="off" value="kdrama">
+        <label class="btn btn-secondary" for="kdrama">K-Drama</label>
+
     </div>
 </div>
 

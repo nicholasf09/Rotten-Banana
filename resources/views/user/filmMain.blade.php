@@ -510,5 +510,6 @@
   });
 </script>
 
-@endsection
+
 @endforeach
+@endsection

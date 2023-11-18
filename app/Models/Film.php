@@ -21,8 +21,10 @@ class Film extends Model
         'genre',
         'path_image',
         'pg',
+        'original_language',
         'director',
-        'tagline',
+        'producer',
+        'distributor',
         'like'
     ];
 
