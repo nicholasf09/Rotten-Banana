@@ -83,8 +83,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function showFilm(Film $film)
-    {
+    public function showFilm(Film $film){
         $user = $film->user()->where('userId', auth()->user()->id)->first()->pivot ?? null;
         $totalRating = $film->review->sum('rating') ?? 0;
         $jumlahReview = $film->review->count() ?? 0;
@@ -104,6 +103,7 @@ class UserController extends Controller
                 'komen' => $r->komen,
                 'created' => $r->created_at->diffForHumans(),
                 'id' => $r->id,
+                'akunId' => $r->user->id,
             ];
         }
 
@@ -113,8 +113,8 @@ class UserController extends Controller
             $reviewUser['komen'] = $review->komen;
             $reviewUser['created'] = $review->created_at->diffForHumans();
             $reviewUser['id'] = $review->id;
-            return view('user.showFilm', [
-                'title' => 'Film',
+            return view('user.showFilm',[
+                'title'=> 'Film',
                 'film' => $film,
                 'review' => $reviewUser,
                 'allReview' => $allReview,
@@ -136,5 +136,12 @@ class UserController extends Controller
             'like' => $sudahLike,
         ]);
 
+    }
+
+    public function profile(User $user){
+        return view('user.profile',[
+            'title'=> 'Profile',
+            'user' => $user,
+        ]);
     }
 }

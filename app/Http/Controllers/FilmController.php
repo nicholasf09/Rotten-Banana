@@ -105,17 +105,26 @@ class FilmController extends Controller
                 if (Storage::disk('public')->exists($request['path_image'])) {
                     Storage::disk('public')->delete($request['path_image']);
                 }
+                $film = Film::find($request['id']);
+                $film->judul = $input['judul'];
+                $film->sinopsis = $request['sinopsis'];
+                $film->trailer = $request['trailer'];
+                $film->tahun_rilis = $request['tahun_rilis'];
+                $film->durasi = $request['durasi'];
+                $film->genre = $request['genre'];
+                $film->path_image = $pathImage;
+                $film->save();
+            }else{
+                $film = Film::find($request['id']);
+                $film->judul = $input['judul'];
+                $film->sinopsis = $request['sinopsis'];
+                $film->trailer = $request['trailer'];
+                $film->tahun_rilis = $request['tahun_rilis'];
+                $film->durasi = $request['durasi'];
+                $film->genre = $request['genre'];
+                $film->save();
             }
-            // dd($request['judul']);
-            $film = Film::find($request['id']);
-            $film->judul = $input['judul'];
-            $film->sinopsis = $request['sinopsis'];
-            $film->trailer = $request['trailer'];
-            $film->tahun_rilis = $request['tahun_rilis'];
-            $film->durasi = $request['durasi'];
-            $film->genre = $request['genre'];
-            $film->path_image = $pathImage;
-            $film->save();
+            
 
             return redirect()->route('admin.showAllFilm')->with('success','Film berhasil diupdate');
         }

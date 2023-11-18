@@ -20,6 +20,9 @@ class Film extends Model
         'durasi',
         'genre',
         'path_image',
+        'pg',
+        'director',
+        'tagline',
         'like'
     ];
 

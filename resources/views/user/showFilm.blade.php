@@ -71,9 +71,10 @@
                     @if (!empty($review))
                         <div id="tambahanAjax">
                             <div style="display: flex; justify-content: space-between">
-                                <div class="profile-picture">
+                                <div class="profile-picture" id="akun">
                                     <img src="https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg" alt="Profile Picture">
                                     <h5 class="card-title" style="display: inline; margin-right: 10px">{{$review['name']}}</h5> 
+                                    <input type="hidden" id="idAkun" value="{{$review['akunId']}}">
                                 </div> 
 
                                 <div style="margin-top: 6px">
@@ -144,7 +145,7 @@
         var filmId = '{{$film->id}}';
         var userId = '{{Auth::user()->id}}';
         var create = "{{!empty($review)}}";
-        var newElement = null;
+        var newElement = "{{!empty($review)}}";
         var ratingUser = 0;
         if($("#ratingUser").text() != ""){
             ratingUser = parseInt($("#ratingUser").text());
@@ -159,9 +160,6 @@
 
 
         $(document).on('click', "#likeButton", function () {
-
-            
-
             if (likeAtoGak) {
                 Swal.fire({
                     title: 'Apakah anda yakin ngeunlike film ini?',
@@ -251,6 +249,7 @@
                             },
                             dataType: 'json',
                             success: function (data) {
+                                newElement = null;
                                 totalRating = parseInt(totalRating) - parseInt(ratingUser);
                                 jumlahReview = parseInt(jumlahReview) - 1;
                                 rata2 = totalRating / jumlahReview;
@@ -314,10 +313,11 @@
                                 title: data['message'],
                                 text: 'Terima kasih atas reviewnya!',
                             })
-
-                            totalRating = parseInt(totalRating) - parseInt($("#ratingUser").text()) + parseInt(data['rating']);
+                            
+                            totalRating = parseInt(totalRating) - parseInt(ratingUser) + parseInt(data['rating']);
                             jumlahReview = parseInt(jumlahReview);
                             rata2 = totalRating / jumlahReview;
+                            ratingUser = parseInt(data['rating']);
                             $("#rata2").text(rata2);
                             $("#ratingUser").text(data['rating']);
                             if (newElement == null) {
@@ -327,8 +327,22 @@
                                     $('#komenUser').html("");
                                 }
                                 $("#createdReview").html(data['created']);
+                                var srcImage = "";
+
+                                if(data['rating'] <= 2){
+                                    srcImage = "{{asset('storage/uploads/assets/pisang_busuk.png')}}";
+                                }
+                                else if(data['rating'] <= 4){
+                                    srcImage = "{{asset('storage/uploads/assets/pisang_hijau.png')}}";
+                                }
+                                else{
+                                    srcImage = "{{asset('storage/uploads/assets/pisang_kuning.png')}}";
+                                }
+
+                                $("#logoPisang").attr('src', srcImage);
+
                             }else{
-                                ratingUser = parseInt(data['rating']);
+                                
 
                                 var srcImage = "";
 
@@ -346,9 +360,10 @@
                                 newElement = $(
                                     "<div id='tambahanAjax'>"+
                                         "<div style='display: flex; justify-content: space-between'>"+
-                                            "<div class='profile-picture'>"+
+                                            "<div class='profile-picture' id='akun'>"+
                                                 "<img src='https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg' alt='Profile Picture'>"+
                                                 "<h5 class='card-title' style='display: inline; margin-right: 10px'>" + (data['name']) + "</h5>"+
+                                                "<input type='hidden' id='idAkun' value='"+ data['akunId'] +"'>" +
                                             "</div>"+ 
 
                                             "<div style='margin-top: 6px'>"+
@@ -425,9 +440,10 @@
                             newElement = $(
                                 "<div>"+
                                     "<div style='display: flex; justify-content: space-between'>"+
-                                        "<div class='profile-picture'>"+
+                                        "<div class='profile-picture' id='akun'>"+
                                             "<img src='https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg' alt='Profile Picture'>"+
                                             "<h5 class='card-title' style='display: inline; margin-right: 10px'>" + (data['name']) + "</h5>"+
+                                            "<input type='hidden' id='idAkun' value='"+ data['akunId'] +"'>" +
                                         "</div>"+ 
 
                                         "<div style='margin-top: 6px'>"+
@@ -452,6 +468,11 @@
                 }
             }
         });
+
+        $(document).on("click", "#akun", function () {
+            window.location.href = "{{env('LINK_WEBSITE')}}user/profile/" + $(this).children("#idAkun").val();
+        })
+
     });
 </script>
 
