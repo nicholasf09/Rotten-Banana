@@ -38,13 +38,13 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/', [LoginController::class, 'loginUser'])->name('login');
     Route::post('/cekUser', [LoginController::class, 'cekLoginUser'])->name('cekLogin');
     Route::get('/home', [UserController::class, 'home'])->name('home')->middleware('user');
-    Route::get('/filmMain', [UserController::class, 'filmMain'])->name('filmMain')->middleware('user');
+    Route::get('/filmMain/{film}', [UserController::class, 'filmMain'])->name('filmMain')->middleware('user');
     Route::get('/front', [UserController::class, 'front'])->name('front')->middleware('user');
     Route::get('/signup', [UserController::class, 'signup'])->name('signup');
     Route::post('/signup/create', [UserController::class, 'create'])->name('store');
 
     //Profile
-    Route::get('/profile/{user}', [UserController::class,'profile'])->name('profile')->middleware('user');
+    Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile')->middleware('user');
 
     //Film
     Route::get('/films', [UserController::class, 'showAllFilm'])->name('showAllFilm')->middleware('user');
