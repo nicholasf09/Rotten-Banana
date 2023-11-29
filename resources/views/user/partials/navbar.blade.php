@@ -32,6 +32,27 @@
     </div>
 </nav>
 
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="modalAccount" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div id="account" class="modal-content">
+            <div class="header">
+                <i class="fa fa-bars"></i>
+                <i class="fa-solid fa-x" data-bs-dismiss="modal" aria-label="Close"></i>
+            </div>
+            <div class="middle">
+                <img src="https://th.bing.com/th?id=OIP.cn3LaokCXKhEkj8btLN9PAHaJ4&w=216&h=288&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+                    alt="" class="user-pic">
+                <h4 class="name">{{ auth()-> user()->name }}</h4>
+                <h4 class="work">{{ auth()-> user()->email }}</h4>
+            </div>
+                <button class="btn-follow">SEE DETAILS</button>
+        </div>
+    </div>
+</div>
 
 <style>
     * {
@@ -50,8 +71,8 @@
 
     #account {
         width: 400px;
-        height: 600px;
-        background-color: #F7CA05;
+        height: 400px;
+        background-color: #272829;
         margin: 50px auto;
         border-radius: 12px;
         overflow: hidden;
@@ -116,21 +137,12 @@
         padding: 15px;
     }
 
-    div.footer {
-        position: relative;
-        background: rgba(255, 255, 255, 1);
-        top: 110px;
-        height: 180px;
-        text-align: center;
-    }
-
     .btn-follow {
-        position: relative;
-        padding: 15px 70px;
-        top: -22px;
-        background: rgba(255, 255, 255, 1);
+        position: absolute;
+        bottom: 0%;
+        padding: 10% 100%;
+        background-color: #272829;
         border: none;
-        border-radius: 20px;
         text-transform: uppercase;
         letter-spacing: 1px;
         color: #f9690E;
