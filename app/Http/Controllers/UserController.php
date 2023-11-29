@@ -107,8 +107,9 @@ class UserController extends Controller
             $reviewUser['komen'] = $review->komen;
             $reviewUser['created'] = $review->created_at->diffForHumans();
             $reviewUser['id'] = $review->id;
-            return view('user.showFilm', [
-                'title' => 'Film',
+            $reviewUser['akunId'] = $review->user->id;
+            return view('user.showFilm',[
+                'title'=> 'Film',
                 'film' => $film,
                 'review' => $reviewUser,
                 'allReview' => $allReview,

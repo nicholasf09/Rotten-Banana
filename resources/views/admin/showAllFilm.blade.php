@@ -21,6 +21,11 @@
             <th>Tahun Rilis</th>
             <th>Durasi</th>
             <th>Genre</th>
+            <th>PG</th>
+            <th>Director</th>
+            <th>Producer</th>
+            <th>Distributor</th>
+            <th>Original Language</th>
             <th>Image</th>
             <th>Edit</th>
         </tr>
@@ -58,6 +63,12 @@
                 {data: 'tahun_rilis'},
                 {data: 'durasi'},
                 {data: 'genre'},
+                {data: 'pg'},
+                {data: 'director'},
+                {data: 'producer'},
+                {data: 'distributor'},
+                {data: 'original_language'},
+
                 {data: 'path_image',
                     render: function (data, type, row) {
                         return "<button class=showImage>Show Image</button>"

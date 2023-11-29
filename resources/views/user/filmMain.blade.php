@@ -748,4 +748,6 @@
   });
 </script>
 
+
+@endforeach
 @endsection
