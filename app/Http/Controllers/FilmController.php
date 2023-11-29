@@ -68,7 +68,7 @@ class FilmController extends Controller
                 $input['path_image'] = $path;
             }
             $input['id'] = Str::uuid();
-            $input['like'] = 0;
+            // $input['like'] = 0;
             Film::create($input);
             return redirect()->route('admin.showAllFilm')->with('success','Film berhasil ditambahkan');
         }

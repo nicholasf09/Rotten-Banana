@@ -29,11 +29,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('https://th.bing.com/th?id=OIP.cn3LaokCXKhEkj8btLN9PAHaJ4&w=216&h=288&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2') center/cover fixed;
-    filter: blur(80px);
+    background: url('https://m.media-amazon.com/images/M/MV5BYzZjY2MzYTAtMmQxMi00MWVjLTlkZGQtYjJmNWVhODY3YjdjXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg') center/cover fixed;
+    filter: blur(20px);
     z-index: -1;
     opacity: 0.8;
-
   }
 
   .navbar {
@@ -54,7 +53,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.85);
     z-index: -1;
   }
 
@@ -70,7 +69,7 @@
 
   #containerFilm {
     color: white;
-    margin-top: 100px;
+    margin-top: 8vh;
   }
 
   #title {
@@ -324,7 +323,7 @@
 @foreach($data as $item)
 
 <section class="movie-display py-0">
-  <div id="containerFilm" class="container-fluid px-2">
+  <div id="containerFilm" class="container-fluid">
     <div class="row px-5 justify-content-between">
       <h1> {{ $item->judul}}</h1>
       <div class="col-lg-6 col-md-12 col-xs-12">
@@ -355,12 +354,10 @@
       </div>
       <div class="item sub-container row col-sm-12 col-md-12 col-lg-2 mx-0 px-1">
         <div class="col-sm-6 col-md-6 col-lg-12 p-0 my-1">
-          <button class="btn square-button">
-            <i class="far fa-clock"></i>
-          </button>
+          <button class="btn square-button"><i class="bi bi-heart"></i></button>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-12 p-0 my-1">
-          <button class="btn square-button"><i class="far fa-clock"></i></button>
+          <button class="btn square-button"><i class="bi bi-star"></i></button>
         </div>
       </div>
     </div>

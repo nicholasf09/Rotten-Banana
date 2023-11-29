@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-navbar-dark bg-opacity-75 fixed-top navbar-light shadow-sm">
     <div class="container">
         <a class="navbar-brand text-white" href="#"><img width="36" src="https://img.icons8.com/cotton/64/banana.png"
-                alt="banana" /><i class="fa-solid fa-shop me-2"></i> <strong>ROTTEN BANANA</strong></a>
+                alt="banana"/>  <strong>ROTTEN BANANA</strong></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -39,7 +39,7 @@
             <ul class="navbar-nav ms-auto"> --}}
                 <li class="nav-item">
                     <a class="nav-link mx-2 text-uppercase text-white" href="#" data-bs-toggle="modal"
-                        data-bs-target="#modalAccount"><i class="fa-solid fa-circle-user me-1 "></i> Account</a>
+                        data-bs-target="#modalAccount"><i class="fa-solid fa-circle-user me-1 "></i> Profile</a>
                 </li>
             </ul>
         </div>
@@ -62,18 +62,10 @@
             <div class="middle">
                 <img src="https://th.bing.com/th?id=OIP.cn3LaokCXKhEkj8btLN9PAHaJ4&w=216&h=288&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
                     alt="" class="user-pic">
-                <h4 class="name">NAMA</h4>
-                <h4 class="work">X | Y | Z</h4>
-                <h4 class="social"><i class="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i
-                        class="fa fa-dribbble"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-twitter"></i>
-                </h4>
+                <h4 class="name">{{ auth()-> user()->name }}</h4>
+                <h4 class="work">{{ auth()-> user()->email }}</h4>
             </div>
-            <div class="footer">
-                <button class="btn-follow">follow </button><br />
-                <i class="fa fa-lock"></i>
-                <br />
-                <h4 class="profile-status">This profile is hidden</h4>
-            </div>
+                <button class="btn-follow">SEE DETAILS</button>
         </div>
     </div>
 </div>
@@ -95,8 +87,8 @@
 
     #account {
         width: 400px;
-        height: 600px;
-        background-color: #F7CA05;
+        height: 400px;
+        background-color: #272829;
         margin: 50px auto;
         border-radius: 12px;
         overflow: hidden;
@@ -161,21 +153,12 @@
         padding: 15px;
     }
 
-    div.footer {
-        position: relative;
-        background: rgba(255, 255, 255, 1);
-        top: 110px;
-        height: 180px;
-        text-align: center;
-    }
-
     .btn-follow {
-        position: relative;
-        padding: 15px 70px;
-        top: -22px;
-        background: rgba(255, 255, 255, 1);
+        position: absolute;
+        bottom: 0%;
+        padding: 10% 100%;
+        background-color: #272829;
         border: none;
-        border-radius: 20px;
         text-transform: uppercase;
         letter-spacing: 1px;
         color: #f9690E;
@@ -232,47 +215,4 @@
             transform: rotateY(55deg);
         }
     }
-
-
-
-    /* transform-origin: left top;
- animation: swing 2s ease-in forwards;
-}
-
-
-@-moz-keyframes swing {
-  0% {
-    -moz-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -moz-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-}
-@-webkit-keyframes swing {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-}
-@keyframes swing {
-  0% {
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-}
-*/
 </style>
