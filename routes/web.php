@@ -19,7 +19,7 @@ use App\Http\Controllers\ReviewController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', ['title' => 'Rotten Banana']);
 });
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [LoginController::class, 'loginAdmin'])->name('login');
@@ -48,6 +48,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
     //Film
     Route::get('/films', [UserController::class, 'showAllFilm'])->name('showAllFilm')->middleware('user');
+    Route::get('/films/{button}', [UserController::class, 'showAllFilmButton'])->name('showAllFilmButton')->middleware('user');
     Route::post('/getFilm', [FilmController::class, 'getAllFilm'])->name('getAllFilm')->middleware('user');
     Route::get('/film/{film}', [UserController::class, 'showFilm'])->name('showFilm')->middleware('user');
     Route::post('/like/{film}', [FilmController::class, 'likeFilm'])->name('likeFilm')->middleware('user');

@@ -288,7 +288,7 @@
             });
         });
 
-
+        document.getElementById('{{ $button }}').click();
     });
 
 </script>

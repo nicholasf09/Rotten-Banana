@@ -1,10 +1,9 @@
-<div class="container p-0 ps-md-3 mt-auto" style="color:white">
+<div id="footer" class="container-fluid" style="color:white; padding:0 55px">
     <div class="justify-content-between d-flex row">
-        <div class="col-md-4 col-lg-3 col-xl-3 mt-3 me-3">
-            <h6
-                class="text-uppercase mb-4 font-weight-bold d-flex justify-content-center justify-content-md-start align-items-center">
-                Rotten Banana
-            </h6>
+        <div class="col-md-4 col-lg-3 col-xl-3 mt-3 ">
+            <h5 class="text-uppercase mb-4 d-flex justify-content-center justify-content-md-start align-items-center">
+                <strong>Rotten Banana</strong>
+            </h5>
             <p class="text-center text-md-start">
                 Siwalankerto,
                 Rotten Banana is the world’s most trusted recommendation resources for quality
@@ -12,8 +11,9 @@
                 and through social channels, produce fun and informative video series.</p>
         </div>
         <div class="col-md-4 col-lg-3 col-xl-3 mt-3 me-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold d-flex justify-content-center justify-content-md-end">
-                Contact</h6>
+            <h5 class="text-uppercase mb-4 d-flex justify-content-center justify-content-md-end">
+                <strong>Contact</strong>
+            </h5>
             <p class="d-flex justify-content-center justify-content-md-end align-items-center">Siwalankerto,
                 SW 60012, INA<i class="bi bi-house ms-3"></i></p>
             <p class="d-flex justify-content-center justify-content-md-end align-items-center">

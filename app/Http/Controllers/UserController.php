@@ -72,6 +72,21 @@ class UserController extends Controller
         return view('user.showAllFilm', [
             'title' => 'Films',
             'films' => $films,
+            'button' => null
+        ]);
+    }
+
+    public function showAllFilmButton($button)
+    {
+        $films = Film::with('review')->get()->map(function ($film) {
+            $film->avgRating = $film->review->avg('rating') ?? 0;
+            return $film;
+        });
+        // dd($films);
+        return view('user.showAllFilm', [
+            'title' => 'Films',
+            'films' => $films,
+            'button' => $button
 
         ]);
     }
@@ -108,8 +123,8 @@ class UserController extends Controller
             $reviewUser['created'] = $review->created_at->diffForHumans();
             $reviewUser['id'] = $review->id;
             $reviewUser['akunId'] = $review->user->id;
-            return view('user.showFilm',[
-                'title'=> 'Film',
+            return view('user.showFilm', [
+                'title' => 'Film',
                 'film' => $film,
                 'review' => $reviewUser,
                 'allReview' => $allReview,

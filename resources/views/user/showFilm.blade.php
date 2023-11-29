@@ -69,7 +69,7 @@
             <div class="card" id="cardContainerUser">
                 <div class="card-body" id="userCard">
                     @if (!empty($review))
-                    <div id="tambahanAjax">
+                    <div id="`tambahanAja`x">
                         <div style="display: flex; justify-content: space-between">
                             <div class="profile-picture" id="akun">
                                 <img src="https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg"
@@ -267,7 +267,7 @@
                                 rata2 = 0;
                             }
 
-                            $("#rata2").text(rata2);
+                            $("#totalRating").text(rata2);
                             Swal.fire({
                                 icon: 'success',
                                 title: data['message'],
