@@ -507,5 +507,6 @@
   });
 </script>
 
-@endsection
+
 @endforeach
+@endsection

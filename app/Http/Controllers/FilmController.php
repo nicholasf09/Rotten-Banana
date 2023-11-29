@@ -37,7 +37,7 @@ class FilmController extends Controller
         // dd($request['judul'] . ' ' . $request['genre'] . ' ' . $request['tahun'] . ' ' . $request['durasi'] . ' ' . $request['sinopsis'] . ' ' . $request['poster'] . ' ' . $request['trailer'] . ' ' . $request['image']);
         // dd($request->file('image'));
 
-        $input = $request->only(['judul', 'genre', 'tahun_rilis', 'durasi', 'sinopsis', 'poster', 'trailer', 'image']);
+        $input = $request->only(['judul', 'genre', 'tahun_rilis', 'durasi', 'sinopsis', 'poster', 'trailer', 'image', 'pg', 'director', 'original_language', 'producer', 'distributor']);
         $valid = Validator::make($input, [
             'judul'=> 'required', 
             'sinopsis'=> 'required',
@@ -45,7 +45,12 @@ class FilmController extends Controller
             'tahun_rilis' => 'required|date_format:Y-m-d',
             'durasi'=> 'required',
             'genre'=> 'required',
-            'image'=> 'required'
+            'image'=> 'required',
+            'pg'=> 'required',
+            'director'=> 'required',
+            'original_language'=> 'required',
+            'producer'=> 'required',
+            'distributor'=> 'required',
         ], [
             'judul.required' => 'Judul wajib diisi.',
             'sinopsis.required'=> 'Sinopsis wajib diisi',
@@ -54,7 +59,12 @@ class FilmController extends Controller
             'tahun_rilis.date_format'=> 'Tanggal rilis tidak valid',
             'durasi.required'=> 'Durasi wajib diisi',
             'genre.required'=> 'Genre wajib diisi',
-            'image.required'=> 'Image wajib diisi'
+            'image.required'=> 'Image wajib diisi',
+            'pg.required'=> 'PG wajib diisi',
+            'director.required'=> 'Director wajib diisi',
+            'original_language.required'=> 'Original Language wajib diisi',
+            'producer.required'=> 'Producer wajib diisi',
+            'distributor.required'=> 'Distributor wajib diisi',
         ]);
 
         if($valid->fails()){

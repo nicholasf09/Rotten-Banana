@@ -24,24 +24,12 @@ class AdminController extends Controller
 
 
     public function showAllFilm(){
-        $films = Film::all();
-        $arr = [];
-        foreach($films as $film){
-            // dd($film['id']);
-            $temp['id'] = $film['id'];
-            $temp['judul'] = $film['judul'];
-            $temp['sinopsis'] = $film['sinopsis'];
-            $temp['trailer'] = $film['trailer'];
-            $temp['tahun_rilis'] = $film['tahun_rilis'];
-            $temp['durasi'] = $film['durasi'];
-            $temp['genre'] = $film['genre'];
-            $temp['path_image'] = $film['path_image'];
-            $arr[] = $temp;
-        }
+        $films = Film::all()->toArray();
         
+        // dd($films);
         return view('admin.showAllFilm',[
             'title'=> 'Show All Film',
-            'films'=> $arr
+            'films'=> $films
         ]);
     }
 

@@ -73,6 +73,56 @@
     <br><br>
 
     <div style="position: relative;">
+        <label for="pg">PG: </label>
+        <br>
+        <input type="text" id="pg" name="pg" value="{{old('pg')}}">
+        @error('pg')
+            <div class="error-message" style="position: absolute;top: 100%; left: 0">{{ $message }}</div>
+        @enderror
+    </div>  
+    <br><br>
+
+    <div style="position: relative;">
+        <label for="director">Director: </label>
+        <br>
+        <input type="text" id="director" name="director" value="{{old('director')}}">
+        @error('director')
+            <div class="error-message" style="position: absolute;top: 100%; left: 0">{{ $message }}</div>
+        @enderror
+    </div>  
+    <br><br>
+
+    <div style="position: relative;">
+        <label for="producer">Producer: </label>
+        <br>
+        <input type="text" id="producer" name="producer" value="{{old('producer')}}">
+        @error('producer')
+            <div class="error-message" style="position: absolute;top: 100%; left: 0">{{ $message }}</div>
+        @enderror
+    </div>  
+    <br><br>
+
+    <div style="position: relative;">
+        <label for="distributor">Distributor: </label>
+        <br>
+        <input type="text" id="distributor" name="distributor" value="{{old('distributor')}}">
+        @error('distributor')
+            <div class="error-message" style="position: absolute;top: 100%; left: 0">{{ $message }}</div>
+        @enderror
+    </div>  
+    <br><br>
+
+    <div style="position: relative;">
+        <label for="original_language">Original Language: </label>
+        <br>
+        <input type="text" id="original_language" name="original_language" value="{{old('origina_language')}}">
+        @error('director')
+            <div class="error-message" style="position: absolute;top: 100%; left: 0">{{ $message }}</div>
+        @enderror
+    </div>  
+    <br><br>
+
+    <div style="position: relative;">
         <label for="image">Image: </label>
         <br>
         <input type="file" id="image" name="image" accept="image/*">

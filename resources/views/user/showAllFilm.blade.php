@@ -95,12 +95,12 @@
 
 @section('content')
 
-<div style="display: flex; justify-content: center; margin-top: 10px">
+<div style="display: flex; justify-content: center; margin-top: 100px">
     <input type="text" id="searchBar" placeholder="Search Anything...">
 </div>
 
 <div style="display: flex; justify-content: center; margin-top: 10px">
-    <div style="display: flex; justify-content: space-between; width: 30%">
+    <div style="display: flex; justify-content: space-between; width: 40%">
         <input type="radio" class="btn-check" name="genreFilm" id="horror" autocomplete="off" value="horror">
         <label class="btn btn-secondary" for="horror">Horror</label>
 
@@ -115,6 +115,9 @@
 
         <input type="radio" class="btn-check" name="genreFilm" id="comedy" autocomplete="off" value="comedy">
         <label class="btn btn-secondary" for="comedy">Comedy</label>
+
+        <input type="radio" class="btn-check" name="genreFilm" id="kdrama" autocomplete="off" value="kdrama">
+        <label class="btn btn-secondary" for="kdrama">K-Drama</label>
 
     </div>
 </div>
