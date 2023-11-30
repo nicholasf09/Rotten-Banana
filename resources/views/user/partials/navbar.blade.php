@@ -44,28 +44,27 @@
             </ul>
         </div>
     </div>
-
-
 </nav>
 
-<!-- Button trigger modal -->
 
 <!-- Modal -->
 <div class="modal fade" id="modalAccount" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered">
         <div id="account" class="modal-content">
             <div class="header">
                 <i class="fa fa-bars"></i>
                 <i class="fa-solid fa-x" data-bs-dismiss="modal" aria-label="Close"></i>
             </div>
-            <div class="middle">
+            <div class="middle mt-5">
                 <img src="https://th.bing.com/th?id=OIP.cn3LaokCXKhEkj8btLN9PAHaJ4&w=216&h=288&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
                     alt="" class="user-pic">
                 <h4 class="name">{{ auth()-> user()->name }}</h4>
                 <h4 class="work">{{ auth()-> user()->email }}</h4>
             </div>
+            <div class="justify-content-center d-flex">
                 <button class="btn-follow">SEE DETAILS</button>
+            </div>
         </div>
     </div>
 </div>
@@ -75,55 +74,42 @@
         margin: 0;
         padding: 0;
     }
-
     .bg-cover {
         position: fixed;
-        top: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 255, 0.2);
-        z-index: -1;
     }
-
     #account {
         width: 400px;
         height: 400px;
-        background-color: #272829;
+        background-color: #121212;
         margin: 50px auto;
         border-radius: 12px;
         overflow: hidden;
     }
-
     .header i {
         font-size: 20px;
         color: rgba(255, 255, 255, 0.7);
         padding: 10px;
         margin-top: 20px;
     }
-
     .fa-bars {
         float: left;
         margin-left: 20px;
     }
-
     .fa-bars:hover {
         cursor: pointer;
         animation: bars 0.3s ease-in forwards;
     }
-
     .fa-x {
         float: right;
         margin-right: 20px;
     }
-
     .fa-x:hover {
         cursor: pointer;
     }
-
     div.middle {
-        position: relative;
         text-align: center;
-        top: 70px;
     }
 
     img.user-pic {
@@ -154,23 +140,20 @@
     }
 
     .btn-follow {
-        position: absolute;
-        bottom: 0%;
-        padding: 10% 100%;
-        background-color: #272829;
+        padding: 10px 10px;
+        width: 50%;
+        background-color: rgba(39, 40, 41, 0.3);
         border: none;
-        text-transform: uppercase;
         letter-spacing: 1px;
-        color: #f9690E;
-        box-shadow: 0px 5px 45px rgba(249, 105, 14, 0.4);
+        color: white;
+        border-radius: 3%;
         border: 1px solid transparent;
-        transition: all 0.5s ease-in;
     }
 
     .btn-follow:hover {
         cursor: pointer;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        background: #f9690E;
+        border: 1px solid rgba(39, 40, 41, 0.2);
+        background: rgba(39, 40, 41, 0.5);
         color: rgba(255, 255, 255, 1);
     }
 

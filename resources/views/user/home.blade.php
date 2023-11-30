@@ -59,14 +59,12 @@
             height: 45vh;
         }
     }
-
     @media (max-width: 767px) {
         .swiper {
             width: 100%;
             height: 30vh;
         }
     }
-
     .swiper-slide {
         text-align: center;
         font-size: 18px;
@@ -378,6 +376,7 @@
                                     class="bi bi-instagram"></i></a>
                         </div>
                     </div>
+                </section>
         </div>
     </footer>
 </div>

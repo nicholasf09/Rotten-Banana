@@ -363,7 +363,6 @@
     </div>
     <div class="movieDescription row px-5">
       <span class="py-2 genreSpan">
-
       </span>
       <div class="readmore truncate">
         <!-- sinopsis -->
@@ -432,7 +431,6 @@
     </div>
   </div>
 </div>
-
 
 <script>
   $(document).ready(function () {

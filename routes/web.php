@@ -43,8 +43,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/signup', [UserController::class, 'signup'])->name('signup');
     Route::post('/signup/create', [UserController::class, 'create'])->name('store');
 
-    //Account
-    Route::get('/account/{user}', [UserController::class,'account'])->name('account')->middleware('user');
+    //profile
+    Route::get('/profile/{user}', [UserController::class,'profile'])->name('profile')->middleware('user');
 
     //Film
     Route::get('/films', [UserController::class, 'showAllFilm'])->name('showAllFilm')->middleware('user');
