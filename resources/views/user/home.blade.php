@@ -376,7 +376,6 @@
                                     class="bi bi-instagram"></i></a>
                         </div>
                     </div>
-                </section>
         </div>
     </footer>
 </div>

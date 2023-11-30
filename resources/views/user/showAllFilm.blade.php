@@ -7,15 +7,19 @@
         margin: 0;
         padding: 0;
     }
+
     body {
         background-color: #121212;
     }
+
     .swiper-wrapper::-webkit-scrollbar {
         display: none;
-    }       
-    .form{
+    }
+
+    .form {
         position: relative;
     }
+
     .search {
         position: absolute;
         z-index: 1;
@@ -23,45 +27,55 @@
         left: 17px;
         color: #9ca3af;
     }
-    .form-input{
+
+    .form-input {
         padding-left: 45px;
     }
-    .form-input:focus{
+
+    .form-input:focus {
         box-shadow: none;
     }
+
     ::placeholder {
-    color: gray !important;
+        color: gray !important;
     }
-    .bg-navbar-dark{
+
+    .bg-navbar-dark {
         background-color: #121212;
     }
+
     .title {
         color: white;
         transition: 0.5s ease-in-out;
     }
-    .title:hover{
+
+    .title:hover {
         color: #CF0102;
     }
+
     .swiper {
-      width: 100%;
-      height: 43vh;
+        width: 100%;
+        height: 43vh;
     }
+
     .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 15px;
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
     }
+
     .swiper-slide img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 15px;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
     }
+
     .swiper-wrapper {
         display: flex;
         overflow-x: scroll;
@@ -69,7 +83,7 @@
         scroll-snap-type: x mandatory;
     }
 
-    #searchBar{
+    #searchBar {
         width: 30%;
         margin-right: auto;
         margin-left: auto;
@@ -77,7 +91,7 @@
         border: #fff solid 4px;
     }
 
-    #posterFilm{
+    #posterFilm {
         text-decoration: none;
         color: #fff;
     }
@@ -88,8 +102,6 @@
         object-fit: cover;
         display: inline
     }
-
-
 </style>
 @endsection
 
@@ -125,156 +137,159 @@
 <div class="container-fluid">
     <div class="row" id="posterContainer">
         @foreach ($films as $film)
-            <div class="col-2">
-                <a href="{{env('LINK_WEBSITE')}}user/film/{{$film->id}}" id="posterFilm">
-                    <div>
-                        <img src="{{asset('storage/')}}/{{$film->path_image}}" class="rounded float-start" alt="{{$film->judul}}" style="width: 100%; height: 320px; object-fit: cover;">
-                        <h5 style="text-align: center;">{{$film->judul}}</h5>
-                        <div style="display: flex; justify-content: space-between">
-                            <div style="display: flex; justify-content: space-evenly; width: 50%">
-                                <img id="logoPisang" src="{{ $film->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($film->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}" alt="">
-                                <p>{{$film->avgRating}}</p>
-                            </div>
-                            <div style="display: flex; justify-content: space-evenly; width: 50%">
-                                <img id="logoPisang" src="{{ asset('storage/uploads/assets/like.png')}}" alt="">
-                                <p>{{$film->like}}</p>
-                            </div>
+        <div class="col-2">
+            <a href="{{env('LINK_WEBSITE')}}user/film/{{$film->id}}" id="posterFilm">
+                <div>
+                    <img src="{{asset('storage/')}}/{{$film->path_image}}" class="rounded float-start"
+                        alt="{{$film->judul}}" style="width: 100%; height: 320px; object-fit: cover;">
+                    <h5 style="text-align: center;">{{$film->judul}}</h5>
+                    <div style="display: flex; justify-content: space-between">
+                        <div style="display: flex; justify-content: space-evenly; width: 50%">
+                            <img id="logoPisang"
+                                src="{{ $film->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($film->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
+                                alt="">
+                            <p>{{$film->avgRating}}</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-evenly; width: 50%">
+                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/like.png')}}" alt="">
+                            <p>{{$film->like}}</p>
                         </div>
                     </div>
-                </a>
-            </div>
-@endforeach
+                </div>
+            </a>
+        </div>
+        @endforeach
     </div>
 </div>
 
 
 <script>
-$(document).ready(function(){
-    var genre ='';
-    var search ='';
-    var previousValue = '';
+    $(document).ready(function () {
+        var genre = '';
+        var search = '';
+        var previousValue = '';
 
-    $('input[type=radio][name=genreFilm]').click(function() {
-        console.log(previousValue);
-        if (previousValue == $(this).val()) {
-            $(this).prop('checked', false);
-            genre = '';
-            previousValue = '';
+        $('input[type=radio][name=genreFilm]').click(function () {
+            console.log(previousValue);
+            if (previousValue == $(this).val()) {
+                $(this).prop('checked', false);
+                genre = '';
+                previousValue = '';
+                $.ajax({
+                    url: "{{ route('user.getAllFilm') }}",
+                    type: 'POST',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        genre: genre,
+                        search: search
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#posterContainer').empty();
+                        console.log(data);
+                        $.each(data['data'], function (index, value) {
+                            $('#posterContainer').html("<div class='col-2'>" +
+                                "<a href='{{env('LINK_WEBSITE')}}user/film/{{$film->id}}' id='posterFilm'>" +
+                                "<div>" +
+                                "<img src='{{asset('storage/')}}/{{$film->path_image}}' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" +
+                                "<h5 style='text-align: center;'>{{$film->judul}}</h5>" +
+                                "<div style='display: flex; justify-content: space-between'>" +
+                                "<div style='display: flex; justify-content: space-evenly; width: 50%''>" +
+                                "<img id='logoPisang' src='{{ $film->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($film->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}' alt=''>" +
+                                "<p>{{$film->avgRating}}</p>" +
+                                "</div>" +
+                                "<div style='display: flex; justify-content: space-evenly; width: 50%'>" +
+                                "<img id='logoPisang' src='{{ asset('storage/uploads/assets/like.png')}}' alt=''>" +
+                                "<p>{{$film->like}}</p>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>" +
+                                "</a>" +
+                                "</div>");
+                        });
+                    }
+                });
+            } else {
+                genre = $(this).val();
+                $.ajax({
+                    url: "{{ route('user.getAllFilm') }}",
+                    type: 'POST',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        genre: genre,
+                        search: search
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#posterContainer').empty();
+                        console.log(data);
+                        $.each(data['data'], function (index, value) {
+                            $('#posterContainer').html("<div class='col-2'>" +
+                                "<a href='{{env('LINK_WEBSITE')}}user/film/{{$film->id}}' id='posterFilm'>" +
+                                "<div>" +
+                                "<img src='{{asset('storage/')}}/{{$film->path_image}}' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" +
+                                "<h5 style='text-align: center;'>{{$film->judul}}</h5>" +
+                                "<div style='display: flex; justify-content: space-between'>" +
+                                "<div style='display: flex; justify-content: space-evenly; width: 50%''>" +
+                                "<img id='logoPisang' src='{{ $film->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($film->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}' alt=''>" +
+                                "<p>{{$film->avgRating}}</p>" +
+                                "</div>" +
+                                "<div style='display: flex; justify-content: space-evenly; width: 50%'>" +
+                                "<img id='logoPisang' src='{{ asset('storage/uploads/assets/like.png')}}' alt=''>" +
+                                "<p>{{$film->like}}</p>" +
+                                "</div>" +
+                                "</div>" +
+                                "</div>" +
+                                "</a>" +
+                                "</div>");
+                        });
+                    }
+                });
+                previousValue = genre;
+            }
+        });
+
+        $("#searchBar").on("input", function () {
+            search = $(this).val().toLowerCase();
+
             $.ajax({
-                url: "{{ route('user.getAllFilm') }}",
+                url: "{{route('user.getAllFilm')}}",
                 type: 'POST',
                 data: {
                     _token: "{{ csrf_token() }}",
-                    genre: genre,
-                    search: search
+                    search: search,
+                    genre: genre
                 },
                 dataType: 'json',
                 success: function (data) {
                     $('#posterContainer').empty();
                     console.log(data);
                     $.each(data['data'], function (index, value) {
-                         $('#posterContainer').html("<div class='col-2'>" +
-                        "<a href='{{env('LINK_WEBSITE')}}user/film/{{$film->id}}' id='posterFilm'>" +
-                            "<div>" + 
-                                "<img src='{{asset('storage/')}}/{{$film->path_image}}' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" + 
-                                "<h5 style='text-align: center;'>{{$film->judul}}</h5>" +
-                                "<div style='display: flex; justify-content: space-between'>" +
-                                    "<div style='display: flex; justify-content: space-evenly; width: 50%''>" + 
-                                        "<img id='logoPisang' src='{{ $film->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($film->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}' alt=''>" +
-                                        "<p>{{$film->avgRating}}</p>" +
-                                    "</div>" + 
-                                    "<div style='display: flex; justify-content: space-evenly; width: 50%'>" +
-                                        "<img id='logoPisang' src='{{ asset('storage/uploads/assets/like.png')}}' alt=''>" +
-                                        "<p>{{$film->like}}</p>" +
-                                    "</div>" +
-                                "</div>" +
-                            "</div>" +
-                        "</a>" +
-                    "</div>");
-                    });
-                }
-            });
-        } else {
-            genre = $(this).val();
-            $.ajax({
-                url: "{{ route('user.getAllFilm') }}",
-                type: 'POST',
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    genre: genre,
-                    search: search
-                },
-                dataType: 'json',
-                success: function (data) {
-                    $('#posterContainer').empty();
-                    console.log(data);
-                    $.each(data['data'], function (index, value) {
-                         $('#posterContainer').html("<div class='col-2'>" +
-                        "<a href='{{env('LINK_WEBSITE')}}user/film/{{$film->id}}' id='posterFilm'>" +
-                            "<div>" + 
-                                "<img src='{{asset('storage/')}}/{{$film->path_image}}' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" + 
-                                "<h5 style='text-align: center;'>{{$film->judul}}</h5>" +
-                                "<div style='display: flex; justify-content: space-between'>" +
-                                    "<div style='display: flex; justify-content: space-evenly; width: 50%''>" + 
-                                        "<img id='logoPisang' src='{{ $film->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($film->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}' alt=''>" +
-                                        "<p>{{$film->avgRating}}</p>" +
-                                    "</div>" + 
-                                    "<div style='display: flex; justify-content: space-evenly; width: 50%'>" +
-                                        "<img id='logoPisang' src='{{ asset('storage/uploads/assets/like.png')}}' alt=''>" +
-                                        "<p>{{$film->like}}</p>" +
-                                    "</div>" +
-                                "</div>" +
-                            "</div>" +
-                        "</a>" +
-                    "</div>");
-                    });
-                }
-            });
-            previousValue = genre;
-        }
-    });
-
-    $("#searchBar").on("input", function() {
-        search = $(this).val().toLowerCase();
-
-        $.ajax({
-        url: "{{route('user.getAllFilm')}}",
-        type: 'POST',
-        data: {
-            _token: "{{ csrf_token() }}",
-            search: search,
-            genre: genre
-        },
-        dataType: 'json',
-        success: function (data) {
-            $('#posterContainer').empty();
-            console.log(data);
-            $.each(data['data'], function (index, value) {
-                $('#posterContainer').html("<div class='col-2'>" +
-                    "<a href='{{env('LINK_WEBSITE')}}user/film/{{$film->id}}' id='posterFilm'>" +
-                        "<div>" + 
-                            "<img src='{{asset('storage/')}}/{{$film->path_image}}' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" + 
+                        $('#posterContainer').html("<div class='col-2'>" +
+                            "<a href='{{env('LINK_WEBSITE')}}user/film/{{$film->id}}' id='posterFilm'>" +
+                            "<div>" +
+                            "<img src='{{asset('storage/')}}/{{$film->path_image}}' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" +
                             "<h5 style='text-align: center;'>{{$film->judul}}</h5>" +
                             "<div style='display: flex; justify-content: space-between'>" +
-                                "<div style='display: flex; justify-content: space-evenly; width: 50%''>" + 
-                                    "<img id='logoPisang' src='{{ $film->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($film->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}' alt=''>" +
-                                    "<p>{{$film->avgRating}}</p>" +
-                                "</div>" + 
-                                "<div style='display: flex; justify-content: space-evenly; width: 50%'>" +
-                                    "<img id='logoPisang' src='{{ asset('storage/uploads/assets/like.png')}}' alt=''>" +
-                                    "<p>{{$film->like}}</p>" +
-                                "</div>" +
+                            "<div style='display: flex; justify-content: space-evenly; width: 50%''>" +
+                            "<img id='logoPisang' src='{{ $film->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($film->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}' alt=''>" +
+                            "<p>{{$film->avgRating}}</p>" +
                             "</div>" +
-                        "</div>" +
-                    "</a>" +
-                "</div>");
-                });
-        }
-    });
-    });
+                            "<div style='display: flex; justify-content: space-evenly; width: 50%'>" +
+                            "<img id='logoPisang' src='{{ asset('storage/uploads/assets/like.png')}}' alt=''>" +
+                            "<p>{{$film->like}}</p>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>" +
+                            "</a>" +
+                            "</div>");
+                    });
+                }
+            });
+        });
 
-    
-});
+        document.getElementById('{{ $button }}').click();
+    });
 
 </script>
 

@@ -19,7 +19,7 @@ use App\Http\Controllers\ReviewController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', ['title' => 'Rotten Banana']);
 });
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [LoginController::class, 'loginAdmin'])->name('login');
@@ -38,16 +38,22 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/', [LoginController::class, 'loginUser'])->name('login');
     Route::post('/cekUser', [LoginController::class, 'cekLoginUser'])->name('cekLogin');
     Route::get('/home', [UserController::class, 'home'])->name('home')->middleware('user');
-    Route::get('/filmMain', [UserController::class, 'filmMain'])->name('filmMain')->middleware('user');
+    Route::get('/filmMain/{film}', [UserController::class, 'filmMain'])->name('filmMain')->middleware('user');
     Route::get('/front', [UserController::class, 'front'])->name('front')->middleware('user');
     Route::get('/signup', [UserController::class, 'signup'])->name('signup');
     Route::post('/signup/create', [UserController::class, 'create'])->name('store');
 
+<<<<<<< HEAD
     //profile
     Route::get('/profile/{user}', [UserController::class,'profile'])->name('profile')->middleware('user');
+=======
+    //Profile
+    Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile')->middleware('user');
+>>>>>>> 0d476255d4038cbfb11b2deace02ad2f8a6c784e
 
     //Film
     Route::get('/films', [UserController::class, 'showAllFilm'])->name('showAllFilm')->middleware('user');
+    Route::get('/films/{button}', [UserController::class, 'showAllFilmButton'])->name('showAllFilmButton')->middleware('user');
     Route::post('/getFilm', [FilmController::class, 'getAllFilm'])->name('getAllFilm')->middleware('user');
     Route::get('/film/{film}', [UserController::class, 'showFilm'])->name('showFilm')->middleware('user');
     Route::post('/like/{film}', [FilmController::class, 'likeFilm'])->name('likeFilm')->middleware('user');
