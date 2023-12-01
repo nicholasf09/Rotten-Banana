@@ -592,7 +592,7 @@
       <div class="col-7">
         <p id="tahunRilis"><strong>Release Date:</strong> {{$film ->tahun_rilis}}</p>
         <p id="originalLanguage"><strong>Original Language:</strong> {{$film ->tahun_rilis}}</p>
-        <p id="direktor"><strong>Director:</strong>{{$film ->director}} </p>
+        <p id="direktor"><strong>Director: </strong>{{$film ->director}} </p>
         <p id="producer"><strong>Producer:</strong> {{$film ->producer}}</p>
         <p id="distributor"><strong>Distributor:</strong> {{$film ->distributor}}</p>
       </div>

@@ -13,14 +13,20 @@ class UserController extends Controller
 {
     public function home()
     {
+        $kdramas = Film::where('genre', 'like', '%' . 'kdrama' . '%')->inRandomOrder()->limit(10)->get();
+        $animes = Film::where('genre', 'like', '%' . 'anime' . '%')->inRandomOrder()->limit(10)->get();
+        $rating = Film::withCount('review')->get()->map(function ($film) {
+            $film->avgRating = $film->review->avg('rating') ?? 0;
+            return $film;
+        })->sortByDesc('avgRating')->take(5);
+        $popular = $rating->sortByDesc('review_count')->take(5);
+
         return view('user.home', [
-            'title' => 'Home'
-        ]);
-    }
-    public function front()
-    {
-        return view('user.front', [
-            'title' => 'front'
+            'title' => 'Home',
+            'kdramas' => $kdramas,
+            'animes' => $animes,
+            'rating' => $rating,
+            'popular' => $popular,
         ]);
     }
 

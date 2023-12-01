@@ -175,7 +175,16 @@
     </div>
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img
+            @foreach ($kdramas as $kdrama)
+                <div class="swiper-slide">
+                    <a href="{{route('user.filmMain',[$kdrama->id])}}">
+                        <img
+                        src="{{ asset('storage/' . $kdrama->path_image) }}"
+                        alt="">
+                    </a>
+                </div>
+            @endforeach
+            {{-- <div class="swiper-slide"><img
                     src="https://m.media-amazon.com/images/M/MV5BODM5NDhkYzctZjQ5NS00YTFkLWJiODUtMGMwOTZhYzgyYWI1XkEyXkFqcGdeQXVyNjI4NDY5ODM@._V1_.jpg"
                     alt=""></div>
             <div class="swiper-slide"><img
@@ -201,7 +210,7 @@
                     alt=""></div>
             <div class="swiper-slide"><img
                     src="https://m.media-amazon.com/images/M/MV5BYzgzNDg5OGUtMGY5NS00ZjlkLTljM2MtYjdkODRhNDFlZmI5XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_FMjpg_UX1000_.jpg"
-                    alt=""></div>
+                    alt=""></div> --}}
         </div>
     </div>
 </div>
@@ -213,7 +222,16 @@
     </div>
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img
+            @foreach ($animes as $anime)
+                <div class="swiper-slide">
+                    <a href="{{route('user.filmMain',[$anime->id])}}">
+                        <img
+                        src="{{ asset('storage/' . $anime->path_image) }}"
+                        alt="">
+                    </a>
+                </div>
+            @endforeach
+            {{-- <div class="swiper-slide"><img
                     src="https://m.media-amazon.com/images/M/MV5BODM0NmVjMzUtOTJhNi00N2ZhLWFkYmMtYmZmNjRiY2M1YWY4XkEyXkFqcGdeQXVyOTgxOTA5MDg@._V1_.jpg"
                     alt=""></div>
             <div class="swiper-slide"><img src="https://image.tmdb.org/t/p/original/3yFHMtdhriig4sm1w8oMQfA2gFN.jpg"
@@ -236,7 +254,7 @@
                     alt=""></div>
             <div class="swiper-slide"><img
                     src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg"
-                    alt=""></div>
+                    alt=""></div> --}}
         </div>
     </div>
 </div>
@@ -245,7 +263,23 @@
     {{-- ranking 1 --}}
     <div class="col-md-6 p-0 pe-md-3 col-sm-12">
         <h1 class="fw-bold text-white lh-md mb-2">Best Rating</h1>
-        <div
+        @foreach ($rating as $r)
+        <a href="{{route('user.filmMain',[$r->id])}}" style="text-decoration: none">
+            <div
+                class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img
+                        src="{{ asset('storage/' . $r->path_image) }}"
+                        alt=""></div>
+                <h1 class="fw-light text-white lh-md mb-2 ms-2">{{$r->judul}}</h1>
+                <h1 class="fw-light text-white lh-md me-3">{{$r->avgRating}} 
+                    <img id="logoPisang" style="width: 50px;"
+                    src="{{ $r->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
+                    alt="">
+                </h1>
+            </div>
+        </a>
+        @endforeach
+        {{-- <div
             class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
             <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img
                     src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg"
@@ -276,20 +310,38 @@
                     alt=""></div>
             <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
             <h1 class="fw-light text-white lh-md me-3">9/10</h1>
-        </div>
-        <div
+        </div> --}}
+        {{-- <div
             class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
             <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img
                     src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg"
                     alt=""></div>
             <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
             <h1 class="fw-light text-white lh-md me-3">9/10</h1>
-        </div>
+        </div> --}}
     </div>
+
+
     {{-- ranking 2 --}}
     <div class="col-md-6 p-0 ps-md-3 col-sm-12">
         <h1 class="fw-bold text-white lh-md mb-2">Most Popular</h1>
-        <div
+        @foreach ($popular as $p)
+        <a href="{{route('user.filmMain', [$p->id])}}" style="text-decoration: none">
+            <div 
+                class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img
+                        src="{{ asset('storage/' . $p->path_image) }}"
+                        alt=""></div>
+                <h1 class="fw-light text-white lh-md mb-2 ms-2">{{$p->judul}}</h1>
+                <h1 class="fw-light text-white lh-md me-3">{{$p->avgRating}} 
+                    <img id="logoPisang" style="width: 50px;"
+                    src="{{ $p->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
+                    alt="">
+                </h1>
+            </div>
+        </a>
+        @endforeach
+        {{-- <div
             class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
             <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img
                     src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg"
@@ -328,7 +380,7 @@
                     alt=""></div>
             <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
             <h1 class="fw-light text-white lh-md me-3">9/10</h1>
-        </div>
+        </div> --}}
     </div>
 </div>
 {{-- footer --}}
