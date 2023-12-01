@@ -31,6 +31,14 @@ class UserController extends Controller
         ]);
     }
 
+    public function logout(Request $request)
+    {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        Auth::logout();
+        return redirect()->back();
+    }
+
 
 
     public function create(Request $request)

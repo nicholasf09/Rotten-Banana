@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [LoginController::class, 'loginAdmin'])->name('login');
     Route::post('/cekAdmin', [LoginController::class, 'cekLoginAdmin'])->name('cekLogin');
     Route::get('/home', [AdminController::class, 'home'])->name('home')->middleware('admin');
+    Route::post('/logout', [AdminController::class, 'logout'])->name('logout')->middleware('admin');
 
     //Film
     Route::get('/films', [AdminController::class, 'showAllFilm'])->name('showAllFilm')->middleware('admin');
@@ -42,14 +43,10 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/front', [UserController::class, 'front'])->name('front')->middleware('user');
     Route::get('/signup', [UserController::class, 'signup'])->name('signup');
     Route::post('/signup/create', [UserController::class, 'create'])->name('store');
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout')->middleware('user');
 
-<<<<<<< HEAD
-    //profile
-    Route::get('/profile/{user}', [UserController::class,'profile'])->name('profile')->middleware('user');
-=======
     //Profile
     Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile')->middleware('user');
->>>>>>> 0d476255d4038cbfb11b2deace02ad2f8a6c784e
 
     //Film
     Route::get('/films', [UserController::class, 'showAllFilm'])->name('showAllFilm')->middleware('user');

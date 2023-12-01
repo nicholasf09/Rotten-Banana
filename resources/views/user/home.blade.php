@@ -241,7 +241,7 @@
     </div>
 </div>
 {{-- ranking --}}
-<div class="row m-5">
+<div class="row m-5" id="ranking">
     {{-- ranking 1 --}}
     <div class="col-md-6 p-0 pe-md-3 col-sm-12">
         <h1 class="fw-bold text-white lh-md mb-2">Best Rating</h1>
