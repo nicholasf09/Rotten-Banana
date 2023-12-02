@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [LoginController::class, 'loginAdmin'])->name('login');
     Route::post('/cekAdmin', [LoginController::class, 'cekLoginAdmin'])->name('cekLogin');
     Route::get('/home', [AdminController::class, 'home'])->name('home')->middleware('admin');
+    Route::post('/logout', [AdminController::class, 'logout'])->name('logout')->middleware('admin');
 
     //Film
     Route::get('/films', [AdminController::class, 'showAllFilm'])->name('showAllFilm')->middleware('admin');
@@ -38,18 +39,19 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/', [LoginController::class, 'loginUser'])->name('login');
     Route::post('/cekUser', [LoginController::class, 'cekLoginUser'])->name('cekLogin');
     Route::get('/home', [UserController::class, 'home'])->name('home')->middleware('user');
-    Route::get('/filmMain/{film}', [UserController::class, 'filmMain'])->name('filmMain')->middleware('user');
-    Route::get('/front', [UserController::class, 'front'])->name('front')->middleware('user');
     Route::get('/signup', [UserController::class, 'signup'])->name('signup');
     Route::post('/signup/create', [UserController::class, 'create'])->name('store');
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout')->middleware('user');
 
     //Profile
     Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile')->middleware('user');
+    Route::post('/profile/edit/{user}', [UserController::class, 'editProfile'])->name('editProfile')->middleware('user');
 
     //Film
     Route::get('/films', [UserController::class, 'showAllFilm'])->name('showAllFilm')->middleware('user');
     Route::get('/films/{button}', [UserController::class, 'showAllFilmButton'])->name('showAllFilmButton')->middleware('user');
     Route::post('/getFilm', [FilmController::class, 'getAllFilm'])->name('getAllFilm')->middleware('user');
+    Route::get('/filmMain/{film}', [UserController::class, 'filmMain'])->name('filmMain')->middleware('user');
     Route::get('/film/{film}', [UserController::class, 'showFilm'])->name('showFilm')->middleware('user');
     Route::post('/like/{film}', [FilmController::class, 'likeFilm'])->name('likeFilm')->middleware('user');
     Route::post('/unlike/{film}', [FilmController::class, 'unlikeFilm'])->name('unlikeFilm')->middleware('user');

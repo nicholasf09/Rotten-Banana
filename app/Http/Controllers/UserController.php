@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use Validator;
 use App\Models\Film;
 use App\Models\User;
@@ -13,14 +14,20 @@ class UserController extends Controller
 {
     public function home()
     {
+        $kdramas = Film::where('genre', 'like', '%' . 'kdrama' . '%')->inRandomOrder()->limit(10)->get();
+        $animes = Film::where('genre', 'like', '%' . 'anime' . '%')->inRandomOrder()->limit(10)->get();
+        $rating = Film::withCount('review')->get()->map(function ($film) {
+            $film->avgRating = $film->review->avg('rating') ?? 0;
+            return $film;
+        })->sortByDesc('avgRating')->take(5);
+        $popular = $rating->sortByDesc('like')->take(5);
+
         return view('user.home', [
-            'title' => 'Home'
-        ]);
-    }
-    public function front()
-    {
-        return view('user.front', [
-            'title' => 'front'
+            'title' => 'Home',
+            'kdramas' => $kdramas,
+            'animes' => $animes,
+            'rating' => $rating,
+            'popular' => $popular,
         ]);
     }
 
@@ -29,6 +36,14 @@ class UserController extends Controller
         return view('user.signup', [
             'title' => 'Sign Up'
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        Auth::logout();
+        return redirect()->back();
     }
 
 
@@ -123,6 +138,7 @@ class UserController extends Controller
             $reviewUser['created'] = $review->created_at->diffForHumans();
             $reviewUser['id'] = $review->id;
             $reviewUser['akunId'] = $review->user->id;
+
             return view('user.showFilm', [
                 'title' => 'Film',
                 'film' => $film,
@@ -135,7 +151,6 @@ class UserController extends Controller
         }
 
         $review = [];
-        // dd($allReview);
         return view('user.showFilm', [
             'title' => 'Film',
             'film' => $film,
@@ -205,9 +220,52 @@ class UserController extends Controller
 
     public function profile(User $user)
     {
+        $review = Review::with('film')
+            ->where('userId', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->take(10)
+            ->get()
+            ->map(function ($review) {
+                $review->created = $review->created_at->diffForHumans();
+                return $review;
+            })
+            ->toArray();
+
+
+        $favorite = $user->film()
+            ->orderBy('created_at', 'desc')
+            ->take(10)
+            ->get()->toArray();
+
+        // dd($review);
         return view('user.profile', [
             'title' => 'Profile',
             'user' => $user,
+            'review' => $review,
+            'favorite' => $favorite,
         ]);
+    }
+
+    public function editProfile(Request $request){
+        $input = $request->only(['name', 'password']);
+        $valid = Validator::make($input, [
+            'name' => 'required',
+            'password' => 'required',
+        ], [
+            'name.required' => 'Kolom nama wajib diisi.',
+            'password.required' => 'Kolom password wajib diisi.',
+        ]);
+
+        if ($valid->fails()) {
+            return redirect()->back()->withErrors($valid)->withInput();
+        } else {
+            $input['password'] = bcrypt($input['password']);
+            $user = User::where('id', auth()->user()->id)->update($input);
+            if ($user) {
+                return redirect()->route('user.profile',[auth()->user()->id])->with('success', 'Edit Profile berhasil');
+            } else {
+                return redirect()->back()->withErrors('Edit Profile gagal')->withInput();
+            }
+        }
     }
 }

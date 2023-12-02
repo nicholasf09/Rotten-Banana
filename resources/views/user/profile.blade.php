@@ -89,9 +89,55 @@
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
     }
+
+    .profile-container {
+        margin: 20px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: inline-block;
+    }
+
+    .profile-picture {
+        border-radius: 50%;
+        margin-bottom: 20px;
+        display: inline;
+    }
+
+    .profile-picture img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border: 2px solid #fff;
+        /* Tambahkan border jika diinginkan */
+    }
+
+    .profile-info {
+        color: #555;
+    }
+
+    #logoPisang {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        display: inline
+    }
 </style>
 
+
 <div class="container mt-10 justify-content-center">
+    @if (session('success') )
+        <div class="alert alert-success" style="position: fixed; z-index: 100;width: 88%">
+            {{session('success')}}
+        </div>
+    @endif   
+
+    @if (session('error') )
+        <div class="alert alert-danger" style="position: fixed; z-index: 100;width: 88%">
+            {{session('error')}}
+        </div>
+    @endif
   <div class="row">
     <div class="col-md-12 mb-3">
       <div class="card  bg-dark bg-opacity-25">
@@ -112,7 +158,16 @@
         <div class="mx-5 mb-3">
           <div class="swiper mySwiper">
               <div class="swiper-wrapper">
-                  <div class="swiper-slide"><img
+                @foreach ($favorite as $f)
+                    <div class="swiper-slide">
+                        <a href="{{route('user.filmMain', $f['id'])}}">
+                            <img
+                            src="{{asset('storage/'.$f['path_image'])}}"
+                            alt="">
+                        </a>
+                    </div>
+                    @endforeach
+                  {{-- <div class="swiper-slide"><img
                           src="https://m.media-amazon.com/images/M/MV5BODM5NDhkYzctZjQ5NS00YTFkLWJiODUtMGMwOTZhYzgyYWI1XkEyXkFqcGdeQXVyNjI4NDY5ODM@._V1_.jpg"
                           alt=""></div>
                   <div class="swiper-slide"><img
@@ -138,7 +193,7 @@
                           alt=""></div>
                   <div class="swiper-slide"><img
                           src="https://m.media-amazon.com/images/M/MV5BYzgzNDg5OGUtMGY5NS00ZjlkLTljM2MtYjdkODRhNDFlZmI5XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_FMjpg_UX1000_.jpg"
-                          alt=""></div>
+                          alt=""></div> --}}
               </div>
           </div>
       </div>
@@ -150,10 +205,21 @@
           <div class="mx-5 mb-3">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img
+                    
+                    @foreach ($review as $r)
+                    <div class="swiper-slide">
+                        <a href="{{route('user.filmMain', $r['filmId'])}}">
+                            <img
+                            src="{{asset('storage/'.$r['film']['path_image'])}}"
+                            alt="">
+                        </a>
+                    </div>
+                    @endforeach
+                    
+                    {{-- <div class="swiper-slide"><img
                             src="https://m.media-amazon.com/images/M/MV5BODM5NDhkYzctZjQ5NS00YTFkLWJiODUtMGMwOTZhYzgyYWI1XkEyXkFqcGdeQXVyNjI4NDY5ODM@._V1_.jpg"
-                            alt=""></div>
-                    <div class="swiper-slide"><img
+                            alt=""></div> --}}
+                    {{-- <div class="swiper-slide"><img
                             src="https://m.media-amazon.com/images/M/MV5BNjMzYThmZjUtYmZlZC00ZDQzLWExMGItNmI2ODNhM2U4OTYzXkEyXkFqcGdeQXVyNjI4NDY5ODM@._V1_FMjpg_UX1000_.jpg"
                             alt=""></div>
                     <div class="swiper-slide"><img
@@ -176,7 +242,7 @@
                             alt=""></div>
                     <div class="swiper-slide"><img
                             src="https://m.media-amazon.com/images/M/MV5BYzgzNDg5OGUtMGY5NS00ZjlkLTljM2MtYjdkODRhNDFlZmI5XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_FMjpg_UX1000_.jpg"
-                            alt=""></div>
+                            alt=""></div> --}}
                 </div>
             </div>
         </div>
@@ -184,7 +250,59 @@
       </div>
       <div class="col-sm-12">
         <div class="bg-dark bg-opacity-25">
-          <h1 class="text-white text-center py-5">Your Review</h1>
+            <h1 class="text-white text-center py-5">Your Review</h1>
+            @foreach ($review as $r)
+                <div class="card" id="cardContainerUser">
+                    <div class="card-body" id="userCard">
+                        <div id="`tambahanAja`x">
+                            <div style="display: flex; justify-content: space-between">
+                                <div class="profile-picture" id="akun">
+                                    
+                                    <h5 class="card-title" style="display: inline; margin-right: 10px">{{$r['film']['judul']}}
+                                    </h5>
+                                    <input type="hidden" id="idAkun" value="{{$r['userId']}}">
+                                </div>
+
+                                <div style="margin-top: 6px">
+                                    <h6 style="display: inline; z-index: 2;" id="ratingUser">{{$r['rating']}}</h6>
+                                    <div class="profile-picture" style="margin-left: -6px; overflow: hidden;">
+                                        <img id="logoPisang"
+                                            src="{{ $r['rating'] <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r['rating'] <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
+                                            alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <p class="card-text" id="komenUser">{{$r['komen']}}</p>
+                        <div style="display: flex; justify-content: space-between">
+                            <p class="card-text"><small class="text-body-secondary"
+                                    id="createdUser">{{$r['created']}}</small></p>
+                            <input type="hidden" value="{{$r['id']}}" id="idReview">
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            <div style="color: white">
+                <h1 >Edit Profile:</h1>
+                <form action="{{route('user.editProfile',[auth()->user()->id])}}" method="POST">
+                    @csrf
+                    <label for="name">Username: </label>
+                    <input type="text" id="name" name="name">
+                    @error('name')
+                        <p style="color: red">{{ $message }}</div>
+                    @enderror
+                    <br><br>
+                    <label for="password">Password: </label>
+                    <input type="password" id="password" name="password">
+                    @error('password')
+                        <p style="color: red">{{ $message }}</div>
+                    @enderror
+                    <br><br>
+                    <input type="submit" value="edit">
+                </form>
+            </div>
+          
         </div>
     </div>
   </div>

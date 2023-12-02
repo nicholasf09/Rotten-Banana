@@ -16,16 +16,28 @@
             <ul class="navbar-nav ms-auto">
                 <!-- Items on the far right -->
                 <li class="nav-item">
-                    <a class="nav-link mx-2 text-uppercase text-white" href="#">MOVIES</a>
+                    <a class="nav-link mx-2 text-uppercase text-white" href="{{route('user.showAllFilm')}}">MOVIES</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2 text-uppercase text-white" href="#">RANKING</a>
+                    <a class="nav-link mx-2 text-uppercase text-white" href="{{route('user.home')}}#ranking">RANKING</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link mx-2 text-uppercase text-white" href="#" data-bs-toggle="modal"
+                <li class="nav-item" >
+                    <a class="nav-link text-uppercase text-white" data-bs-toggle="modal"
                         data-bs-target="#modalAccount">
                         <i class="fa-solid fa-circle-user me-1 "></i> Account
                     </a>
+                </li>
+                <li class="nav-item" style="margin-left: 5px">
+                    <!-- Tautan logout -->
+                    <a class="nav-link text-uppercase text-white" id="logout" onclick="document.getElementById('logout-form').submit();">
+                        <svg style="display: inline;" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>
+                        Log Out
+                    </a>
+                    <!-- Form untuk logout -->
+                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    
                 </li>
             </ul>
         </div>
@@ -49,7 +61,7 @@
                 <h4 class="work">{{ auth()-> user()->email }}</h4>
             </div>
             <div class="justify-content-center d-flex">
-                <button class="btn-follow">SEE DETAILS</button>
+                <a class="btn-follow" style="text-decoration: none; text-align: center" href="{{route('user.profile',['user' => auth()->user()->id])}}" >SEE DETAILS</a>
             </div>
         </div>
     </div>

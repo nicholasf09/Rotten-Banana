@@ -6,7 +6,9 @@ use Validator;
 use App\Models\Film;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
 
 class AdminController extends Controller
 {
@@ -38,5 +40,13 @@ class AdminController extends Controller
             "film" => $film,
             "title" => "Edit Film",
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        Auth::logout();
+        return redirect()->back();
     }
 }

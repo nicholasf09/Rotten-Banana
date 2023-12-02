@@ -138,7 +138,7 @@
     <div class="row" id="posterContainer">
         @foreach ($films as $film)
         <div class="col-2">
-            <a href="{{env('LINK_WEBSITE')}}user/film/{{$film->id}}" id="posterFilm">
+            <a href="{{env('LINK_WEBSITE')}}user/filmMain/{{$film->id}}" id="posterFilm">
                 <div>
                     <img src="{{asset('storage/')}}/{{$film->path_image}}" class="rounded float-start"
                         alt="{{$film->judul}}" style="width: 100%; height: 320px; object-fit: cover;">
