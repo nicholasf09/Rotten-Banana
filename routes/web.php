@@ -43,13 +43,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/signup', [UserController::class, 'signup'])->name('signup');
     Route::post('/signup/create', [UserController::class, 'create'])->name('store');
 
-<<<<<<< HEAD
-    //profile
-    Route::get('/profile/{user}', [UserController::class,'profile'])->name('profile')->middleware('user');
-=======
     //Profile
     Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile')->middleware('user');
->>>>>>> 0d476255d4038cbfb11b2deace02ad2f8a6c784e
 
     //Film
     Route::get('/films', [UserController::class, 'showAllFilm'])->name('showAllFilm')->middleware('user');
