@@ -147,6 +147,7 @@
             <div class="mt-3 ms-md-3 text-md-start text-center">
               <h1 class="text-white" style="font-size: 5vh;">{{ auth()-> user()->name }}</h1>
               <p class="text-white opacity-75 fs-5 fw-light">{{ auth()-> user()->email }}</p>
+              <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modalEdit">Edit Profile</button>
             </div>
           </div>
         </div>
@@ -250,9 +251,11 @@
       </div>
       <div class="col-sm-12">
         <div class="bg-dark bg-opacity-25">
-            <h1 class="text-white text-center py-5">Your Review</h1>
+            <h1 class="text-white text-center p-5">Your Review</h1>
+            <div class="row">
             @foreach ($review as $r)
-                <div class="card" id="cardContainerUser">
+            <div class="col-md-3 col-sm-10">
+                <div class="card bg-dark text-white" id="cardContainerUser">
                     <div class="card-body" id="userCard">
                         <div id="`tambahanAja`x">
                             <div style="display: flex; justify-content: space-between">
@@ -272,40 +275,56 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <p class="card-text" id="komenUser">{{$r['komen']}}</p>
                         <div style="display: flex; justify-content: space-between">
-                            <p class="card-text"><small class="text-body-secondary"
+                            <p class="card-text"><small class="text-white-50"
                                     id="createdUser">{{$r['created']}}</small></p>
                             <input type="hidden" value="{{$r['id']}}" id="idReview">
                         </div>
                     </div>
                 </div>
-            @endforeach
-            <div style="color: white">
-                <h1 >Edit Profile:</h1>
-                <form action="{{route('user.editProfile',[auth()->user()->id])}}" method="POST">
-                    @csrf
-                    <label for="name">Username: </label>
-                    <input type="text" id="name" name="name">
-                    @error('name')
-                        <p style="color: red">{{ $message }}</div>
-                    @enderror
-                    <br><br>
-                    <label for="password">Password: </label>
-                    <input type="password" id="password" name="password">
-                    @error('password')
-                        <p style="color: red">{{ $message }}</div>
-                    @enderror
-                    <br><br>
-                    <input type="submit" value="edit">
-                </form>
             </div>
-          
+            @endforeach
+        </div>
         </div>
     </div>
   </div>
+</div>
+{{-- modal edit --}}
+<div class="modal fade" id="modalEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div id="account" class="modal-content">
+            <div class="header">
+                <i class="fa fa-bars"></i>
+                <i class="fa-solid fa-x" data-bs-dismiss="modal" aria-label="Close"></i>
+            </div>
+            <div class="middle mt-5">
+                <div style="color: white">
+                    <h1 class="fs-1 mb-5">Edit Profile</h1>
+                    <form action="{{route('user.editProfile',[auth()->user()->id])}}" method="POST">
+                        @csrf
+                        <label for="name">Username: </label>
+                        <input type="text" id="name" name="name">
+                        @error('name')
+                            <p style="color: red">{{ $message }}</div>
+                        @enderror
+                        <br><br>
+                        <label for="password">Password: </label>
+                        <input type="password" id="password" name="password">
+                        @error('password')
+                            <p style="color: red">{{ $message }}</div>
+                        @enderror
+                        <br><br>
+                        <div class="mt-3">
+                            <button type="submit" value="edit" class="btn btn-outline-warning mx-1">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {{-- footer --}}
 <div class="m-5 bg-dark bg-opacity-25 rounded-3">
