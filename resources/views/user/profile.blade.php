@@ -127,6 +127,17 @@
 
 
 <div class="container mt-10 justify-content-center">
+    @if (session('success') )
+        <div class="alert alert-success" style="position: fixed; z-index: 100;width: 88%">
+            {{session('success')}}
+        </div>
+    @endif   
+
+    @if (session('error') )
+        <div class="alert alert-danger" style="position: fixed; z-index: 100;width: 88%">
+            {{session('error')}}
+        </div>
+    @endif
   <div class="row">
     <div class="col-md-12 mb-3">
       <div class="card  bg-dark bg-opacity-25">
@@ -239,8 +250,8 @@
       </div>
       <div class="col-sm-12">
         <div class="bg-dark bg-opacity-25">
-          <h1 class="text-white text-center py-5">Your Review</h1>
-          @foreach ($review as $r)
+            <h1 class="text-white text-center py-5">Your Review</h1>
+            @foreach ($review as $r)
                 <div class="card" id="cardContainerUser">
                     <div class="card-body" id="userCard">
                         <div id="`tambahanAja`x">
@@ -271,7 +282,26 @@
                         </div>
                     </div>
                 </div>
-          @endforeach
+            @endforeach
+            <div style="color: white">
+                <h1 >Edit Profile:</h1>
+                <form action="{{route('user.editProfile',[auth()->user()->id])}}" method="POST">
+                    @csrf
+                    <label for="name">Username: </label>
+                    <input type="text" id="name" name="name">
+                    @error('name')
+                        <p style="color: red">{{ $message }}</div>
+                    @enderror
+                    <br><br>
+                    <label for="password">Password: </label>
+                    <input type="password" id="password" name="password">
+                    @error('password')
+                        <p style="color: red">{{ $message }}</div>
+                    @enderror
+                    <br><br>
+                    <input type="submit" value="edit">
+                </form>
+            </div>
           
         </div>
     </div>

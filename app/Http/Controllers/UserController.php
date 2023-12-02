@@ -20,7 +20,7 @@ class UserController extends Controller
             $film->avgRating = $film->review->avg('rating') ?? 0;
             return $film;
         })->sortByDesc('avgRating')->take(5);
-        $popular = Film::get()->sortByDesc('like')->take(5);
+        $popular = $rating->sortByDesc('like')->take(5);
 
         return view('user.home', [
             'title' => 'Home',
@@ -244,5 +244,28 @@ class UserController extends Controller
             'review' => $review,
             'favorite' => $favorite,
         ]);
+    }
+
+    public function editProfile(Request $request){
+        $input = $request->only(['name', 'password']);
+        $valid = Validator::make($input, [
+            'name' => 'required',
+            'password' => 'required',
+        ], [
+            'name.required' => 'Kolom nama wajib diisi.',
+            'password.required' => 'Kolom password wajib diisi.',
+        ]);
+
+        if ($valid->fails()) {
+            return redirect()->back()->withErrors($valid)->withInput();
+        } else {
+            $input['password'] = bcrypt($input['password']);
+            $user = User::where('id', auth()->user()->id)->update($input);
+            if ($user) {
+                return redirect()->route('user.profile',[auth()->user()->id])->with('success', 'Edit Profile berhasil');
+            } else {
+                return redirect()->back()->withErrors('Edit Profile gagal')->withInput();
+            }
+        }
     }
 }

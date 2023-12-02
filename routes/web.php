@@ -45,6 +45,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
     //Profile
     Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile')->middleware('user');
+    Route::post('/profile/edit/{user}', [UserController::class, 'editProfile'])->name('editProfile')->middleware('user');
 
     //Film
     Route::get('/films', [UserController::class, 'showAllFilm'])->name('showAllFilm')->middleware('user');
