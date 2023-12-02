@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use Validator;
 use App\Models\Film;
 use App\Models\User;
@@ -19,7 +20,7 @@ class UserController extends Controller
             $film->avgRating = $film->review->avg('rating') ?? 0;
             return $film;
         })->sortByDesc('avgRating')->take(5);
-        $popular = $rating->sortByDesc('review_count')->take(5);
+        $popular = Film::get()->sortByDesc('like')->take(5);
 
         return view('user.home', [
             'title' => 'Home',
@@ -137,6 +138,7 @@ class UserController extends Controller
             $reviewUser['created'] = $review->created_at->diffForHumans();
             $reviewUser['id'] = $review->id;
             $reviewUser['akunId'] = $review->user->id;
+
             return view('user.showFilm', [
                 'title' => 'Film',
                 'film' => $film,
@@ -149,7 +151,6 @@ class UserController extends Controller
         }
 
         $review = [];
-        // dd($allReview);
         return view('user.showFilm', [
             'title' => 'Film',
             'film' => $film,
@@ -219,9 +220,29 @@ class UserController extends Controller
 
     public function profile(User $user)
     {
+        $review = Review::with('film')
+            ->where('userId', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->take(10)
+            ->get()
+            ->map(function ($review) {
+                $review->created = $review->created_at->diffForHumans();
+                return $review;
+            })
+            ->toArray();
+
+
+        $favorite = $user->film()
+            ->orderBy('created_at', 'desc')
+            ->take(10)
+            ->get()->toArray();
+
+        // dd($review);
         return view('user.profile', [
             'title' => 'Profile',
             'user' => $user,
+            'review' => $review,
+            'favorite' => $favorite,
         ]);
     }
 }

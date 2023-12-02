@@ -101,8 +101,15 @@
 @endsection
 @section('content')
 @csrf
+
+
 <div class="monument" onmousemove="moveTorch(event)" onclick="lightUp()">
     <div class="torch">
+        <div style="position: relative;margin-left: 10px; top: 10px">
+            <a href="{{route('user.login')}}">
+                <button>Login</button>
+            </a>
+        </div> 
         <div class='box'>
             <h3>Banana🍌</h3>
         </div>
