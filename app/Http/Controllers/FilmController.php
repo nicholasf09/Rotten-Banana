@@ -26,6 +26,12 @@ class FilmController extends Controller
         else{
             $films = Film::where('judul', 'like' ,'%'.$request->search.'%')->where('genre', 'like' ,'%'.$request->genre.'%')->get();
         }
+
+        $films = $films->map(function($film){
+            $film->avgRating = $film->review->avg('rating') ?? 0;
+            return $film;
+        });
+        
         return response()->json([
             'success' => true,
             'message' => 'List Semua Film',
@@ -78,7 +84,7 @@ class FilmController extends Controller
                 $input['path_image'] = $path;
             }
             $input['id'] = Str::uuid();
-            // $input['like'] = 0;
+            $input['like'] = 0;
             Film::create($input);
             return redirect()->route('admin.showAllFilm')->with('success','Film berhasil ditambahkan');
         }
