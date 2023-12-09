@@ -59,14 +59,12 @@
             height: 45vh;
         }
     }
-
     @media (max-width: 767px) {
         .swiper {
             width: 100%;
             height: 30vh;
         }
     }
-
     .swiper-slide {
         text-align: center;
         font-size: 18px;
@@ -177,7 +175,16 @@
     </div>
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img
+            @foreach ($kdramas as $kdrama)
+                <div class="swiper-slide">
+                    <a href="{{route('user.filmMain',[$kdrama->id])}}">
+                        <img
+                        src="{{ asset('storage/' . $kdrama->path_image) }}"
+                        alt="">
+                    </a>
+                </div>
+            @endforeach
+            {{-- <div class="swiper-slide"><img
                     src="https://m.media-amazon.com/images/M/MV5BODM5NDhkYzctZjQ5NS00YTFkLWJiODUtMGMwOTZhYzgyYWI1XkEyXkFqcGdeQXVyNjI4NDY5ODM@._V1_.jpg"
                     alt=""></div>
             <div class="swiper-slide"><img
@@ -203,7 +210,7 @@
                     alt=""></div>
             <div class="swiper-slide"><img
                     src="https://m.media-amazon.com/images/M/MV5BYzgzNDg5OGUtMGY5NS00ZjlkLTljM2MtYjdkODRhNDFlZmI5XkEyXkFqcGdeQXVyMTEzMTI1Mjk3._V1_FMjpg_UX1000_.jpg"
-                    alt=""></div>
+                    alt=""></div> --}}
         </div>
     </div>
 </div>
@@ -215,7 +222,16 @@
     </div>
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img
+            @foreach ($animes as $anime)
+                <div class="swiper-slide">
+                    <a href="{{route('user.filmMain',[$anime->id])}}">
+                        <img
+                        src="{{ asset('storage/' . $anime->path_image) }}"
+                        alt="">
+                    </a>
+                </div>
+            @endforeach
+            {{-- <div class="swiper-slide"><img
                     src="https://m.media-amazon.com/images/M/MV5BODM0NmVjMzUtOTJhNi00N2ZhLWFkYmMtYmZmNjRiY2M1YWY4XkEyXkFqcGdeQXVyOTgxOTA5MDg@._V1_.jpg"
                     alt=""></div>
             <div class="swiper-slide"><img src="https://image.tmdb.org/t/p/original/3yFHMtdhriig4sm1w8oMQfA2gFN.jpg"
@@ -238,16 +254,32 @@
                     alt=""></div>
             <div class="swiper-slide"><img
                     src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg"
-                    alt=""></div>
+                    alt=""></div> --}}
         </div>
     </div>
 </div>
 {{-- ranking --}}
-<div class="row m-5">
+<div class="row m-5" id="ranking">
     {{-- ranking 1 --}}
     <div class="col-md-6 p-0 pe-md-3 col-sm-12">
         <h1 class="fw-bold text-white lh-md mb-2">Best Rating</h1>
-        <div
+        @foreach ($rating as $r)
+        <a href="{{route('user.filmMain',[$r->id])}}" style="text-decoration: none">
+            <div
+                class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img
+                        src="{{ asset('storage/' . $r->path_image) }}"
+                        alt=""></div>
+                <h1 class="fw-light text-white lh-md mb-2 ms-2">{{$r->judul}}</h1>
+                <h1 class="fw-light text-white lh-md me-3">{{$r->avgRating}} 
+                    <img id="logoPisang" style="width: 50px;"
+                    src="{{ $r->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
+                    alt="">
+                </h1>
+            </div>
+        </a>
+        @endforeach
+        {{-- <div
             class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
             <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img
                     src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg"
@@ -278,20 +310,38 @@
                     alt=""></div>
             <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
             <h1 class="fw-light text-white lh-md me-3">9/10</h1>
-        </div>
-        <div
+        </div> --}}
+        {{-- <div
             class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
             <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img
                     src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg"
                     alt=""></div>
             <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
             <h1 class="fw-light text-white lh-md me-3">9/10</h1>
-        </div>
+        </div> --}}
     </div>
+
+
     {{-- ranking 2 --}}
     <div class="col-md-6 p-0 ps-md-3 col-sm-12">
         <h1 class="fw-bold text-white lh-md mb-2">Most Popular</h1>
-        <div
+        @foreach ($popular as $p)
+        <a href="{{route('user.filmMain', [$p->id])}}" style="text-decoration: none">
+            <div 
+                class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img
+                        src="{{ asset('storage/' . $p->path_image) }}"
+                        alt=""></div>
+                <h1 class="fw-light text-white lh-md mb-2 ms-2">{{$p->judul}}</h1>
+                <h1 class="fw-light text-white lh-md me-3">{{$p->avgRating}} 
+                    <img id="logoPisang" style="width: 50px;"
+                    src="{{ $p->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
+                    alt="">
+                </h1>
+            </div>
+        </a>
+        @endforeach
+        {{-- <div
             class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
             <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img
                     src="https://m.media-amazon.com/images/M/MV5BOGExNDhhNmUtMmRmZC00ZmQ1LThjNDctZmJkMTFlOTEwZmUwXkEyXkFqcGdeQXVyNzgzODMxMzA@._V1_.jpg"
@@ -330,13 +380,57 @@
                     alt=""></div>
             <h1 class="fw-light text-white lh-md mb-2 ms-2">Sword Art Online</h1>
             <h1 class="fw-light text-white lh-md me-3">9/10</h1>
-        </div>
+        </div> --}}
     </div>
 </div>
 {{-- footer --}}
-@include('user.partials.footer')
-
-
+<div class="m-5 bg-dark bg-opacity-25 rounded-3">
+    <footer class="text-center text-lg-start text-white">
+        <div class="container p-4 pb-0">
+            <section class="">
+                <div class=" justify-content-between d-flex row">
+                    <div class="col-md-3 col-lg-3 col-xl-3 mt-3 ms-md-4">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">
+                            Rotten Banana
+                        </h6>
+                        <p class="text-justify">
+                            Rotten Banana is the world’s most trusted recommendation resources for quality
+                            entertainment. We also serve movie and TV fans with original editorial content on our site
+                            and through social channels, produce fun and informative video series.
+                        </p>
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-xl-3 mt-3 me-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold d-flex justify-content-end">Contact</h6>
+                        <p class="d-flex justify-content-end align-items-center">Siwalankerto, SW 60012, INA<i
+                                class="bi bi-house ms-3"></i></p>
+                        <p class="d-flex justify-content-end align-items-center">rottenbanana@gmail.com<i
+                                class="bi bi-envelope ms-3"></i></p>
+                        <p class="d-flex justify-content-end align-items-center">+ 62 234 567 88 <i
+                                class="bi bi-phone ms-3"></i></p>
+                        <p class="d-flex justify-content-end align-items-center">+ 62 234 567 89<i
+                                class="bi bi-printer ms-3"></i></p>
+                    </div>
+                </div>
+                <hr class="my-3">
+                <section class="p-3 pt-0">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-md-7 col-lg-8 text-center text-md-start">
+                            <div class="p-3">© 2023 Copyright:<a class="text-white" href="#">rottenbanana.com</a></div>
+                        </div>
+                        <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+                            <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i
+                                    class="bi bi-facebook"></i></a>
+                            <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i
+                                    class="bi bi-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i
+                                    class="bi bi-google"></i></a>
+                            <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i
+                                    class="bi bi-instagram"></i></a>
+                        </div>
+                    </div>
+        </div>
+    </footer>
+</div>
 @endsection
 @section('script')
 <!-- Initialize Swiper -->

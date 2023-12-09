@@ -31,5 +31,6 @@ class UserMiddleware
         } else {
             return redirect('/user/')->with('status', 'Please Login First');
         }
+
     }
 }

@@ -26,6 +26,12 @@ class FilmController extends Controller
         else{
             $films = Film::where('judul', 'like' ,'%'.$request->search.'%')->where('genre', 'like' ,'%'.$request->genre.'%')->get();
         }
+
+        $films = $films->map(function($film){
+            $film->avgRating = $film->review->avg('rating') ?? 0;
+            return $film;
+        });
+        
         return response()->json([
             'success' => true,
             'message' => 'List Semua Film',
