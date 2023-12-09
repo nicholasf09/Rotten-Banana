@@ -11,8 +11,12 @@ use Illuminate\Support\Facades\Storage;
 class AdminController extends Controller
 {
     public function home(){
-        return view('admin.home',[
-            'title'=> 'Home'
+        $films = Film::all();
+        // dd($films);
+        return view('admin.home', [
+            'title' => 'Films',
+            'films' => $films,
+            'button' => null
         ]);
     }
 

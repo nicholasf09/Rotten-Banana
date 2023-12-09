@@ -602,9 +602,8 @@
 </section>
 <section class="rating py-4">
   <div id="container-rating" class="container-fluid justify-content-center align-item-center px-2">
-    <h3 id="titleRating"><i class="fa-solid fa-chart-line px-5" style="color: #E3CF57;"></i>User Rating</h3>
+    <h3 id="titleRating"><i class="fa-solid fa-chart-line ps-5" style="color: #E3CF57;"></i>User Rating</h3>
     <div id="usercard" class="row justify-content-between px-5">
-
 
       <div id="cardContainerUser" class="card col-xs-12 col-md-6 col-lg-4">
         <!-- User review content -->
@@ -645,7 +644,7 @@
 
       <!-- Iterate over all reviews -->
       @foreach ($allReview as $r)
-      @if ($r['id'] != $review['id'])
+
       <div id="cardContainerUser" class="card col-xs-12 col-md-6 col-lg-4">
         <!-- Other reviews content -->
         <div class="card-header">
@@ -680,7 +679,6 @@
           @endif
         </div>
       </div>
-      @endif
       @endforeach
     </div>
   </div>
