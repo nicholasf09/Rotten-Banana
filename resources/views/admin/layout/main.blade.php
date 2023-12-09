@@ -31,14 +31,17 @@
     {{-- SweetAlert --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    {{-- CSS ANIMATE --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+
     <title>Rotten Banana | {{$title}}</title>
     @yield('style')
 </head>
 <style>
-    body,
-    html {
+    body {
         margin: 0;
-        padding: 0;
+        padding: 0; 
     }
 
     .nav-pills .nav-item a {
@@ -59,7 +62,7 @@
     }
 </style>
 
-<body class="bg-dark" style="overflow-x:auto;">
+<body class="bg-dark" >
     <button class="btn btn-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar"
         aria-expanded="false" aria-controls="sidebar">
         <i class="bi-list"></i>
@@ -83,13 +86,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('admin.showAllFilm')}}" class="nav-link px-0 align-middle">
-                                <i class="fs-4 fa-solid fa-film"></i><span
-                                    class="ms-1 d-none d-sm-inline">Films</span></a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{route('admin.storeFilm')}}" class="nav-link px-0"> <i
-                                    class="fa-regular fa-folder-open"></i> <span class="d-none d-sm-inline">Store</span>
+                                    class="fs-4 fa-regular fa-folder-open"></i> <span class="d-none d-sm-inline">Store</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -97,11 +95,16 @@
                                 <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Account</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link px-0 align-middle">
+                              <i class="fs-4 fa-solid fa-rocket"></i> <span class="ms-1 d-none d-sm-inline">Go To User</span>
+                            </a>
+                        </li>
                     </ul>
                     <hr>
                 </div>
             </div>
-            <div class="col py-3">
+            <div class="col p-5 animate__animated animate__fadeInUp">
                 @yield('content')
             </div>
         </div>

@@ -20,6 +20,7 @@
         align-items: center;
         justify-content: center;
         padding: 0px;
+        overflow-y:auto;
     }
 
     .col {

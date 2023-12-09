@@ -117,7 +117,7 @@
 @csrf
 <div class="d-flex m-md-5 mx-auto my-5 bg-dark bg-opacity-25 rounded-3 align-items-center flex-column flex-md-row"
     style="width: 80vw;">
-    <div class="w-100">
+    <div class="w-100 mt-5">
         <div id="carouselExampleCaptions" class="carousel slide">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"

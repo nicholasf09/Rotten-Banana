@@ -27,7 +27,8 @@
 
     {{-- SweetAlert --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    {{-- CSS ANIMATE --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <title>Rotten Banana | {{$title}}</title>
     @yield('style')
 </head>
@@ -39,7 +40,7 @@
     }
 </style>
 
-<body style="overflow-x: hidden">
+<body style="overflow-x: hidden " >
     @yield('content')
     @yield('script')
 </body>
