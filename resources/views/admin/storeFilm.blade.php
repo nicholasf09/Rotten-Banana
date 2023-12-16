@@ -181,7 +181,6 @@
                 @enderror
             </div>
             <br><br>
-
             <div style="position: relative;">
                 <label for="director">Director: </label>
                 <br>
@@ -231,9 +230,7 @@
                 @enderror
             </div>
             <br><br>
-
-            <input type="submit">
-
+              <button id="submit">Submit</button>
         </form>
     </div>
 </div>

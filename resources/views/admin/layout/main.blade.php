@@ -41,7 +41,7 @@
 <style>
     body {
         margin: 0;
-        padding: 0; 
+        padding: 0;
     }
 
     .nav-pills .nav-item a {
@@ -62,7 +62,7 @@
     }
 </style>
 
-<body class="bg-dark" >
+<body class="bg-dark">
     <button class="btn btn-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar"
         aria-expanded="false" aria-controls="sidebar">
         <i class="bi-list"></i>
@@ -87,7 +87,8 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('admin.storeFilm')}}" class="nav-link px-0"> <i
-                                    class="fs-4 fa-regular fa-folder-open"></i> <span class="d-none d-sm-inline">Store</span>
+                                    class="fs-4 fa-regular fa-folder-open"></i> <span
+                                    class="d-none d-sm-inline">Store</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -96,10 +97,24 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link px-0 align-middle">
-                              <i class="fs-4 fa-solid fa-rocket"></i> <span class="ms-1 d-none d-sm-inline">Go To User</span>
+                            <a href="{{route('admin.home')}}" class="nav-link px-0 align-middle">
+                                <i class="fs-4 fa-solid fa-rocket"></i> <span class="ms-1 d-none d-sm-inline">Go To
+                                    User</span>
                             </a>
                         </li>
+                    
+                        <li class="nav-item">
+                        <a class="nav-link px-0 align-middle" id="logout"
+                            onclick="document.getElementById('logout-form').submit();">
+                            <i class="fs-4 fa-solid fa-right-from-bracket"></i><span class="ms-1 d-none d-sm-inline">log out</span>
+                           
+                        </a>
+                     </li>
+                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
+                            style="display: none;">
+                            @csrf
+                        </form>
+                        
                     </ul>
                     <hr>
                 </div>
