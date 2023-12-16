@@ -9,6 +9,7 @@
         display: flex;
         align-content: center;
         justify-content: center;
+        overflow: hidden;
     }
 
     .monument {
@@ -48,10 +49,10 @@
     }
 
     h3 {
-        font-size: 12vw;
+        font-size: 8vw;
         white-space: nowrap;
         overflow: hidden;
-        line-height: 400px;
+        line-height: 200px;
         color: #F7CA05;
         text-shadow: 0 10px 7px rgba(0, 0, 0, 0.4), 0 -10px 1px #fff;
         letter-spacing: -3px;
@@ -104,16 +105,21 @@
 
 
 <div class="monument" onmousemove="moveTorch(event)" onclick="lightUp()">
-    <div class="torch">
-        <div style="position: relative;margin-left: 10px; top: 10px">
-            <a href="{{route('user.login')}}">
-                <button>Login</button>
-            </a>
-        </div> 
-        <div class='box'>
-            <h3>Banana🍌</h3>
+<div class="torch">
+    <div class='box text-center align-items-center justify-content-center'>
+        <h3 class="mb-0">Rotten</h3>
+        <h3 class="mt-0">Banana🍌</h3>
+        <br>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-5 p-4 bg-warning mx-2 "><a href="{{route('admin.login')}}" class="text-white fs-3"
+                        style="text-decoration:none;">Admin</a></div>
+                <div class="col-5 p-4 bg-warning mx-2 "><a href="{{route('user.login')}}" class="text-white fs-3"
+                        style="text-decoration:none;">User</a></div>
+            </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
 @section('script')
@@ -122,13 +128,12 @@
         var torch = document.getElementsByClassName("torch")[0];
         torch.style.clipPath = `circle(15vh at ${event.clientX}px ${event.clientY}px)`;
     }
-
     function lightUp() {
         var monument = document.querySelector(".monument");
         var torch = document.querySelector(".torch");
         torch.style.clipPath = `circle(200vh at ${event.clientX}px ${event.clientY}px)`;
         monument.classList.add("light");
-        torch.style.animation = "lightUpAnimation 0.5s ease";
+        torch.style.animation = "lightUpAnimation 0.9s ease";
         setTimeout(() => {
             monument.classList.remove("light");
             torch.style.animation = "none";

@@ -45,11 +45,11 @@
     }
 
     thead #topLeft {
-        border-top-left-radius: 2px;
+        border-top-left-radius: 4px;
     }
 
     thead #topRight {
-        border-top-right-radius: 2px;
+        border-top-right-radius: 4px;
     }
 
     .card {
@@ -122,8 +122,8 @@
     </thead>
     <tbody>
 
-        </tbody>
-    </table>
+    </tbody>
+</table>
 
 
 

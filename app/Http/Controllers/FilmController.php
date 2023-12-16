@@ -142,7 +142,7 @@ class FilmController extends Controller
             }
             
 
-            return redirect()->route('admin.showAllFilm')->with('success','Film berhasil diupdate');
+            return redirect()->route('admin.home')->with('success','Film berhasil diupdate');
         }
     }
 

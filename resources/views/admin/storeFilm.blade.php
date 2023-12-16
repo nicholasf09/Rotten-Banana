@@ -20,7 +20,7 @@
         align-items: center;
         justify-content: center;
         padding: 0px;
-        overflow-y:auto;
+        overflow-y: auto;
     }
 
     .col {
@@ -164,7 +164,8 @@
 
             <div style="position: relative;">
                 <label for="genre">Genre: </label>
-                <br>
+                <p class="text-white">example: horror action anime romance comedy kdrama
+                </p>
                 <input type="text" id="genre" name="genre" value="{{old('genre')}}">
                 @error('genre')
                 <div class="error-message" style="position: absolute;top: 100%; left: 0">{{ $message }}</div>
@@ -230,7 +231,7 @@
                 @enderror
             </div>
             <br><br>
-              <button id="submit">Submit</button>
+            <button id="submit">Submit</button>
         </form>
     </div>
 </div>

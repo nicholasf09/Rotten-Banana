@@ -53,4 +53,22 @@ class AdminController extends Controller
         Auth::logout();
         return redirect()->back();
     }
+ public function homeUser()
+    {
+        $kdramas = Film::where('genre', 'like', '%' . 'kdrama' . '%')->inRandomOrder()->limit(10)->get();
+        $animes = Film::where('genre', 'like', '%' . 'anime' . '%')->inRandomOrder()->limit(10)->get();
+        $rating = Film::withCount('review')->get()->map(function ($film) {
+            $film->avgRating = $film->review->avg('rating') ?? 0;
+            return $film;
+        })->sortByDesc('avgRating')->take(5);
+        $popular = $rating->sortByDesc('like')->take(5);
+
+        return view('user.home', [
+            'title' => 'Home',
+            'kdramas' => $kdramas,
+            'animes' => $animes,
+            'rating' => $rating,
+            'popular' => $popular,
+        ]);
+    }
 }

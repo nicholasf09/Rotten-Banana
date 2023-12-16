@@ -109,8 +109,7 @@
         width: 50px;
         height: 50px;
         object-fit: cover;
-        border: 2px solid #fff;
-        /* Tambahkan border jika diinginkan */
+     
     }
 
     .profile-info {
@@ -297,7 +296,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div id="account" class="modal-content">
             <div class="header">
-                <i class="fa fa-bars"></i>
+             
                 <i class="fa-solid fa-x" data-bs-dismiss="modal" aria-label="Close"></i>
             </div>
             <div class="middle mt-5">

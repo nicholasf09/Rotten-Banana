@@ -59,12 +59,14 @@
             height: 45vh;
         }
     }
+
     @media (max-width: 767px) {
         .swiper {
             width: 100%;
             height: 30vh;
         }
     }
+
     .swiper-slide {
         text-align: center;
         font-size: 18px;
@@ -102,12 +104,14 @@
     }
 
     .ranks {
-        width: 15vh;
+        max-width: 15vh;
+        min-width: 15vh;
         overflow: hidden;
     }
 
     .ranks img {
         object-fit: cover;
+        object-position: center;
     }
 </style>
 @endsection
@@ -129,26 +133,14 @@
                 <div class="carousel-item active">
                     <img src="https://rare-gallery.com/thumbs/894320-Satoru-Gojo-Jujutsu-Kaisen-anime.jpg"
                         class="d-block w-100 rounded-start-3" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
-                    </div>
                 </div>
                 <div class="carousel-item">
                     <img src="https://studio.mrngroup.co/storage/app/media/Prambors/Editorial%202/tanjiro-20230208155752.webp?tr=w-600"
                         class="d-block w-100 rounded-start-3" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
-                    </div>
                 </div>
                 <div class="carousel-item">
                     <img src="https://m.media-amazon.com/images/M/MV5BMjkzZGMzNDktMzc3ZS00OTBlLThmYWEtM2M2NDZmMTZmYzZmXkEyXkFqcGdeQXVyODMyNTM0MjM@._V1_.jpg"
                         class="d-block w-100 rounded-start-3" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Some representative placeholder content for the third slide.</p>
-                    </div>
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
@@ -176,13 +168,11 @@
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             @foreach ($kdramas as $kdrama)
-                <div class="swiper-slide">
-                    <a href="{{route('user.filmMain',[$kdrama->id])}}">
-                        <img
-                        src="{{ asset('storage/' . $kdrama->path_image) }}"
-                        alt="">
-                    </a>
-                </div>
+            <div class="swiper-slide">
+                <a href="{{route('user.filmMain',[$kdrama->id])}}">
+                    <img src="{{ asset('storage/' . $kdrama->path_image) }}" alt="">
+                </a>
+            </div>
             @endforeach
             {{-- <div class="swiper-slide"><img
                     src="https://m.media-amazon.com/images/M/MV5BODM5NDhkYzctZjQ5NS00YTFkLWJiODUtMGMwOTZhYzgyYWI1XkEyXkFqcGdeQXVyNjI4NDY5ODM@._V1_.jpg"
@@ -223,13 +213,11 @@
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             @foreach ($animes as $anime)
-                <div class="swiper-slide">
-                    <a href="{{route('user.filmMain',[$anime->id])}}">
-                        <img
-                        src="{{ asset('storage/' . $anime->path_image) }}"
-                        alt="">
-                    </a>
-                </div>
+            <div class="swiper-slide">
+                <a href="{{route('user.filmMain',[$anime->id])}}">
+                    <img src="{{ asset('storage/' . $anime->path_image) }}" alt="">
+                </a>
+            </div>
             @endforeach
             {{-- <div class="swiper-slide"><img
                     src="https://m.media-amazon.com/images/M/MV5BODM0NmVjMzUtOTJhNi00N2ZhLWFkYmMtYmZmNjRiY2M1YWY4XkEyXkFqcGdeQXVyOTgxOTA5MDg@._V1_.jpg"
@@ -266,15 +254,14 @@
         @foreach ($rating as $r)
         <a href="{{route('user.filmMain',[$r->id])}}" style="text-decoration: none">
             <div
-                class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
-                <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img
-                        src="{{ asset('storage/' . $r->path_image) }}"
+                class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between text-center">
+                <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="{{ asset('storage/' . $r->path_image) }}"
                         alt=""></div>
-                <h1 class="fw-light text-white lh-md mb-2 ms-2">{{$r->judul}}</h1>
-                <h1 class="fw-light text-white lh-md me-3">{{$r->avgRating}} 
+                <h3 class="fw-light text-white lh-md mb-2 ms-2" style="max-width:30%">{{$r->judul}}</h3>
+                <h1 class="fw-light text-white lh-md me-3">{{$r->avgRating}}
                     <img id="logoPisang" style="width: 50px;"
-                    src="{{ $r->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
-                    alt="">
+                        src="{{ $r->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
+                        alt="">
                 </h1>
             </div>
         </a>
@@ -327,16 +314,15 @@
         <h1 class="fw-bold text-white lh-md mb-2">Most Popular</h1>
         @foreach ($popular as $p)
         <a href="{{route('user.filmMain', [$p->id])}}" style="text-decoration: none">
-            <div 
-                class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between">
-                <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img
-                        src="{{ asset('storage/' . $p->path_image) }}"
+            <div
+                class="bg-dark py-md-1 ps-md-1 bg-opacity-25 rounded-1 mb-3 d-flex flex-row align-items-center justify-content-between text-center">
+                <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="{{ asset('storage/' . $p->path_image) }}"
                         alt=""></div>
-                <h1 class="fw-light text-white lh-md mb-2 ms-2">{{$p->judul}}</h1>
-                <h1 class="fw-light text-white lh-md me-3">{{$p->avgRating}} 
+                <h3 class="fw-light text-white lh-md mb-2 ms-2 " style="max-width:30%">{{$p->judul}}</h3>
+                <h1 class="fw-light text-white lh-md me-3">{{$p->avgRating}}
                     <img id="logoPisang" style="width: 50px;"
-                    src="{{ $p->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
-                    alt="">
+                        src="{{ $p->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
+                        alt="">
                 </h1>
             </div>
         </a>

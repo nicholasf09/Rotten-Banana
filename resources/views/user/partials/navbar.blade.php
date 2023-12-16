@@ -22,7 +22,7 @@
                     <a class="nav-link mx-2 text-uppercase text-white" href="{{route('user.home')}}#ranking">RANKING</a>
                 </li>
                 <li class="nav-item" >
-                    <a class="nav-link text-uppercase text-white" data-bs-toggle="modal"
+                    <a href="#" class="nav-link text-uppercase text-white" data-bs-toggle="modal"
                         data-bs-target="#modalAccount">
                         <i class="fa-solid fa-circle-user me-1 "></i> Account
                     </a>
@@ -51,7 +51,6 @@
     <div class="modal-dialog modal-dialog-centered">
         <div id="account" class="modal-content">
             <div class="header">
-                <i class="fa fa-bars"></i>
                 <i class="fa-solid fa-x" data-bs-dismiss="modal" aria-label="Close"></i>
             </div>
             <div class="middle mt-5">

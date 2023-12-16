@@ -106,62 +106,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function showFilm(Film $film)
-    {
-        $user = $film->user()->where('userId', auth()->user()->id)->first()->pivot ?? null;
-        $totalRating = $film->review->sum('rating') ?? 0;
-        $jumlahReview = $film->review->count() ?? 0;
-        $review = $film->review->where('userId', Auth::user()->id)->first();
-        $reviews = $film->review;
-        $allReview = [];
-
-        $sudahLike = false;
-        if ($user) {
-            $sudahLike = true;
-        }
-
-        foreach ($reviews as $r) {
-            $allReview[] = [
-                'name' => $r->user->name,
-                'rating' => $r->rating,
-                'komen' => $r->komen,
-                'created' => $r->created_at->diffForHumans(),
-                'id' => $r->id,
-                'akunId' => $r->user->id,
-            ];
-        }
-
-        if (!empty($review)) {
-            $reviewUser['name'] = $review->user->name;
-            $reviewUser['rating'] = $review->rating;
-            $reviewUser['komen'] = $review->komen;
-            $reviewUser['created'] = $review->created_at->diffForHumans();
-            $reviewUser['id'] = $review->id;
-            $reviewUser['akunId'] = $review->user->id;
-
-            return view('user.showFilm', [
-                'title' => 'Film',
-                'film' => $film,
-                'review' => $reviewUser,
-                'allReview' => $allReview,
-                'jumlahReview' => $jumlahReview,
-                'totalRating' => $totalRating,
-                'like' => $sudahLike,
-            ]);
-        }
-
-        $review = [];
-        return view('user.showFilm', [
-            'title' => 'Film',
-            'film' => $film,
-            'review' => $review,
-            'allReview' => $allReview,
-            'jumlahReview' => $jumlahReview,
-            'totalRating' => $totalRating,
-            'like' => $sudahLike,
-        ]);
-    }
-
     public function filmMain(Film $film)
     {
         $user = $film->user()->where('userId', auth()->user()->id)->first()->pivot ?? null;

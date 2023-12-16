@@ -91,30 +91,27 @@
                                     class="d-none d-sm-inline">Store</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Account</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('admin.home')}}" class="nav-link px-0 align-middle">
+                            <a href="{{route('admin.homeUser')}}" class="nav-link px-0 align-middle">
                                 <i class="fs-4 fa-solid fa-rocket"></i> <span class="ms-1 d-none d-sm-inline">Go To
                                     User</span>
                             </a>
                         </li>
-                    
+
                         <li class="nav-item">
-                        <a class="nav-link px-0 align-middle" id="logout"
-                            onclick="document.getElementById('logout-form').submit();">
-                            <i class="fs-4 fa-solid fa-right-from-bracket"></i><span class="ms-1 d-none d-sm-inline">log out</span>
-                           
-                        </a>
-                     </li>
+                            <a class="nav-link px-0 align-middle" id="logout"
+                                onclick="document.getElementById('logout-form').submit();">
+                                <i class="fs-4 fa-solid fa-right-from-bracket"></i><span
+                                    class="ms-1 d-none d-sm-inline">log out</span>
+
+                            </a>
+                        </li>
                         <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
                             style="display: none;">
                             @csrf
                         </form>
-                        
+
                     </ul>
                     <hr>
                 </div>
