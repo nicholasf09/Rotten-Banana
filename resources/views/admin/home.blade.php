@@ -84,19 +84,19 @@
     <div class="row">
         <div class="col-md-3 col-lg-3 col-6 card-col">
             <h5 class="card-title">Total Film</h5>
-            <p class="card-text" id="totFilm">film</p>
+            <p class="card-text" id="totFilm">{{$totalFilm}}</p>
         </div>
         <div class="col-md-3 col-lg-3 col-6 card-col">
             <h5 class="card-title">Total User</h5>
-            <p class="card-text" id="totUser">user</p>
+            <p class="card-text" id="totUser">{{$totalUser}}</p>
         </div>
         <div class="col-md-3 col-lg-3 col-6 card-col">
             <h5 class="card-title">Total Rating Done</h5>
-            <p class="card-text" id="totRating">rating</p>
+            <p class="card-text" id="totRating">{{$totalReview}}</p>
         </div>
         <div class="col-md-3 col-lg-3 col-6 card-col">
             <h5 class="card-title">Total Like Done</h5>
-            <p class="card-text" id="totLike">like</p>
+            <p class="card-text" id="totLike">{{$totalLike}}</p>
         </div>
 
     </div>
