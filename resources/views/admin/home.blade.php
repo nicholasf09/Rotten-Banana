@@ -32,7 +32,7 @@
         background: #352437;
         background: linear-gradient(135deg, #352437, #F57E30);
         text-align: left;
-        border-radius: 20px;
+        border-radius: 2px;
         width: 100%;
         margin: 20px 0px;
     }
@@ -45,11 +45,11 @@
     }
 
     thead #topLeft {
-        border-top-left-radius: 20px;
+        border-top-left-radius: 2px;
     }
 
     thead #topRight {
-        border-top-right-radius: 20px;
+        border-top-right-radius: 2px;
     }
 
     .card {
@@ -122,8 +122,8 @@
     </thead>
     <tbody>
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
 
 

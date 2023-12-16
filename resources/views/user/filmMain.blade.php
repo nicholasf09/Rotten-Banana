@@ -642,7 +642,7 @@
       <!-- Iterate over all reviews -->
       @foreach ($allReview as $r)
         @if (!empty($review))
-     @if ($r['id'] != $review['id'])
+          @if ($r['id'] != $review['id'])
           <div id="cardContainerUser" class="card col-xs-12 col-md-6 col-lg-4">
             <!-- Other reviews content -->
             <div class="card-header">
@@ -717,11 +717,8 @@
             @endif
           </div>
         </div>
-
-  
-      
-
-      @endforeach
+        @endif  
+        @endforeach
     </div>
   </div>
 
