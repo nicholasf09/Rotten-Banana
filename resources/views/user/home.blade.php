@@ -7,7 +7,19 @@
         margin: 0;
         padding: 0;
     }
+    ::-webkit-scrollbar {
+      width: 9px;
+    }
 
+    ::-webkit-scrollbar-thumb {
+      background-color:yellow;
+      border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #121212;
+      border-radius: 6px;
+    }
     body {
         background-color: #121212;
     }
@@ -44,15 +56,6 @@
         background-color: #121212;
     }
 
-    .title {
-        color: white;
-        transition: 0.5s ease-in-out;
-    }
-
-    .title:hover {
-        color: #CF0102;
-    }
-
     @media (min-width: 768px) {
         .swiper {
             width: 100%;
@@ -87,7 +90,7 @@
         border-radius: 15px;
         transition: transform 0.3s ease;
     }
-
+    
     .swiper-slide img:hover {
         transform: scale(1.2);
     }
@@ -113,52 +116,86 @@
         object-fit: cover;
         object-position: center;
     }
+    @media (min-width: 768px) {
+        .carouselWidth {
+            width: 45vw;
+        }
+        .title {
+            font-size: 45px;
+            text-align: justify;
+        }
+        .landing{
+            margin-top: 20vh;
+        }
+    }
+    @media (max-width: 767px) {
+        .carouselWidth {
+            width: 90vw;
+        }
+        .title {
+            font-size: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .landing {
+            margin-top: 15vh;
+        }
+    }
 </style>
 @endsection
 @section('content')
 @csrf
-<div class="d-flex m-md-5 mx-auto my-5 bg-dark bg-opacity-25 rounded-3 align-items-center flex-column flex-md-row"
-    style="width: 80vw;">
-    <div class="w-100 mt-5">
-        <div id="carouselExampleCaptions" class="carousel slide">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
+    <div class="row mx-5 justify-content-center align-items-center landing">
+        <div class="col-lg-8 col-12 rounded carouselWidth">
+            <div id="carouselExampleCaptions" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                        aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+                        aria-label="Slide 5"></button>
+                </div>
+                <div class="carousel-inner rounded">
+                    <div class="carousel-item active">
+                        <img src="https://r4.wallpaperflare.com/wallpaper/446/754/407/anime-anime-girls-anime-screenshot-lycoris-recoil-nishikigi-chisato-hd-wallpaper-5900582da17a1d5b2677184ff091667d.jpg"
+                            class="d-block w-100 rounded-start-3" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://studio.mrngroup.co/storage/app/media/Prambors/Editorial%202/tanjiro-20230208155752.webp?tr=w-600"
+                            class="d-block w-100 rounded-start-3" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://r4.wallpaperflare.com/wallpaper/496/291/661/zom-100-bucket-list-of-the-dead-akira-tendou-zombies-happy-blood-hd-wallpaper-f950d81d517aed8b26b7386f500176bd.jpg"
+                            class="d-block w-100 rounded-start-3" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://image.tmdb.org/t/p/w780/wl88YET5Amol1UlXNjO0uE8dY33.jpg"
+                            class="d-block w-100 rounded-start-3" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMjkzZGMzNDktMzc3ZS00OTBlLThmYWEtM2M2NDZmMTZmYzZmXkEyXkFqcGdeQXVyODMyNTM0MjM@._V1_.jpg"
+                            class="d-block w-100 rounded-start-3" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://rare-gallery.com/thumbs/894320-Satoru-Gojo-Jujutsu-Kaisen-anime.jpg"
-                        class="d-block w-100 rounded-start-3" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://studio.mrngroup.co/storage/app/media/Prambors/Editorial%202/tanjiro-20230208155752.webp?tr=w-600"
-                        class="d-block w-100 rounded-start-3" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://m.media-amazon.com/images/M/MV5BMjkzZGMzNDktMzc3ZS00OTBlLThmYWEtM2M2NDZmMTZmYzZmXkEyXkFqcGdeQXVyODMyNTM0MjM@._V1_.jpg"
-                        class="d-block w-100 rounded-start-3" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
+        <h1 class="fw-bold title text-light col-lg-4 col-12">Rotten Banana helps you to select the perfect next show or movie to watch!</h1>
     </div>
-    <div class="ms-md-5 p-3">
-        <h1 class="fw-bold lh-md title" style="font-size: 5vw;">What's happening now!</h1>
-    </div>
-</div>
 {{-- drakor --}}
 <div class="mx-5 mb-3 mt-5">
     <div class="d-flex justify-content-between align-items-end mb-2">
