@@ -202,7 +202,7 @@
             </button>
         </div>
     </div>
-    <h1 class="fw-bold title text-light col-lg-4 col-12">Rotten Banana helps you to select the perfect next show or
+    <h1 class="fw-bold title text-light col-lg-4 col-12 text-start">Rotten Banana helps you to select the perfect next show or
         movie to watch!</h1>
 </div>
 {{-- drakor --}}
