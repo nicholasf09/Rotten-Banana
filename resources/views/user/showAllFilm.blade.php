@@ -108,11 +108,11 @@
 @section('content')
 
 <div style="display: flex; justify-content: center; margin-top: 100px">
-    <input type="text" id="searchBar" placeholder="Search Anything...">
+    <input class="w-50" type="text" id="searchBar" placeholder="Search Anything...">
 </div>
 
-<div style="display: flex; justify-content: center; margin-top: 10px; margin-bottom: 50px">
-    <div style="display: flex; justify-content: space-between; width: 40%">
+<div class="mx-5">
+    <div class="my-5 gap-2" style="display: flex; flex-wrap: wrap; justify-content: center;">
         <input type="radio" class="btn-check" name="genreFilm" id="horror" autocomplete="off" value="horror">
         <label class="btn btn-secondary" for="horror">Horror</label>
 
@@ -134,10 +134,67 @@
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="row" id="posterContainer">
+<div class="container-fluid w-100">
+    <div class="row w-100" id="posterContainer">
         @foreach ($films as $film)
-        <div class="col-2">
+        <div class="col-6 col-md-4 col-lg-2 py-5">
+            <a href="{{env('LINK_WEBSITE')}}user/filmMain/{{$film->id}}" id="posterFilm">
+                <div>
+                    <img src="{{asset('storage/')}}/{{$film->path_image}}" class="rounded float-start"
+                        alt="{{$film->judul}}" style="width: 100%; height: 320px; object-fit: cover;">
+                    <h5 style="text-align: center;">{{$film->judul}}</h5>
+                    <div style="display: flex; justify-content: space-between">
+                        <div style="display: flex; justify-content: space-evenly; width: 50%">
+                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/pisang_kuning.png') }}" alt="">
+                            <p>{{$film->avgRating}}</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-evenly; width: 50%">
+                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/like.png')}}" alt="">
+                            <p>{{$film->like}}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 py-5">
+            <a href="{{env('LINK_WEBSITE')}}user/filmMain/{{$film->id}}" id="posterFilm">
+                <div>
+                    <img src="{{asset('storage/')}}/{{$film->path_image}}" class="rounded float-start"
+                        alt="{{$film->judul}}" style="width: 100%; height: 320px; object-fit: cover;">
+                    <h5 style="text-align: center;">{{$film->judul}}</h5>
+                    <div style="display: flex; justify-content: space-between">
+                        <div style="display: flex; justify-content: space-evenly; width: 50%">
+                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/pisang_kuning.png') }}" alt="">
+                            <p>{{$film->avgRating}}</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-evenly; width: 50%">
+                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/like.png')}}" alt="">
+                            <p>{{$film->like}}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 py-5">
+            <a href="{{env('LINK_WEBSITE')}}user/filmMain/{{$film->id}}" id="posterFilm">
+                <div>
+                    <img src="{{asset('storage/')}}/{{$film->path_image}}" class="rounded float-start"
+                        alt="{{$film->judul}}" style="width: 100%; height: 320px; object-fit: cover;">
+                    <h5 style="text-align: center;">{{$film->judul}}</h5>
+                    <div style="display: flex; justify-content: space-between">
+                        <div style="display: flex; justify-content: space-evenly; width: 50%">
+                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/pisang_kuning.png') }}" alt="">
+                            <p>{{$film->avgRating}}</p>
+                        </div>
+                        <div style="display: flex; justify-content: space-evenly; width: 50%">
+                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/like.png')}}" alt="">
+                            <p>{{$film->like}}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 py-5">
             <a href="{{env('LINK_WEBSITE')}}user/filmMain/{{$film->id}}" id="posterFilm">
                 <div>
                     <img src="{{asset('storage/')}}/{{$film->path_image}}" class="rounded float-start"
@@ -287,7 +344,32 @@
         });
         document.getElementById('{{ $button }}').click();
     });
-
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            "@0.00": {
+                slidesPerView: 2,
+                spaceBetween: 10,
+            },
+            "@0.75": {
+                slidesPerView: 1,
+                spaceBetween: 20,
+            },
+            "@1.00": {
+                slidesPerView: 1,
+                spaceBetween: 40,
+            },
+            "@1.50": {
+                slidesPerView: 1,
+                spaceBetween: 10,
+            },
+        },
+    });
 </script>
 
 
