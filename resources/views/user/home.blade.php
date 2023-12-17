@@ -1,4 +1,3 @@
-@include('user.partials.navbar')
 @extends('user.layout.main')
 @section('style')
 <style>
@@ -152,7 +151,7 @@
 </style>
 @endsection
 @section('content')
-@csrf
+@include('user.partials.navbar')
 <div class="row mx-5 justify-content-center align-items-center landing">
     <div class="col-lg-8 col-12 rounded carouselWidth">
         <div id="carouselExampleCaptions" class="carousel slide">
@@ -304,7 +303,7 @@
                 <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="{{ asset('storage/' . $r->path_image) }}"
                         alt=""></div>
                 <h3 class="fw-light text-white lh-md mb-2 ms-2" style="max-width:30%">{{$r->judul}}</h3>
-                <h1 class="fw-light text-white lh-md me-3">{{$r->avgRating}}
+                <h1 class="fw-light text-white lh-md me-3">{{round($r->avgRating,1)}}
                     <img id="logoPisang" style="width: 50px;"
                         src="{{ $r->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
                         alt="">
@@ -365,9 +364,9 @@
                 <div class="ranks rounded-1 m-2 ratio ratio-1x1"><img src="{{ asset('storage/' . $p->path_image) }}"
                         alt=""></div>
                 <h3 class="fw-light text-white lh-md mb-2 ms-2 " style="max-width:30%">{{$p->judul}}</h3>
-                <h1 class="fw-light text-white lh-md me-3">{{$p->avgRating}}
+                <h1 class="fw-light text-white lh-md me-3">{{round($p->avgRating,1)}}
                     <img id="logoPisang" style="width: 50px;"
-                        src="{{ $p->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
+                        src="{{ $p->avgRating <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($p->avgRating <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
                         alt="">
                 </h1>
             </div>

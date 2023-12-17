@@ -240,12 +240,12 @@
                 <form action="#">
                   <div class="input-box">
                     <span class="icon"><ion-icon name="person"></ion-icon></span>
-                    <input type="email" id="email" name="email" required class="input-field">
+                    <input type="email" id="email" name="email" class="input-field">
                     <label>Email</label>
                   </div>
                   <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" id="password" name="password" required name="input-field">
+                    <input type="password" id="password" name="password" name="input-field">
                     <label>Password</label>
                   </div>
                   <div class="submit-button">

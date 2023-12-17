@@ -29,8 +29,7 @@
                 </li>
                 <li class="nav-item bg-dark bg-opacity-50 rounded-3 me-5" style="margin-left: 30px; cursor: pointer;">
                     <!-- Tautan logout -->
-                    <a class="nav-link text-uppercase text-white pointer" id="logout"
-                        onclick="document.getElementById('logout-form').submit();">
+                    <a class="nav-link text-uppercase text-white pointer" id="logout">
                         <svg style="display: inline;" xmlns="http://www.w3.org/2000/svg" height="16" width="16"
                             viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                             <path fill="#ffffff"
@@ -38,11 +37,6 @@
                         </svg>
                         Log Out
                     </a>
-                    <!-- Form untuk logout -->
-                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-
                 </li>
             </ul>
         </div>
@@ -210,3 +204,20 @@
         }
     }
 </style>
+
+<script>
+    $(document).ready(function () {
+        $("#logout").click(function () {
+            $.ajax({
+                url: "{{route('user.logout')}}",
+                method: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function (data) {
+                    window.location.href = "{{route('user.login')}}";
+                }
+            });
+        });
+    });
+</script>

@@ -529,7 +529,6 @@
 
 @endsection
 @section('content')
-@csrf
 @include('user.partials.navbar')
 
 
@@ -545,7 +544,7 @@
         <div class="col-lg-6 hide-on-medium hide-on-small hide p-0">
           <p class="titleRating text-right">rotten banana <br> rating</p>
           <span class="titleRatingSecondary text-right"><i class="fa-solid fa-star" style="color: #f4f665;"></i><strong
-              id="totalRating">{{ $jumlahReview == 0 ? 0 : $totalRating / $jumlahReview
+              id="totalRating">{{round($jumlahReview == 0 ? 0 : $totalRating / $jumlahReview, 1)
               }}</strong></span><span>/5</span>
         </div>
         <div class="col-lg-6 hide-on-medium hide-on-small hide p-0">
@@ -601,9 +600,9 @@
 <section class="rating py-4">
   <div id="container-rating" class="container-fluid justify-content-center align-item-center px-2">
     <h3 id="titleRating"><i class="fa-solid fa-chart-line ps-5" style="color: #E3CF57;"></i>User Rating</h3>
-    <div id="usercard" class="row justify-content-between px-5">
+    <div id="usercard" class="row px-5">
 
-      <div id="cardContainerUser" class="card col-xs-12 col-md-6 col-lg-4">
+      <div id="cardContainerUserFirst" class="card col-xs-12 col-md-6 col-lg-4 mx-2">
         <!-- User review content -->
         @if (!empty($review))
         <div class="card-header">
@@ -613,7 +612,6 @@
                 <img src="https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg"
                   alt="Profile Picture">
                 <strong class="namaUser">{{$review['name']}}</strong>
-                <input type='hidden' id='idUser' value="{{auth()->user()->id}}">
               </span>
             </a>
           </div>
@@ -632,6 +630,7 @@
           <div style="display: flex; justify-content: space-between">
             <p class="card-text"><small id="createdUser">{{$review['created']}}</small></p>
             <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
+            <input type='hidden' id='idUser' value="{{auth()->user()->id}}">
             <input type="hidden" value="{{$review['id']}}" id="idReview">
           </div>
         </div>
@@ -642,7 +641,7 @@
       @foreach ($allReview as $r)
       @if (!empty($review))
       @if ($r['id'] != $review['id'])
-      <div id="cardContainerUser" class="card col-xs-12 col-md-6 col-lg-4">
+      <div id="cardContainerUser" class="card col-xs-12 col-md-6 col-lg-4 mx-2">
         <!-- Other reviews content -->
         <div class="card-header">
           <div class="left-content">
@@ -651,7 +650,7 @@
                 <img src="https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg"
                   alt="Profile Picture">
                 <strong class="namaUser">{{$r['name']}}</strong>
-                <input type='hidden' id='idUser' value="{{$r['akunId']}}">
+                
               </span>
             </a>
           </div>
@@ -671,6 +670,7 @@
           <div style="display: flex; justify-content: space-between">
             <p class="card-text"><small id="createdUser">{{$r['created']}}</small></p>
             <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
+            <input type='hidden' id='idUser' value="{{$r['akunId']}}">
             <input type="hidden" value="{{$r['id']}}" id="idReview">
           </div>
           @else
@@ -680,7 +680,7 @@
       </div>
       @endif
       @else
-      <div id="cardContainerUser" class="card col-xs-12 col-md-6 col-lg-4">
+      <div id="cardContainerUser" class="card col-xs-12 col-md-6 col-lg-4 mx-2">
         <!-- Other reviews content -->
         <div class="card-header">
           <div class="left-content">
@@ -689,7 +689,6 @@
                 <img src="https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg"
                   alt="Profile Picture">
                 <strong class="namaUser">{{$r['name']}}</strong>
-                <input type='hidden' id='idUser' value=" + data['akunId'] +">
               </span>
             </a>
           </div>
@@ -709,6 +708,7 @@
           <div style="display: flex; justify-content: space-between">
             <p class="card-text"><small id="createdUser">{{$r['created']}}</small></p>
             <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
+            <input type='hidden' id='idUser' value="{{$r['akunId']}}">
             <input type="hidden" value="{{$r['id']}}" id="idReview">
           </div>
           @else
@@ -825,6 +825,10 @@
 
     $(document).on('click', "#deleteButton", function () {
       var button = $(this);
+      var idUser = $(this).siblings('#idUser').val();
+
+      // console.log($(this).siblings('#idUser').val());
+      // console.log("{{auth()->user()->id}}");
       Swal.fire({
         title: 'Apakah yakin mau mendelete komen ini?',
         showDenyButton: true,
@@ -832,6 +836,9 @@
         denyButtonText: `No`,
       }).then((result) => {
         if (result.isConfirmed) {
+          // console.log($(this).siblings('#idReview').val());
+          var idAkun = $(this).siblings('#idUser').val();
+
           $.ajax({
             url: "{{route('user.deleteReview')}}",
             type: 'POST',
@@ -841,10 +848,12 @@
             },
             dataType: 'json',
             success: function (data) {
+              console.log(data);
               newElement = null;
               totalRating = parseInt(totalRating) - parseInt(ratingUser);
               jumlahReview = parseInt(jumlahReview) - 1;
               rata2 = totalRating / jumlahReview;
+              rata2 = rata2.toFixed(1);
               if (jumlahReview == 0) {
                 rata2 = 0;
               }
@@ -856,8 +865,15 @@
                 text: 'Komen anda telah berhasil di delete!',
               })
               create = false;
-              button.closest('#tambahanAjax').remove();
-              $("#cardContainerUser").hide();
+
+              if (idAkun == "{{auth()->user()->id}}") {
+                console.log("masuk");
+                button.closest("#cardContainerUserFirst").html('');
+                $('#cardContainerUserFirst').hide();
+              }
+              else{
+                button.closest("#cardContainerUser").remove();
+              }
             }
           });
         }
@@ -868,9 +884,9 @@
     })
 
     if (!create) {
-      $("#cardContainerUser").hide();
+      $("#cardContainerUserFirst").hide();
     } else {
-      $("#cardContainerUser").show();
+      $("#cardContainerUserFirst").show();
     }
 
     $('#submit').click(function () {
@@ -908,6 +924,7 @@
               totalRating = parseInt(totalRating) - parseInt(ratingUser) + parseInt(data['rating']);
               jumlahReview = parseInt(jumlahReview);
               rata2 = totalRating / jumlahReview;
+              rata2 = rata2.toFixed(1);
               ratingUser = parseInt(data['rating']);
               $("#totalRating").text(rata2);
               $("#ratingUser").text(data['rating']);
@@ -949,7 +966,6 @@
                 }
 
                 newElement = $(
-                  "<div id='cardContainerUser' class='card col-xs-12 col-md-6 col-lg-4'>" +
                   "<div id='tambahanAjax'>" +
                   "<div class='card-header'>" +
                   "<div class='left-content'>" +
@@ -957,7 +973,6 @@
                   "<span>" +
                   "<img src='https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg' alt='Profile Picture'>" +
                   "<strong class='namaUser'>" + data['name'] + "</strong>" +
-                  "<input type='hidden' id='idUser' value='" + data['akunId'] + "'>" +
                   "</span></a>" +
                   "</div>" +
                   "<div class='right-content'>" +
@@ -973,12 +988,12 @@
                   "<div style='display: flex; justify-content: space-between'>" +
                   "<p class='card-text'><small id='createdUser'>" + data['created'] + "</small></p>" +
                   "<button type='button' class='btn btn-danger' id='deleteButton'>Delete</button>" +
+                  "<input type='hidden' id='idUser' value='" + data['akunId'] + "'>" +
                   "<input type='hidden' value='" + data['id'] + "' id='idReview'>" +
                   "</div>" +
                   "</div>" +
-                  "</div>" +
                   "</div>");
-                $("#usercard").html(newElement);
+                $("#cardContainerUserFirst").html(newElement);
 
               }
             }
@@ -1007,7 +1022,6 @@
             },
             dataType: 'json',
             success: function (data) {
-              console.log(data);
               ratingUser = parseInt(data['rating']);
               create = true;
               Swal.fire({
@@ -1018,6 +1032,7 @@
               totalRating = parseInt(totalRating) + parseInt(data['rating']);
               jumlahReview = parseInt(jumlahReview) + 1;
               rata2 = totalRating / jumlahReview;
+              rata2 = rata2.toFixed(1);
               $("#totalRating").text(rata2);
               var srcImage = "";
 
@@ -1034,10 +1049,9 @@
 
               $("input").val("");
               $("textarea").val("");
-              $("#cardContainerUser").show()
-              $("#cardContainerUser").css("margin-bottom", "25px");
+              $("#cardContainerUserFirst").show();
+              $("#cardContainerUserFirst").css("margin-bottom", "25px");
               newElement = $(
-                "<div id='cardContainerUser' class='card col-xs-12 col-md-6 col-lg-4'>" +
                 "<div id='tambahanAjax'>" +
                 "<div class='card-header'>" +
                 "<div class='left-content'>" +
@@ -1045,7 +1059,6 @@
                 "<span>" +
                 "<img src='https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg' alt='Profile Picture'>" +
                 "<strong class='namaUser'>" + data['name'] + "</strong>" +
-                "<input type='hidden' id='idUser' value='" + data['akunId'] + "'>" +
                 "</span></a>" +
                 "</div>" +
                 "<div class='right-content'>" +
@@ -1061,12 +1074,12 @@
                 "<div style='display: flex; justify-content: space-between'>" +
                 "<p class='card-text'><small id='createdUser'>" + data['created'] + "</small></p>" +
                 "<button type='button' class='btn btn-danger' id='deleteButton'>Delete</button>" +
+                "<input type='hidden' id='idUser' value='" + data['akunId'] + "'>" +
                 "<input type='hidden' value='" + data['id'] + "' id='idReview'>" +
                 "</div>" +
                 "</div>" +
-                "</div>" +
                 "</div>");
-              $("#usercard").html(newElement);
+              $("#cardContainerUserFirst").html(newElement);
 
             }
           });

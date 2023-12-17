@@ -1,7 +1,6 @@
-@include('user.partials.navbar')
 @extends('user.layout.main')
 @section('content')
-
+@include('user.partials.navbar')
 
 <style>
   nav {

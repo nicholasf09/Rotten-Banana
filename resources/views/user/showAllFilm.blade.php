@@ -1,4 +1,3 @@
-@include('user.partials.navbar')
 @extends('user.layout.main')
 @section('style')
 <style>
@@ -106,6 +105,7 @@
 @endsection
 
 @section('content')
+@include('user.partials.navbar')
 
 <div style="display: flex; justify-content: center; margin-top: 100px">
     <input class="w-50" type="text" id="searchBar" placeholder="Search Anything...">
@@ -146,64 +146,7 @@
                     <div style="display: flex; justify-content: space-between">
                         <div style="display: flex; justify-content: space-evenly; width: 50%">
                             <img id="logoPisang" src="{{ asset('storage/uploads/assets/pisang_kuning.png') }}" alt="">
-                            <p>{{$film->avgRating}}</p>
-                        </div>
-                        <div style="display: flex; justify-content: space-evenly; width: 50%">
-                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/like.png')}}" alt="">
-                            <p>{{$film->like}}</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-6 col-md-4 col-lg-2 py-5">
-            <a href="{{env('LINK_WEBSITE')}}user/filmMain/{{$film->id}}" id="posterFilm">
-                <div>
-                    <img src="{{asset('storage/')}}/{{$film->path_image}}" class="rounded float-start"
-                        alt="{{$film->judul}}" style="width: 100%; height: 320px; object-fit: cover;">
-                    <h5 style="text-align: center;">{{$film->judul}}</h5>
-                    <div style="display: flex; justify-content: space-between">
-                        <div style="display: flex; justify-content: space-evenly; width: 50%">
-                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/pisang_kuning.png') }}" alt="">
-                            <p>{{$film->avgRating}}</p>
-                        </div>
-                        <div style="display: flex; justify-content: space-evenly; width: 50%">
-                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/like.png')}}" alt="">
-                            <p>{{$film->like}}</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-6 col-md-4 col-lg-2 py-5">
-            <a href="{{env('LINK_WEBSITE')}}user/filmMain/{{$film->id}}" id="posterFilm">
-                <div>
-                    <img src="{{asset('storage/')}}/{{$film->path_image}}" class="rounded float-start"
-                        alt="{{$film->judul}}" style="width: 100%; height: 320px; object-fit: cover;">
-                    <h5 style="text-align: center;">{{$film->judul}}</h5>
-                    <div style="display: flex; justify-content: space-between">
-                        <div style="display: flex; justify-content: space-evenly; width: 50%">
-                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/pisang_kuning.png') }}" alt="">
-                            <p>{{$film->avgRating}}</p>
-                        </div>
-                        <div style="display: flex; justify-content: space-evenly; width: 50%">
-                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/like.png')}}" alt="">
-                            <p>{{$film->like}}</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-6 col-md-4 col-lg-2 py-5">
-            <a href="{{env('LINK_WEBSITE')}}user/filmMain/{{$film->id}}" id="posterFilm">
-                <div>
-                    <img src="{{asset('storage/')}}/{{$film->path_image}}" class="rounded float-start"
-                        alt="{{$film->judul}}" style="width: 100%; height: 320px; object-fit: cover;">
-                    <h5 style="text-align: center;">{{$film->judul}}</h5>
-                    <div style="display: flex; justify-content: space-between">
-                        <div style="display: flex; justify-content: space-evenly; width: 50%">
-                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/pisang_kuning.png') }}" alt="">
-                            <p>{{$film->avgRating}}</p>
+                            <p>{{round($film->avgRating,1)}}</p>
                         </div>
                         <div style="display: flex; justify-content: space-evenly; width: 50%">
                             <img id="logoPisang" src="{{ asset('storage/uploads/assets/like.png')}}" alt="">

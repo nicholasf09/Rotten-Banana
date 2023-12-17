@@ -43,7 +43,7 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         Auth::logout();
-        return redirect()->back();
+        return 'logout';
     }
 
 
@@ -149,7 +149,7 @@ class UserController extends Controller
         }
 
         $review = [];
-        // dd($allReview);
+    // dd($allReview);
         return view('user.filmMain', [
             'title' => 'Film',
             'film' => $film,
@@ -180,6 +180,8 @@ class UserController extends Controller
             ->orderBy('created_at', 'desc')
             ->take(10)
             ->get()->toArray();
+
+            // dd($review);
 
         // dd($review);
         return view('user.profile', [

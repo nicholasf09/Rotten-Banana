@@ -21,6 +21,7 @@ use App\Http\Controllers\ReviewController;
 Route::get('/', function () {
     return view('welcome', ['title' => 'Rotten Banana']);
 });
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [LoginController::class, 'loginAdmin'])->name('login');
     Route::post('/cekAdmin', [LoginController::class, 'cekLoginAdmin'])->name('cekLogin');

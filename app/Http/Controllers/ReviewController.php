@@ -79,7 +79,8 @@ class ReviewController extends Controller
     }
 
     public function deleteReview(Request $request){
-        $review = Review::find($request->id)->first();
+        $review = Review::find($request->id);
+        // dd($review);
         $review->delete();
         return response()->json([
             'success' => true,
