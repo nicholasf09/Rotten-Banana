@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-navbar-dark bg-opacity-75 fixed-top navbar-light shadow-sm">
     <div class="container-fluid">
         <div class="d-flex align-items-center">
-            <a class="navbar-brand text-white" href="#">
+            <a class="navbar-brand text-white" href="{{route('user.home')}}">
                 <img width="60" src="{{asset('storage/uploads/assets/cool-banana.png')}}" alt="banana" />
                 <strong>ROTTEN BANANA</strong>
             </a>
@@ -21,7 +21,7 @@
                 <li class="nav-item">
                     <a class="nav-link mx-2 text-uppercase text-white" href="{{route('user.home')}}#ranking">RANKING</a>
                 </li>
-                <li class="nav-item" >
+                <li class="nav-item">
                     <a href="#" class="nav-link text-uppercase text-white" data-bs-toggle="modal"
                         data-bs-target="#modalAccount">
                         <i class="fa-solid fa-circle-user me-1 "></i>{{ auth()-> user()->name }}
@@ -29,15 +29,20 @@
                 </li>
                 <li class="nav-item bg-dark bg-opacity-50 rounded-3 me-5" style="margin-left: 30px; cursor: pointer;">
                     <!-- Tautan logout -->
-                    <a class="nav-link text-uppercase text-white pointer" id="logout" onclick="document.getElementById('logout-form').submit();">
-                        <svg style="display: inline;" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>
+                    <a class="nav-link text-uppercase text-white pointer" id="logout"
+                        onclick="document.getElementById('logout-form').submit();">
+                        <svg style="display: inline;" xmlns="http://www.w3.org/2000/svg" height="16" width="16"
+                            viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                            <path fill="#ffffff"
+                                d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z" />
+                        </svg>
                         Log Out
                     </a>
                     <!-- Form untuk logout -->
                     <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                    
+
                 </li>
             </ul>
         </div>
@@ -60,7 +65,8 @@
                 <h4 class="work">{{ auth()-> user()->email }}</h4>
             </div>
             <div class="justify-content-center d-flex">
-                <a class="btn-follow" style="text-decoration: none; text-align: center" href="{{route('user.profile',['user' => auth()->user()->id])}}" >SEE DETAILS</a>
+                <a class="btn-follow" style="text-decoration: none; text-align: center"
+                    href="{{route('user.profile',['user' => auth()->user()->id])}}">SEE DETAILS</a>
             </div>
         </div>
     </div>
@@ -71,11 +77,13 @@
         margin: 0;
         padding: 0;
     }
+
     .bg-cover {
         position: fixed;
         width: 100%;
         height: 100%;
     }
+
     #account {
         width: 400px;
         height: 400px;
@@ -84,27 +92,33 @@
         border-radius: 12px;
         overflow: hidden;
     }
+
     .header i {
         font-size: 20px;
         color: rgba(255, 255, 255, 0.7);
         padding: 10px;
         margin-top: 20px;
     }
+
     .fa-bars {
         float: left;
         margin-left: 20px;
     }
+
     .fa-bars:hover {
         cursor: pointer;
         animation: bars 0.3s ease-in forwards;
     }
+
     .fa-x {
         float: right;
         margin-right: 20px;
     }
+
     .fa-x:hover {
         cursor: pointer;
     }
+
     div.middle {
         text-align: center;
     }
