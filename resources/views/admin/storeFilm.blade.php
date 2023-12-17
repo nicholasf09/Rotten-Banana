@@ -215,7 +215,7 @@
             <div style="position: relative;">
                 <label for="original_language">Original Language: </label>
                 <br>
-                <input type="text" id="original_language" name="original_language" value="{{old('origina_language')}}">
+                <input type="text" id="original_language" name="original_language" value="{{old('original_language')}}">
                 @error('director')
                 <div class="error-message" style="position: absolute;top: 100%; left: 0">{{ $message }}</div>
                 @enderror
