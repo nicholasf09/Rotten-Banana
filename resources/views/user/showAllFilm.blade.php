@@ -145,9 +145,7 @@
                     <h5 style="text-align: center;">{{$film->judul}}</h5>
                     <div style="display: flex; justify-content: space-between">
                         <div style="display: flex; justify-content: space-evenly; width: 50%">
-                            <img id="logoPisang"
-                                src="{{ asset('storage/uploads/assets/pisang_kuning.png') }}"
-                                alt="">
+                            <img id="logoPisang" src="{{ asset('storage/uploads/assets/pisang_kuning.png') }}" alt="">
                             <p>{{$film->avgRating}}</p>
                         </div>
                         <div style="display: flex; justify-content: space-evenly; width: 50%">
@@ -189,18 +187,18 @@
                         console.log(data);
                         $.each(data['data'], function (index, value) {
                             $('#posterContainer').append("<div class='col-2'>" +
-                                "<a href='{{env('LINK_WEBSITE')}}user/filmMain/'"+ value['id']+" id='posterFilm'>" +
+                                "<a href='{{env('LINK_WEBSITE')}}user/filmMain/'" + value['id'] + " id='posterFilm'>" +
                                 "<div>" +
-                                "<img src='{{asset('storage/')}}/"+ value['path_image'] +"' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" +
-                                "<h5 style='text-align: center;'>"+ value['judul'] +"</h5>" +
+                                "<img src='{{asset('storage/')}}/" + value['path_image'] + "' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" +
+                                "<h5 style='text-align: center;'>" + value['judul'] + "</h5>" +
                                 "<div style='display: flex; justify-content: space-between'>" +
                                 "<div style='display: flex; justify-content: space-evenly; width: 50%''>" +
                                 "<img id='logoPisang' src='{{ asset('storage/uploads/assets/pisang_kuning.png') }}' alt=''>" +
-                                "<p>"+value['avgRating']+"</p>" +
+                                "<p>" + value['avgRating'] + "</p>" +
                                 "</div>" +
                                 "<div style='display: flex; justify-content: space-evenly; width: 50%'>" +
                                 "<img id='logoPisang' src='{{ asset('storage/uploads/assets/like.png')}}' alt=''>" +
-                                "<p>"+value['like']+"</p>" +
+                                "<p>" + value['like'] + "</p>" +
                                 "</div>" +
                                 "</div>" +
                                 "</div>" +
@@ -225,18 +223,18 @@
                         console.log(data);
                         $.each(data['data'], function (index, value) {
                             $('#posterContainer').append("<div class='col-2'>" +
-                                "<a href='{{env('LINK_WEBSITE')}}user/filmMain/'"+ value['id']+" id='posterFilm'>" +
+                                "<a href='{{env('LINK_WEBSITE')}}user/filmMain/'" + value['id'] + " id='posterFilm'>" +
                                 "<div>" +
-                                "<img src='{{asset('storage/')}}/"+ value['path_image'] +"' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" +
-                                "<h5 style='text-align: center;'>"+ value['judul'] +"</h5>" +
+                                "<img src='{{asset('storage/')}}/" + value['path_image'] + "' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" +
+                                "<h5 style='text-align: center;'>" + value['judul'] + "</h5>" +
                                 "<div style='display: flex; justify-content: space-between'>" +
                                 "<div style='display: flex; justify-content: space-evenly; width: 50%''>" +
                                 "<img id='logoPisang' src='{{ asset('storage/uploads/assets/pisang_kuning.png')}}' alt=''>" +
-                                "<p>"+value['avgRating']+"</p>" +
+                                "<p>" + value['avgRating'] + "</p>" +
                                 "</div>" +
                                 "<div style='display: flex; justify-content: space-evenly; width: 50%'>" +
                                 "<img id='logoPisang' src='{{ asset('storage/uploads/assets/like.png')}}' alt=''>" +
-                                "<p>"+value['like']+"</p>" +
+                                "<p>" + value['like'] + "</p>" +
                                 "</div>" +
                                 "</div>" +
                                 "</div>" +
@@ -266,28 +264,28 @@
                     console.log(data);
                     $.each(data['data'], function (index, value) {
                         $('#posterContainer').append("<div class='col-2'>" +
-                                "<a href='{{env('LINK_WEBSITE')}}user/filmMain/'"+ value['id']+" id='posterFilm'>" +
-                                "<div>" +
-                                "<img src='{{asset('storage/')}}/"+ value['path_image'] +"' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" +
-                                "<h5 style='text-align: center;'>"+ value['judul'] +"</h5>" +
-                                "<div style='display: flex; justify-content: space-between'>" +
-                                "<div style='display: flex; justify-content: space-evenly; width: 50%''>" +
-                                "<img id='logoPisang' src='{{ asset('storage/uploads/assets/pisang_kuning.png') }}' alt=''>" +
-                                "<p>"+value['avgRating']+"</p>" +
-                                "</div>" +
-                                "<div style='display: flex; justify-content: space-evenly; width: 50%'>" +
-                                "<img id='logoPisang' src='{{ asset('storage/uploads/assets/like.png')}}' alt=''>" +
-                                "<p>"+value['like']+"</p>" +
-                                "</div>" +
-                                "</div>" +
-                                "</div>" +
-                                "</a>" +
-                                "</div>");
+                            "<a href='{{env('LINK_WEBSITE')}}user/filmMain/'" + value['id'] + " id='posterFilm'>" +
+                            "<div>" +
+                            "<img src='{{asset('storage/')}}/" + value['path_image'] + "' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" +
+                            "<h5 style='text-align: center;'>" + value['judul'] + "</h5>" +
+                            "<div style='display: flex; justify-content: space-between'>" +
+                            "<div style='display: flex; justify-content: space-evenly; width: 50%''>" +
+                            "<img id='logoPisang' src='{{ asset('storage/uploads/assets/pisang_kuning.png') }}' alt=''>" +
+                            "<p>" + value['avgRating'] + "</p>" +
+                            "</div>" +
+                            "<div style='display: flex; justify-content: space-evenly; width: 50%'>" +
+                            "<img id='logoPisang' src='{{ asset('storage/uploads/assets/like.png')}}' alt=''>" +
+                            "<p>" + value['like'] + "</p>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>" +
+                            "</a>" +
+                            "</div>");
                     });
                 }
             });
         });
-
+        document.getElementById('{{ $button }}').click();
     });
 
 </script>

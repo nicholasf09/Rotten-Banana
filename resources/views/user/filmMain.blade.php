@@ -539,7 +539,7 @@
       <h1 id="judulFilm"> {{$film->judul}}</h1>
       <div class="col-lg-6 col-md-12 col-xs-12">
         <p id="orginalTitle">Original Language : {{ $film->original_language}}</p>
-        <p id="tahunRilis&filmDurasi"> {{ $film->tahun_rilis}} PG-{{ $film->pg}} {{ $film->durasi}}</p>
+        <p id="tahunRilis&filmDurasi"> {{ date('d-m-Y', strtotime($film->tahun_rilis)) }} PG-{{ $film->pg }} {{ $film->durasi }} MINUTES</p>
       </div>
       <div class="col-lg-6 col-md-12 col-xs-12 row text-center" style="color: rgba(255, 255, 255, 0.5);">
         <div class="col-lg-6 hide-on-medium hide-on-small hide p-0">
@@ -591,7 +591,6 @@
       </div>
       <div class="col-7">
         <p id="tahunRilis"><strong>Release Date:</strong> {{$film ->tahun_rilis}}</p>
-        <p id="originalLanguage"><strong>Original Language:</strong> {{$film ->tahun_rilis}}</p>
         <p id="direktor"><strong>Director: </strong>{{$film ->director}} </p>
         <p id="producer"><strong>Producer:</strong> {{$film ->producer}}</p>
         <p id="distributor"><strong>Distributor:</strong> {{$film ->distributor}}</p>
@@ -641,84 +640,84 @@
 
       <!-- Iterate over all reviews -->
       @foreach ($allReview as $r)
-        @if (!empty($review))
-          @if ($r['id'] != $review['id'])
-          <div id="cardContainerUser" class="card col-xs-12 col-md-6 col-lg-4">
-            <!-- Other reviews content -->
-            <div class="card-header">
-              <div class="left-content">
-                <a href="{{route('user.profile', $r['akunId'])}}" style="text-decoration: none; color: white">
-                  <span>
-                    <img src="https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg"
-                      alt="Profile Picture">
-                    <strong class="namaUser">{{$r['name']}}</strong>
-                    <input type='hidden' id='idUser' value="{{$r['akunId']}}">
-                  </span>
-                </a>
-              </div>
-              <div class="right-content">
-                <span>
-                  <img id="logoPisang"
-                    src="{{ $r['rating'] <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r['rating'] <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
-                    alt="">
-                  <strong id="ratingUser">{{$r['rating']}}</strong>
-                </span>
-                <span>/5</span>
-              </div>
-            </div>
-            <div class="card-content">
-              <p id="komenUser">{{$r['komen']}}</p>
-              @if (session('role') == "admin")
-              <div style="display: flex; justify-content: space-between">
-                <p class="card-text"><small id="createdUser">{{$r['created']}}</small></p>
-                <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
-                <input type="hidden" value="{{$r['id']}}" id="idReview">
-              </div>
-              @else
-              <p class="card-text"><small id="createdUser">{{$r['created']}}</small></p>
-              @endif
-            </div>
-          </div>
-          @endif
-        @else
-        <div id="cardContainerUser" class="card col-xs-12 col-md-6 col-lg-4">
-          <!-- Other reviews content -->
-          <div class="card-header">
-            <div class="left-content">
-              <a href="{{route('user.profile', $r['akunId'])}}" style="text-decoration: none; color: white">
-                <span>
-                  <img src="https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg"
-                    alt="Profile Picture">
-                  <strong class="namaUser">{{$r['name']}}</strong>
-                  <input type='hidden' id='idUser' value=" + data['akunId'] +">
-                </span>
-              </a>
-            </div>
-            <div class="right-content">
+      @if (!empty($review))
+      @if ($r['id'] != $review['id'])
+      <div id="cardContainerUser" class="card col-xs-12 col-md-6 col-lg-4">
+        <!-- Other reviews content -->
+        <div class="card-header">
+          <div class="left-content">
+            <a href="{{route('user.profile', $r['akunId'])}}" style="text-decoration: none; color: white">
               <span>
-                <img id="logoPisang"
-                  src="{{ $r['rating'] <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r['rating'] <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
-                  alt="">
-                <strong id="ratingUser">{{$r['rating']}}</strong>
+                <img src="https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg"
+                  alt="Profile Picture">
+                <strong class="namaUser">{{$r['name']}}</strong>
+                <input type='hidden' id='idUser' value="{{$r['akunId']}}">
               </span>
-              <span>/5</span>
-            </div>
+            </a>
           </div>
-          <div class="card-content">
-            <p id="komenUser">{{$r['komen']}}</p>
-            @if (session('role') == "admin")
-            <div style="display: flex; justify-content: space-between">
-              <p class="card-text"><small id="createdUser">{{$r['created']}}</small></p>
-              <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
-              <input type="hidden" value="{{$r['id']}}" id="idReview">
-            </div>
-            @else
-            <p class="card-text"><small id="createdUser">{{$r['created']}}</small></p>
-            @endif
+          <div class="right-content">
+            <span>
+              <img id="logoPisang"
+                src="{{ $r['rating'] <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r['rating'] <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
+                alt="">
+              <strong id="ratingUser">{{$r['rating']}}</strong>
+            </span>
+            <span>/5</span>
           </div>
         </div>
-        @endif  
-        @endforeach
+        <div class="card-content">
+          <p id="komenUser">{{$r['komen']}}</p>
+          @if (session('role') == "admin")
+          <div style="display: flex; justify-content: space-between">
+            <p class="card-text"><small id="createdUser">{{$r['created']}}</small></p>
+            <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
+            <input type="hidden" value="{{$r['id']}}" id="idReview">
+          </div>
+          @else
+          <p class="card-text"><small id="createdUser">{{$r['created']}}</small></p>
+          @endif
+        </div>
+      </div>
+      @endif
+      @else
+      <div id="cardContainerUser" class="card col-xs-12 col-md-6 col-lg-4">
+        <!-- Other reviews content -->
+        <div class="card-header">
+          <div class="left-content">
+            <a href="{{route('user.profile', $r['akunId'])}}" style="text-decoration: none; color: white">
+              <span>
+                <img src="https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg"
+                  alt="Profile Picture">
+                <strong class="namaUser">{{$r['name']}}</strong>
+                <input type='hidden' id='idUser' value=" + data['akunId'] +">
+              </span>
+            </a>
+          </div>
+          <div class="right-content">
+            <span>
+              <img id="logoPisang"
+                src="{{ $r['rating'] <= 2 ? asset('storage/uploads/assets/pisang_busuk.png') : ($r['rating'] <= 4 ? asset('storage/uploads/assets/pisang_hijau.png') : asset('storage/uploads/assets/pisang_kuning.png')) }}"
+                alt="">
+              <strong id="ratingUser">{{$r['rating']}}</strong>
+            </span>
+            <span>/5</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <p id="komenUser">{{$r['komen']}}</p>
+          @if (session('role') == "admin")
+          <div style="display: flex; justify-content: space-between">
+            <p class="card-text"><small id="createdUser">{{$r['created']}}</small></p>
+            <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
+            <input type="hidden" value="{{$r['id']}}" id="idReview">
+          </div>
+          @else
+          <p class="card-text"><small id="createdUser">{{$r['created']}}</small></p>
+          @endif
+        </div>
+      </div>
+      @endif
+      @endforeach
     </div>
   </div>
 
@@ -954,7 +953,7 @@
                   "<div id='tambahanAjax'>" +
                   "<div class='card-header'>" +
                   "<div class='left-content'>" +
-                  "<a href='{{env('LINK_WEBSITE')}}user/profile/"+data['akunId']+"' style='text-decoration: none; color: white'>" +
+                  "<a href='{{env('LINK_WEBSITE')}}user/profile/" + data['akunId'] + "' style='text-decoration: none; color: white'>" +
                   "<span>" +
                   "<img src='https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg' alt='Profile Picture'>" +
                   "<strong class='namaUser'>" + data['name'] + "</strong>" +
@@ -1042,7 +1041,7 @@
                 "<div id='tambahanAjax'>" +
                 "<div class='card-header'>" +
                 "<div class='left-content'>" +
-                "<a href='{{env('LINK_WEBSITE')}}user/profile/"+data['akunId']+"' style='text-decoration: none; color: white'>" +
+                "<a href='{{env('LINK_WEBSITE')}}user/profile/" + data['akunId'] + "' style='text-decoration: none; color: white'>" +
                 "<span>" +
                 "<img src='https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg' alt='Profile Picture'>" +
                 "<strong class='namaUser'>" + data['name'] + "</strong>" +
