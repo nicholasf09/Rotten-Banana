@@ -539,7 +539,7 @@
       <h1 id="judulFilm"> {{$film->judul}}</h1>
       <div class="col-lg-6 col-md-12 col-xs-12">
         <p id="orginalTitle">Original Language : {{ $film->original_language}}</p>
-        <p id="tahunRilis&filmDurasi"> {{ date('d-m-Y', strtotime($film->tahun_rilis)) }} PG-{{ $film->pg }} {{ $film->durasi }} MINUTES</p>
+        <p id="tahunRilis&filmDurasi"> {{ date('d-m-Y', strtotime($film->tahun_rilis)) }} {{ $film->pg }} {{$film->durasi }} MINUTES</p>
       </div>
       <div class="col-lg-6 col-md-12 col-xs-12 row text-center" style="color: rgba(255, 255, 255, 0.5);">
         <div class="col-lg-6 hide-on-medium hide-on-small hide p-0">
@@ -953,7 +953,7 @@
                   "<div id='tambahanAjax'>" +
                   "<div class='card-header'>" +
                   "<div class='left-content'>" +
-                  "<a href='{{env('LINK_WEBSITE')}}user/profile/" + data['akunId'] + "' style='text-decoration: none; color: white'>" +
+                  "<a href='{{env('LINK_WEBSITE')}}user/profile/"   + data['akunId ' ] + "' style='text-decoration: none; color: white'>" +
                   "<span>" +
                   "<img src='https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg' alt='Profile Picture'>" +
                   "<strong class='namaUser'>" + data['name'] + "</strong>" +
@@ -1041,7 +1041,7 @@
                 "<div id='tambahanAjax'>" +
                 "<div class='card-header'>" +
                 "<div class='left-content'>" +
-                "<a href='{{env('LINK_WEBSITE')}}user/profile/" + data['akunId'] + "' style='text-decoration: none; color: white'>" +
+                "<a href='{{env('LINK_WEBSITE')}}user/profi l e/" + data['ak u nId'] + "' style='text-decoration: none; color: white'>" +
                 "<span>" +
                 "<img src='https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg' alt='Profile Picture'>" +
                 "<strong class='namaUser'>" + data['name'] + "</strong>" +

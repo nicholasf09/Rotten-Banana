@@ -71,7 +71,7 @@
         <div class="row flex-nowrap">
             <div id="sidebar" class="col-auto col-xs-4 col-xl-3 px-sm-3 px-0 bg-secondary">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <a href="/"
+                    <a href="{{route('admin.home')}}"
                         class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                         <span class="fs-5 d-none d-sm-inline"><img width="55"
                                 src="{{asset('storage/uploads/assets/cool-banana.png')}}" alt="banana" class="m-0">

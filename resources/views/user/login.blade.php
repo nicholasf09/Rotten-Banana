@@ -240,12 +240,12 @@
                 <form action="#">
                   <div class="input-box">
                     <span class="icon"><ion-icon name="person"></ion-icon></span>
-                    <input type="email" id="email" name="email" class="input-field">
+                    <input type="email" id="email" name="email" required class="input-field">
                     <label>Email</label>
                   </div>
                   <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" id="password" name="password" name="input-field">
+                    <input type="password" id="password" name="password" required name="input-field">
                     <label>Password</label>
                   </div>
                   <div class="submit-button">
@@ -263,25 +263,25 @@
               <div class="sign-up card__back">
                 <div class="contents">
                   <h1>Registration</h1>
-                  <form action="#">
+                  <form action="{{route('user.store')}}" method="POST">
+                    @csrf
                     <div class="input-box">
                       <span class="icon"><ion-icon name="person"></ion-icon></span>
-                      <input class="input-field" type="text" required />
+                      <input class="input-field" type="text" required name="name"/>
                       <label>Username</label>
                     </div>
                     <div class="input-box">
                       <span class="icon"
-                        ><ion-icon name="lock-closed"></ion-icon
-                      ></span>
-                      <input class="input-field" type="password" required />
-                      <label>Password</label>
+                        ><i class="fa-regular fa-envelope lock-closed"></i></span>
+                      <input class="input-field" type="email" required name="email"/>
+                      <label>Email</label>
                     </div>
                     <div class="input-box">
                       <span class="icon"
                         ><ion-icon name="lock-closed"></ion-icon
                       ></span>
-                      <input class="input-field" type="password" required />
-                      <label>Confirm Password</label>
+                      <input class="input-field" type="password" required name="password"/>
+                      <label>Password</label>
                     </div>
                     <div class="submit-button">
                       <input type="submit" value="Submit" />

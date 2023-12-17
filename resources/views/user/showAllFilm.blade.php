@@ -116,19 +116,19 @@
         <input type="radio" class="btn-check" name="genreFilm" id="horror" autocomplete="off" value="horror">
         <label class="btn btn-secondary" for="horror">Horror</label>
 
-        <input type="radio" class="btn-check" name="genreFilm" id="action" autocomplete="off" value="action">
+        <input type="radio" class="btn-check" name="genreFilm" id="action" autocomplete="off" value="Action">
         <label class="btn btn-secondary" for="action">Action</label>
 
-        <input type="radio" class="btn-check" name="genreFilm" id="anime" autocomplete="off" value="anime">
+        <input type="radio" class="btn-check" name="genreFilm" id="anime" autocomplete="off" value="Anime">
         <label class="btn btn-secondary" for="anime">Anime</label>
 
-        <input type="radio" class="btn-check" name="genreFilm" id="romance" autocomplete="off" value="romance">
+        <input type="radio" class="btn-check" name="genreFilm" id="romance" autocomplete="off" value="Romance">
         <label class="btn btn-secondary" for="romance">Romance</label>
 
-        <input type="radio" class="btn-check" name="genreFilm" id="comedy" autocomplete="off" value="comedy">
+        <input type="radio" class="btn-check" name="genreFilm" id="comedy" autocomplete="off" value="Comedy">
         <label class="btn btn-secondary" for="comedy">Comedy</label>
 
-        <input type="radio" class="btn-check" name="genreFilm" id="kdrama" autocomplete="off" value="kdrama">
+        <input type="radio" class="btn-check" name="genreFilm" id="kdrama" autocomplete="off" value="Kdrama">
         <label class="btn btn-secondary" for="kdrama">K-Drama</label>
 
     </div>
@@ -244,7 +244,7 @@
                         console.log(data);
                         $.each(data['data'], function (index, value) {
                             $('#posterContainer').append("<div class='col-2'>" +
-                                "<a href='{{env('LINK_WEBSITE')}}user/filmMain/'" + value['id'] + " id='posterFilm'>" +
+                                "<a href='{{env('LINK_WEBSITE')}}user/filmMain/" + value['id'] + "' id='posterFilm'>" +
                                 "<div>" +
                                 "<img src='{{asset('storage/')}}/" + value['path_image'] + "' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" +
                                 "<h5 style='text-align: center;'>" + value['judul'] + "</h5>" +
@@ -280,7 +280,7 @@
                         console.log(data);
                         $.each(data['data'], function (index, value) {
                             $('#posterContainer').append("<div class='col-2'>" +
-                                "<a href='{{env('LINK_WEBSITE')}}user/filmMain/'" + value['id'] + " id='posterFilm'>" +
+                                "<a href='{{env('LINK_WEBSITE')}}user/filmMain/" + value['id'] + "' id='posterFilm'>" +
                                 "<div>" +
                                 "<img src='{{asset('storage/')}}/" + value['path_image'] + "' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" +
                                 "<h5 style='text-align: center;'>" + value['judul'] + "</h5>" +
@@ -321,7 +321,7 @@
                     console.log(data);
                     $.each(data['data'], function (index, value) {
                         $('#posterContainer').append("<div class='col-2'>" +
-                            "<a href='{{env('LINK_WEBSITE')}}user/filmMain/'" + value['id'] + " id='posterFilm'>" +
+                            "<a href='{{env('LINK_WEBSITE')}}user/filmMain/" + value['id'] + "' id='posterFilm'>" +
                             "<div>" +
                             "<img src='{{asset('storage/')}}/" + value['path_image'] + "' class='rounded float-start' alt='{{$film->judul}}' style='width: 100%; height: 320px; object-fit: cover;'>" +
                             "<h5 style='text-align: center;'>" + value['judul'] + "</h5>" +
@@ -341,6 +341,11 @@
                     });
                 }
             });
+        });
+
+        $('#posterFilm').click(function () {
+            $("#searchBar").val('');
+            $('input[type=radio][name=genreFilm]').prop('checked', false);
         });
         document.getElementById('{{ $button }}').click();
     });
