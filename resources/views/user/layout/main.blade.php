@@ -38,6 +38,19 @@
         margin: 0;
         padding: 0;
     }
+    ::-webkit-scrollbar {
+        width: 9px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: yellow;
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #121212;
+        border-radius: 6px;
+    }
 </style>
 
 <body style="overflow-x: hidden " >

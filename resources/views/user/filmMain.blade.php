@@ -49,6 +49,7 @@
     overflow: auto;
   }
 
+
   body::after {
     content: '';
     position: absolute;
@@ -59,15 +60,15 @@
     background-color: rgba(0, 0, 0, 0.6);
     z-index: -1;
   }
-
   .rating {
     color: white;
     background-color: black;
     position: absolute;
     width: 100%;
-    height: 100%;
     z-index: 2;
     overflow: auto;
+    overflow-x: hidden;
+    
   }
 
   #containerFilm {
@@ -131,7 +132,7 @@
     height: 100%
   }
 
-
+  
 
 
   .square-button:before {
@@ -541,13 +542,13 @@
         <p id="tahunRilis&filmDurasi"> {{ date('d-m-Y', strtotime($film->tahun_rilis)) }} {{ $film->pg }} {{$film->durasi }} MINUTES</p>
       </div>
       <div class="col-lg-6 col-md-12 col-xs-12 row text-center" style="color: rgba(255, 255, 255, 0.5);">
-        <div class="col-lg-6 hide-on-medium hide-on-small hide p-0">
+        <div class="col-6 p-0">
           <p class="titleRating text-right">rotten banana <br> rating</p>
           <span class="titleRatingSecondary text-right"><i class="fa-solid fa-star" style="color: #f4f665;"></i><strong
               id="totalRating">{{round($jumlahReview == 0 ? 0 : $totalRating / $jumlahReview, 1)
               }}</strong></span><span>/5</span>
         </div>
-        <div class="col-lg-6 hide-on-medium hide-on-small hide p-0">
+        <div class="col-6 p-0">
           <p class="titleRating text-right">rotten banana <br> like</p>
           <span class="titleRatingSecondary text-right"><i class="fa-solid fa-heart" style="color: #ff0000;"></i><strong
               id="totalLike">{{$film->like}}</strong></span>

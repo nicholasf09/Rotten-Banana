@@ -44,7 +44,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::post('/cekUser', [LoginController::class, 'cekLoginUser'])->name('cekLogin');
     Route::get('/home', [UserController::class, 'home'])->name('home')->middleware('user');
     Route::get('/signup', [UserController::class, 'signup'])->name('signup');
-    Route::post('/signup/create', [UserController::class, 'create'])->name('store');
+    Route::post('/signup/create', [UserController::class, 'create'])->name('store')->middleware('user');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout')->middleware('user');
 
     //Profile
